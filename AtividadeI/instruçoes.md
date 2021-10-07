@@ -21,7 +21,6 @@ criada uma branch com o nome da atividade e dentro dela deverá conter criar uma
 ###___Exemplo
 
 
-*colocar um arquivo em pdf com o print da execução das atividades acima adotando o seguinte modelo para nome do arquivo: ```print-AtividadeI-Nome-Sobrenome.pdf```*
+**5. Colocar um arquivo em pdf, na pasta da Atividade(referenciada) na branch main, com o print da execução das atividades acima adotando o seguinte modelo para nome do arquivo: ```print-AtividadeI-Nome-Sobrenome.pdf```**
 
-*postar no moodle a url do git referente a atividade solicitada.*
-
+**6. postar no moodle a url do git referente a atividade solicitada.**
