@@ -8,7 +8,9 @@ criada uma branch com o nome da atividade e dentro dela deverá conter criar uma
 **4. Pegue as instruções da atividade no moodle e adicione dentro da diretiva "###__Exemplo"**
 
 ###___Exemplo
+   
     1 - Criar Branch: atividadeII e:
+    
     2 - Dentro da branch criada: 
 
     3 - Criar pasta com o nome 'codigo' e
@@ -21,9 +23,9 @@ criada uma branch com o nome da atividade e dentro dela deverá conter criar uma
 ###__Exemplo
 
 
-**colocar um arquivo em pdf, na pasta da Atividade(referenciada) na branch main, com o print da execução das atividades acima adotando o seguinte modelo para nome do arquivo: print-AtividadeII-Nome-Sobrenome.pdf 
+**colocar um arquivo em pdf, na pasta da Atividade(referenciada) na branch main, com o print da execução das atividades acima adotando o seguinte modelo para nome do arquivo: ```print-AtividadeII-Nome-Sobrenome.pdf```**
 
-*tem que constar no nome do Aluno no terminal
+**tem que constar no nome do Aluno no terminal**
 
-*postar no moodle a url do git referente a atividade solicitada.
+**postar no moodle a url do git referente a atividade solicitada.**
 
