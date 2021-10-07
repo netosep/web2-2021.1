@@ -20,12 +20,11 @@ criada uma branch com o nome da atividade e dentro dela deverá conter criar uma
         > Replicar aula e incluir a migration: fornecedor, Model Fornecedor, Controller: FornecedorController
 
     4 - Data de entrega: até 07-10 as 21:00, postar codigo em seu repositorio do github:
+    
 ###__Exemplo
 
 
-**colocar um arquivo em pdf, na pasta da Atividade(referenciada) na branch main, com o print da execução das atividades acima adotando o seguinte modelo para nome do arquivo: ```print-AtividadeII-Nome-Sobrenome.pdf```**
+**5. Colocar um arquivo em pdf, na pasta da Atividade(referenciada) na branch main, com o print da execução das atividades acima adotando o seguinte modelo para nome do arquivo: ```print-AtividadeII-Nome-Sobrenome.pdf```**
 
-**tem que constar no nome do Aluno no terminal**
-
-**postar no moodle a url do git referente a atividade solicitada.**
+**6. postar no moodle a url do git referente a atividade solicitada.**
 
