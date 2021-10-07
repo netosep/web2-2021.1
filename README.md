@@ -1,1 +1,1 @@
-# Página das atividades desenvolvidas na disciplina web2-2021.1
+# Dentro da pasta codigo deve conter todos os arquivos codificados
