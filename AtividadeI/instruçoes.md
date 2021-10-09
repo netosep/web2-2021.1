@@ -7,7 +7,7 @@ criada uma branch com o nome da atividade e dentro dela deverá conter criar uma
 
 **4. Pegue as instruções da atividade no moodle e adicione dentro da diretiva "###__Exemplo"**
 
-###___Exemplo
+### Exemplo
 
     1 - Instalar o docker:
     https://www.docker.com/get-started
@@ -18,8 +18,7 @@ criada uma branch com o nome da atividade e dentro dela deverá conter criar uma
     3 - criar um projeto laravel conforme instruções abaixo
     https://alissonfreire.github.io/manual-ambiente-web/#instalar-o-docker-e-o-docker-compose
 
-###___Exemplo
-
+### Exemplo
 
 **5. Colocar um arquivo em pdf, na pasta da Atividade(referenciada) na branch main, com o print da execução das atividades acima adotando o seguinte modelo para nome do arquivo: ```print-AtividadeI-Nome-Sobrenome.pdf```**
 
