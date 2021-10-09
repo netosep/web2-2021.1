@@ -7,7 +7,7 @@ criada uma branch com o nome da atividade e dentro dela deverá conter criar uma
 
 **4. Pegue as instruções da atividade no moodle e adicione dentro da diretiva "###__Exemplo"**
 
-###___Exemplo
+### Exemplo
    
     1 - Criar Branch: atividadeII e:
     
@@ -21,7 +21,7 @@ criada uma branch com o nome da atividade e dentro dela deverá conter criar uma
 
     4 - Data de entrega: até 07-10 as 21:00, postar codigo em seu repositorio do github:
     
-###__Exemplo
+### Exemplo
 
 
 **5. Colocar um arquivo em pdf, na pasta da Atividade(referenciada) na branch main, com o print da execução das atividades acima adotando o seguinte modelo para nome do arquivo: ```print-AtividadeII-Nome-Sobrenome.pdf```**
