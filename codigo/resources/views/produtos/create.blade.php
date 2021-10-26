@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cadastrar cliente</title>
+    <title>Cadastrar produto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
@@ -12,10 +12,10 @@
 </head>
 <body style="width: 50%" class="m-5">
     <div class="title text-center m-3">
-        <h1>Cadastrar cliente</h1>
+        <h1>Cadastrar produto</h1>
         <div class="links mt-3">
             <a href="../" class="link m-3">Home</a>
-            <a href="index" class="link m-3">Clientes</a>
+            <a href="index" class="link m-3">Produtos</a>
         </div>
     </div>
     <form action="store" method="POST">
@@ -25,12 +25,8 @@
             <input type="text" class="form-control" name="nome" required>
         </div>
         <div class="input m-3">
-            <label for="endereco">Endereço</label>
-            <input type="text" class="form-control" name="endereco" required>
-        </div>
-        <div class="input m-3">
-            <label for="descricao">Descrição</label>
-            <input type="text" class="form-control" name="descricao" required>
+            <label for="lucro">Porcentagem de lucro <small>(%)</small></label>
+            <input type="number" class="form-control" min="0" name="lucro" required>
         </div>
         <div class="input m-3">
             <input type="submit" class="form-control btn-success" value="Cadastrar">

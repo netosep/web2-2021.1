@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fornecedor extends Model
+class Produto extends Model
 {
     use HasFactory;
-    protected $table = 'fornecedores';
+    protected $table = 'produtos';
     protected $fillable = [
         'nome', 
-        'telefone', 
-        'endereco'
+        'valor_compra', 
+        'valor_venda', 
+        'porcentagem_lucro',
+        'quantidade'
     ];
-
-    public function compra() {
-        return $this->hasMany(Compra::class);
-    }
 }

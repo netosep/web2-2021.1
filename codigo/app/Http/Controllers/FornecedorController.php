@@ -22,6 +22,25 @@ class FornecedorController extends Controller
         $fornecedor->endereco = $request->endereco;
         $fornecedor->save();
 
-        return redirect('/fornecedor/index');
+        return redirect('/fornecedores/index');
+    }
+
+    public function show($id) {
+        //
+    }
+
+    public function edit($id) {
+        $fornecedor = Fornecedor::find($id);
+        return view('fornecedores.edit', ['fornecedor' => $fornecedor]);
+    }
+
+    public function update(Request $request, $id) {
+        Fornecedor::find($id)->update($request->all());
+        return redirect('/fornecedores/index');
+    }
+
+    public function destroy($id) {
+        Fornecedor::find($id)->delete();
+        return redirect('/fornecedores/index');
     }
 }
