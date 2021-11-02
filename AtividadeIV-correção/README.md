@@ -11,25 +11,26 @@ criada uma branch com o nome da atividade e dentro dela deverá conter criar uma
    
 1 - Corrija o arquivo de rotas nomeando as rotas exemplo:
 ```php
-    Route::get('/clientes/create',[ClienteController::Class, 'create'])->name('clientes.create');
-    Route::get('/clientes/edit',[ClienteController::Class, 'edit'])->name('clientes.edit');
-    Route::get('/clientes/update/{id}',[ClienteController::Class, 'update'])->name('clientes.update');
+Route::get('/clientes/create',[ClienteController::Class, 'create'])->name('clientes.create');
+Route::get('/clientes/edit',[ClienteController::Class, 'edit'])->name('clientes.edit');
+Route::get('/clientes/update/{id}',[ClienteController::Class, 'update'])->name('clientes.update');
 ```
 2 -  Nas Views modifique as Actions substituido:
-    #exemplo sem parametro:
-```php
+exemplo sem parametro:
+    
+```html
 <form action="/clientes/create" method="post">
 ```
-    por
-```php
+por
+```html
 <form action="{{route('clientes.create')}}" method="post">
 ```
-    #exemplo com parametro:
-```php
+#exemplo com parametro:
+```html
 <form action="/clientes/update/{{$cliente->id}}" method="post">
 ```
-    por
-```php
+por
+```html
 <form action="{{route('clientes.update', ['id' => $cliente->id])}}" method="post">
 ```
 
