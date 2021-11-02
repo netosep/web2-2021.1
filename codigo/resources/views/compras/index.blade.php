@@ -14,8 +14,8 @@
     <div class="title text-center m-3">
         <h1>Página de compras</h1>
         <div class="links mt-3">
-            <a href="../" class="link m-3">Home</a>
-            <a href="../compras/create" class="link m-3">Registrar compra</a>
+            <a href="{{ route("site.index") }}" class="link m-3">Home</a>
+            <a href="{{ route("compras.create") }}" class="link m-3">Registrar compra</a>
         </div>
     </div>
     <table class="table text-center">
@@ -33,10 +33,10 @@
                 <td>{{ $compra->created_at }}</td>
                 <td>{{ $compra->valor_total }}</td>
                 <td class="d-flex justify-content-center">
-                    <a href="edit/{{ $compra->id }}" class="btn btn-secondary btn-sm m-1">
+                    <a href="{{ route("compras.edit", $compra->id) }}" class="btn btn-secondary btn-sm m-1">
                         <i class="far fa-edit"></i>
                     </a>
-                    <form action="delete/{{ $compra->id }}" method="post">
+                    <form action="{{ route("compras.destroy", $compra->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm m-1">

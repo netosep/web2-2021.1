@@ -14,8 +14,8 @@
     <div class="title text-center m-3">
         <h1>Página de fornecedores</h1>
         <div class="links mt-3">
-            <a href="../" class="link m-3">Home</a>
-            <a href="../fornecedores/create" class="link m-3">Cadastrar</a>
+            <a href="{{ route("site.index") }}" class="link m-3">Home</a>
+            <a href="{{ route("fornecedores.create") }}" class="link m-3">Cadastrar</a>
         </div>
     </div>
     <table class="table text-center">
@@ -33,10 +33,10 @@
                 <td>{{ $fornecedor->telefone }}</td>
                 <td>{{ $fornecedor->endereco }}</td>
                 <td class="d-flex justify-content-center">
-                    <a href="edit/{{ $fornecedor->id }}" class="btn btn-secondary btn-sm m-1">
+                    <a href="{{ route("fornecedores.edit", $fornecedor->id) }}" class="btn btn-secondary btn-sm m-1">
                         <i class="far fa-edit"></i>
                     </a>
-                    <form action="delete/{{ $fornecedor->id }}" method="post">
+                    <form action="{{ route("fornecedores.destroy", $fornecedor->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm m-1">

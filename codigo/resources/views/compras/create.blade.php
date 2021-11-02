@@ -14,11 +14,11 @@
     <div class="title text-center m-3">
         <h1>Registrar Compra</h1>
         <div class="links mt-3">
-            <a href="../" class="link m-3">Home</a>
-            <a href="index" class="link m-3">Compras</a>
+            <a href="{{ route("site.index") }}" class="link m-3">Home</a>
+            <a href="{{ route("compras.index") }}" class="link m-3">Compras</a>
         </div>
     </div>
-    <form action="store" id="form" method="post">
+    <form action="{{ route("compras.store") }}" id="form" method="post">
         @csrf
         <div class="input m-3 d-flex justify-content-between">
             <div class="input" style="width: 85%">

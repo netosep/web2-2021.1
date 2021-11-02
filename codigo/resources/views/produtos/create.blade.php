@@ -14,11 +14,11 @@
     <div class="title text-center m-3">
         <h1>Cadastrar produto</h1>
         <div class="links mt-3">
-            <a href="../" class="link m-3">Home</a>
-            <a href="index" class="link m-3">Produtos</a>
+            <a href="{{ route("site.index") }}" class="link m-3">Home</a>
+            <a href="{{ route("produtos.index") }}" class="link m-3">Produtos</a>
         </div>
     </div>
-    <form action="store" method="POST">
+    <form action="{{ route("produtos.store") }}" method="POST">
         @csrf
         <div class="input m-3">
             <label for="nome">Nome</label>

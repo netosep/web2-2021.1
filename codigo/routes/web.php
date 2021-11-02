@@ -18,7 +18,7 @@ use App\Http\Controllers\VendaController;
 |
 */
 
-Route::get('/', function () { return view('index'); });
+Route::get('/', function () { return view('index'); })->name('site.index');
 
 Route::prefix('/clientes')->group(function() {
     Route::get('/index', [ClienteController::class, 'index'])->name('clientes.index');

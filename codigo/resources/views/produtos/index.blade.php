@@ -14,8 +14,8 @@
     <div class="title text-center m-3">
         <h1>Página de produtos</h1>
         <div class="links mt-3">
-            <a href="../" class="link m-3">Home</a>
-            <a href="../produtos/create" class="link m-3">Cadastrar</a>
+            <a href="{{ route("site.index") }}" class="link m-3">Home</a>
+            <a href="{{ route("produtos.index") }}" class="link m-3">Cadastrar</a>
         </div>
     </div>
     <table class="table text-center">
@@ -37,10 +37,10 @@
                 <td>{{ $produto->porcentagem_lucro }}</td>
                 <td>{{ $produto->quantidade }}</td>
                 <td class="d-flex justify-content-center">
-                    <a href="edit/{{ $produto->id }}" class="btn btn-secondary btn-sm m-1">
+                    <a href="{{ route("produtos.edit", $produto->id) }}" class="btn btn-secondary btn-sm m-1">
                         <i class="far fa-edit"></i>
                     </a>
-                    <form action="delete/{{ $produto->id }}" method="post">
+                    <form action="{{ route("produtos.destroy", $produto->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm m-1">

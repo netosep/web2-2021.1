@@ -14,11 +14,11 @@
     <div class="title text-center m-3">
         <h1>Editar produto</h1>
         <div class="links mt-3">
-            <a href="../../" class="link m-3">Home</a>
-            <a href="../index" class="link m-3">Produtos</a>
+            <a href="{{ route("site.index") }}" class="link m-3">Home</a>
+            <a href="{{ route("produtos.index") }}" class="link m-3">Produtos</a>
         </div>
     </div>
-    <form action="../update/{{ $produto->id }}" method="POST">
+    <form action="{{ route("produtos.update", $produto->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="input m-3">

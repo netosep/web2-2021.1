@@ -14,11 +14,11 @@
     <div class="title text-center m-3">
         <h1>LaraVendas</h1>
         <div class="links mt-3">
-            <a href="clientes/index" class="link m-3">Clientes</a>
-            <a href="produtos/index" class="link m-3">Produtos</a>
-            <a href="vendas/index" class="link m-3">Vendas</a>
-            <a href="fornecedores/index" class="link m-3">Fornecedores</a>
-            <a href="compras/index" class="link m-3">Compras</a>
+            <a href="{{ route("clientes.index") }}" class="link m-3">Clientes</a>
+            <a href="{{ route("produtos.index") }}" class="link m-3">Produtos</a>
+            <a href="{{ route("vendas.index") }}" class="link m-3">Vendas</a>
+            <a href="{{ route("fornecedores.index") }}" class="link m-3">Fornecedores</a>
+            <a href="{{ route("compras.index") }}" class="link m-3">Compras</a>
         </div>
     </div>
 </body>
