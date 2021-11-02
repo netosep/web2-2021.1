@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    background: #f6f6f6;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border: #bbb solid 1px;
+    width: 900px;
+    height: 100%;
+}
+
+.titulo {
+    margin-top: 7%;
+    display: grid;
+    grid-template-columns: 900px;
+    grid-template-rows: 50px 50px;
+}
+
+.titulo h1 {
+    grid-row: 1 / 2;;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo h3 {
+    grid-row: 2 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.links {
+    margin: 25px;
+    display: grid;
+    grid-template-columns: 150px 150px; 
+    grid-template-rows: 100px 100px;
+    gap: 20px;
+}
+
+.links #clientes {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.links #produtos {
+    grid-column: 2 / 2;
+    grid-row: 1 / 2;
+}
+
+.links #vendas {
+    grid-column: 1 / 2;
+    grid-row: 2 / 2;
+}
+
+.links #compras {
+    grid-column: 2 / 2;
+    grid-row: 2 / 2;
+}
+
+.links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: #bbb solid 1px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    background-color: #00bfff;
+}
+
+.links a:hover {
+    background-color: cyan;
+}

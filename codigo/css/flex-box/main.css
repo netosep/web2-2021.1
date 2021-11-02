@@ -1,0 +1,96 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    background: #f6f6f6;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border: #bbb solid 1px;
+    width: 900px;
+    height: 100%;
+}
+
+.title {
+    margin-top: 7%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title span {
+    text-align: center;
+    margin: 25px 0 0 0;
+}
+
+.title span a {
+    margin: 15px;
+}
+
+form {
+    width: 70%;
+    margin-bottom: 7%;
+}
+
+form fieldset {
+    margin: 15px;
+    padding: 10px;
+    border: #8a8a8a solid 1px;
+    border-radius: 5px;
+}
+
+form legend {
+    margin: 5px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+form .input {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 10px;
+}
+
+form .input label {
+    margin: 5px;
+}
+
+form .input input {
+    padding: 7px;
+    border: #8a8a8a solid 1px;
+    border-radius: 5px;
+}
+
+form .input select {
+    padding: 7px;
+    border: #8a8a8a solid 1px;
+    border-radius: 5px;
+}
+
+form .input button {
+    margin: 5px;
+    padding: 7px;
+    border: #8a8a8a solid 1px;
+    border-radius: 5px;
+    background-color: #8a8a8a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+form .input button:hover {
+    background-color: #a8a8a8;
+}
