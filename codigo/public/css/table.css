@@ -1,0 +1,17 @@
+.conteudo table {
+    color: #257575;
+    width: 80%;
+}
+
+table thead {
+    background-color: #257575;
+    color: #fff;
+}
+
+table tr {
+    text-align: center;
+}
+
+table tbody {
+    background-color: #fff;
+}
