@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCompraRequest;
 use App\Models\Compra;
 use App\Models\Fornecedor;
 use App\Models\ItemCompra;
@@ -24,7 +25,7 @@ class CompraController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(StoreCompraRequest $request) {
 
         // concertar para varios produtos
         $compra = new Compra();
@@ -58,7 +59,7 @@ class CompraController extends Controller
     }
 
     public function destroy($id) {
-        Compra::destroy($id);
+        Compra::findOrFail($id)->delete($id);
         return redirect()->route('compra.index');
     }
 }

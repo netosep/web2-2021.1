@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreVendaRequest;
 use App\Models\Cliente;
 use App\Models\ItemVenda;
 use App\Models\Produto;
@@ -22,7 +23,7 @@ class VendaController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(StoreVendaRequest $request) {
 
         // concertar para varios produtos
         $venda = new Venda();
@@ -52,12 +53,12 @@ class VendaController extends Controller
     }
 
     public function update(Request $request, $id) {
-        Venda::find($id)->update($request->all());
+        Venda::findOrFail($id)->update($request->all());
         return redirect()->route('vendas.index');
     }
 
     public function destroy($id) {
-        Venda::find($id)->delete();
+        Venda::findOrFail($id)->delete();
         return redirect()->route('vendas.index');
     }
 }

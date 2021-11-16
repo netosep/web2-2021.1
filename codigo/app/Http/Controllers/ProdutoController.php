@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProdutoRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -16,13 +17,9 @@ class ProdutoController extends Controller
         return view('produtos.create');
     }
 
-    public function store(Request $request) {
-        $produto = new Produto();
-        $produto->nome = $request->nome;
-        $produto->porcentagem_lucro = $request->lucro;
-        $produto->save();
-
-        return redirect('/produtos/index');
+    public function store(StoreProdutoRequest $request) {
+        Produto::create($request->all());
+        return redirect()->route('produtos.index');
     }
 
     public function show($id) {
@@ -34,13 +31,13 @@ class ProdutoController extends Controller
         return view('produtos.edit', ['produto' => $produto]);
     }
 
-    public function update(Request $request, $id) {
+    public function update(StoreProdutoRequest $request, $id) {
         Produto::find($id)->update($request->all());
-        return redirect('/produtos/index');
+        return redirect()->route('produtos.index');
     }
 
     public function destroy($id) {
         Produto::find($id)->delete();
-        return redirect('/produtos/index');
+        return redirect()->route('produtos.index');
     }
 }

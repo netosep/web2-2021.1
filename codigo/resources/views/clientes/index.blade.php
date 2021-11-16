@@ -26,7 +26,7 @@
                     <td>{{ $cliente->nome }}</td> 
                     <td>{{ $cliente->debito }}</td>
                     <td>{{ $cliente->endereco }}</td>
-                    <td>{{ $cliente->descricao }}</td>
+                    <td>{{ $cliente->descricao ? $cliente->descricao : "Sem descrição" }}</td>
                     <td class="d-flex justify-content-center">
                         <a href="{{ route("clientes.edit", $cliente->id) }}" class="btn btn-secondary btn-sm m-1">
                             <i class="far fa-edit"></i>

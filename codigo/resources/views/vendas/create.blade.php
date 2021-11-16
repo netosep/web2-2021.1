@@ -9,12 +9,17 @@
         <div class="input m-3 d-flex justify-content-between">
             <div class="input" style="width: 85%">
                 <label for="cliente_id">Selecione um cliente</label>
-                <select name="cliente_id" class="form-control" required>
+                <select name="cliente_id" class="form-control @error('cliente_id') is-invalid @enderror">
                     <option value="" disabled selected>Selecione</option>
                     @foreach($clientes as $cliente)
                         <option value="{{ $cliente->id }}">{{ $cliente->nome }}</option>
                     @endforeach
                 </select>
+                @error('cliente_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <button type="button" id="add-produto-btn" class="btn btn-primary mt-4">
                 <i class="fas fa-plus"></i> Produto
@@ -25,21 +30,36 @@
                 <div class="input d-flex justify-content-between">
                     <div class="input" style="width: 40%">
                         <label for="produto_id">Selecione o produto</label>
-                        <select name="produto_id[]" class="form-control" required>
+                        <select name="produto_id[]" class="form-control @error('produto_id') is-invalid @enderror">
                             <option value="" disabled selected>Selecione</option>
                             @foreach($produtos as $produto)
                                 <option value="{{ $produto->id }}">{{ $produto->nome }}</option>
                             @endforeach
                         </select>
+                        @error('produto_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="input">
                         <label for="quantidade">Quantidade</label>
-                        <input type="number" name="quantidade[]" min="1" value="0" class="form-control" required>
+                        <input type="number" name="quantidade[]" class="form-control @error('quantidade') is-invalid @enderror">
+                        @error('quantidade')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="input">
                         <label for="valor">Valor unid. <small>(R$)</small></label>
-                        <input type="hidden" name="valor[]" class="form-control" required>
-                        <input type="text" class="form-control" value="0" disabled>
+                        <input type="hidden" name="valor[]" class="form-control">
+                        <input type="text" class="form-control @error('valor') is-invalid @enderror" disabled>
+                        @error('valor')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <button type="button" class="btn btn-danger mt-4">
                         <i class="fas fa-minus"></i>

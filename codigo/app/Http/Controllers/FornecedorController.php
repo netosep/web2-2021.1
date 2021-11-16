@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFornecedorRequest;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 
@@ -15,14 +16,9 @@ class FornecedorController extends Controller
         return view('fornecedores.create');
     }
 
-    public function store(Request $request) {
-        $fornecedor = new Fornecedor();
-        $fornecedor->nome = $request->nome;
-        $fornecedor->telefone = $request->telefone;
-        $fornecedor->endereco = $request->endereco;
-        $fornecedor->save();
-
-        return redirect('/fornecedores/index');
+    public function store(StoreFornecedorRequest $request) {
+        Fornecedor::create($request->all());
+        return redirect()->route('fornecedores.index');
     }
 
     public function show($id) {
@@ -34,13 +30,13 @@ class FornecedorController extends Controller
         return view('fornecedores.edit', ['fornecedor' => $fornecedor]);
     }
 
-    public function update(Request $request, $id) {
-        Fornecedor::find($id)->update($request->all());
-        return redirect('/fornecedores/index');
+    public function update(StoreFornecedorRequest $request, $id) {
+        Fornecedor::findOrFail($id)->update($request->all());
+        return redirect()->route('fornecedores.index');
     }
 
     public function destroy($id) {
-        Fornecedor::find($id)->delete();
-        return redirect('/fornecedores/index');
+        Fornecedor::findOrFail($id)->delete();
+        return redirect()->route('fornecedores.index');
     }
 }
