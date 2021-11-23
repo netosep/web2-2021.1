@@ -17,8 +17,7 @@ class StoreVendaRequest extends FormRequest
         return [
             'cliente_id' => 'required',
             'produto_id' => 'required',
-            'quantidade' => 'required',
-            'valor' => 'required'
+            'quantidade' => 'required|min:1'
         ];
     }
 
@@ -27,7 +26,8 @@ class StoreVendaRequest extends FormRequest
         return [
             'cliente_id.required' => 'O campo cliente é obrigatório.',
             'produto_id.required' => 'O campo produto é obrigatório.',
-            'quantidade.required' => 'O campo quantidade é obrigatório.'
+            'quantidade.required' => 'O campo quantidade é obrigatório.',
+            'quantidade.min' => 'O campo quantidade deve ser maior que zero.',
         ];
     }
 }

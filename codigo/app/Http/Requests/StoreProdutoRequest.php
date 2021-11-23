@@ -15,8 +15,8 @@ class StoreProdutoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|max:200',
-            'lucro' => 'required|numeric'
+            'nome' => 'required|min:3|max:100',
+            'porcentagem_lucro' => 'required|numeric|min:0'
         ];
     }
 
@@ -24,9 +24,11 @@ class StoreProdutoRequest extends FormRequest
     {
         return [
             'nome.required' => 'O nome do produto é obrigatório.',
+            'nome.min' => 'O nome do produto deve ter no mínimo :min caracteres.',
             'nome.max' => 'O nome do produto deve ter no máximo :max caracteres.',
-            'lucro.required' => 'O lucro do produto é obrigatório.',
-            'lucro.numeric' => 'O lucro do produto deve ser um número.'
+            'porcentagem_lucro.required' => 'O lucro do produto é obrigatório.',
+            'porcentagem_lucro.numeric' => 'O lucro do produto deve ser um número.',
+            'porcentagem_lucro.min' => 'O lucro do produto deve ser no mínimo :min.'
         ];
     }
 }

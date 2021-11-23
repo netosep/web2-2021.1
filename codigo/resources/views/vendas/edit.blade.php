@@ -2,20 +2,24 @@
 
 @section('conteudo')
     <div class="titulo">
-        <h4>Registrar Compra</h4>
+        <h4>Atualizar Venda</h4>
     </div>
-    <form class="form form-compra" action="{{ route("compras.store") }}" id="form" method="post">
+    <form class="form form-venda" action="{{ route("vendas.update", $venda->id) }}" id="form" method="post">
         @csrf
+        @method('PUT')
         <div class="input d-flex justify-content-between">
-            <div class="input-fornecedor" style="width: 100%">
-                <label for="fornecedor_id">Selecione um fornecedor</label>
-                <select name="fornecedor_id" class="form-control @error('fornecedor_id') is-invalid @enderror">
-                    <option value="" disabled selected>Selecione</option>
-                    @foreach($fornecedores as $fornecedor)
-                        <option value="{{ $fornecedor->id }}">{{ $fornecedor->nome }}</option>
+            <div class="input-cliente" style="width: 100%">
+                <label for="cliente_id">Selecione um cliente</label>
+                <select name="cliente_id" class="form-control @error('cliente_id') is-invalid @enderror">
+                    @foreach($clientes as $cliente)
+                        @if($cliente->id == $venda->cliente_id)
+                            <option value="{{ $cliente->id }}" selected>{{ $cliente->nome }}</option>
+                        @else
+                            <option value="{{ $cliente->id }}">{{ $cliente->nome }}</option>
+                        @endif
                     @endforeach
                 </select>
-                @error('fornecedor_id')
+                @error('cliente_id')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -28,14 +32,17 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="produto-area" id="produto-area">
+            @foreach($venda->itensVenda as $itemVenda)
                 <div class="input-produto-quant d-flex justify-content-between">
                     <div class="input" style="width: 40%">
                         <label for="produto_id">Selecione o produto</label>
                         <select name="produto_id[]" class="form-control @error('produto_id') is-invalid @enderror" onchange="setValor(this)">
-                            <option value="" disabled selected>Selecione</option>
                             @foreach($produtos as $produto)
-                                <option value="{{ $produto->id }}">{{ $produto->nome }}</option>
+                                @if($produto->id == $itemVenda->produto_id)
+                                    <option value="{{ $produto->id }}" selected>{{ $produto->nome }}</option>
+                                @else
+                                    <option value="{{ $produto->id }}">{{ $produto->nome }}</option>
+                                @endif
                             @endforeach
                         </select>
                         @error('produto_id')
@@ -46,7 +53,7 @@
                     </div>
                     <div class="input">
                         <label for="quantidade">Quantidade</label>
-                        <input type="number" name="quantidade[]" value="0" min="1" class="form-control @error('quantidade') is-invalid @enderror" onchange="setValor(this)" required>
+                        <input type="number" min="1" name="quantidade[]" value="{{ $itemVenda->quantidade }}" class="form-control @error('quantidade') is-invalid @enderror" required oninput="setValor(this)">
                         @error('quantidade')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -54,9 +61,9 @@
                         @enderror
                     </div>
                     <div class="input">
-                        <label for="valor_compra">Valor de compra <small>(R$)</small></label>
-                        <input type="number" min="1" step="any" name="valor_compra[]" class="form-control @error('valor_compra') is-invalid @enderror valor-compra" value="0" onchange="setValor(this)" required>
-                        @error('valor_compra')
+                        <label>Valor unid. <small>(R$)</small></label>
+                        <input type="text" class="form-control valor-unid" value="R$ {{ money_format('%i', $itemVenda->valor_unitario) }}" disabled>
+                        @error('valor')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -64,7 +71,12 @@
                     </div>
                     <div class="input">
                         <label>Valor total <small>(R$)</small></label>
-                        <input type="text" class="form-control valor-total" value="R$ 0.00" disabled>
+                        <input type="text" class="form-control valor-total" value="R$ {{ money_format('%i', $itemVenda->valor_total) }}" disabled>
+                        @error('valor')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="buttons">
                         <div class="input">
@@ -74,17 +86,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
         <div class="input-submit d-flex justify-content-between">
             <div class="input" style="width: 70%">
-                <label>Valor total</label>
-                <input type="text" class="form-control valor-total-venda" value="R$ 0.00" disabled>
+                <label>Valor total da venda</label>
+                <input type="text" value="R$ {{ money_format('%i', $venda->valor_total) }}" class="form-control valor-total-venda" disabled>
             </div>
             <div class="input d-flex" style="width: 25%; align-items: flex-end;">
                 <button type="submit" class="form-control btn-success">
-                    Registrar compra
-                    <i class="fas fa-check ml-1"></i>
+                    Atualizar venda
+                    <i class="fas fa-redo ml-1"></i>
                 </button>
             </div>
         </div>
@@ -92,13 +104,13 @@
 @endsection
 
 @push('scripts')
-    
+
     <script>
 
         $('.add-btn').click(function() {
             let inputs = $('.input-produto-quant:first');
             inputs.clone().appendTo('.form-group').find('input').each(function() {
-                if($(this).attr('name') == 'quantidade[]' || $(this).attr('name') == 'valor_compra[]') {
+                if($(this).attr('name') == 'quantidade[]') {
                     $(this).val(0);
                 } else {
                     $(this).val('R$ 0.00');
@@ -110,35 +122,40 @@
             if($('.input-produto-quant').length > 1) {
                 $(element).closest('.input-produto-quant').remove();
                 setValorTotal();
-            } else {
-                $(element).closest('.input-produto-quant').find('.valor-unid').val("R$ 0.00");
-                $(element).closest('.input-produto-quant').find('.valor-total').val("R$ 0.00");
-                $(element).closest('.input-produto-quant').find('.valor-compra').val(0);
-                $(element).closest('.input-produto-quant').find('select[name="produto_id[]"]').val("");
-                $(element).closest('.input-produto-quant').find('input[name="quantidade[]"]').val(0);
-                setValorTotal();
             }
         }
 
+        let produtos = [];
+        <?php foreach($produtos as $produto): ?>
+            produtos.push({
+                id: <?= $produto->id ?>,
+                nome: '<?= $produto->nome ?>',
+                valor: parseFloat('<?= $produto->valor_venda ?>')
+            });
+        <?php endforeach; ?>
+        
         function setValor(element) {
+
             let produto_id = $(element).closest('.input-produto-quant').find('select[name="produto_id[]"]').val();
             let quantidade = $(element).closest('.input-produto-quant').find('input[name="quantidade[]"]').val();
-            let valor_compra = $(element).closest('.input-produto-quant').find('input[name="valor_compra[]"]').val();
+            let produto = produtos.find(produto => produto.id == produto_id);
 
-            if(produto_id) {
-                let valor_total = valor_compra * quantidade;
+            if(produto) {
+                let valor_unid = produto.valor;
+                let valor_total = valor_unid * quantidade;
+                $(element).closest('.input-produto-quant').find('.valor-unid').val(`R$ ${valor_unid.toFixed(2)}`);
                 $(element).closest('.input-produto-quant').find('.valor-total').val(`R$ ${valor_total.toFixed(2)}`);
                 setValorTotal();
             }
         }
 
         function setValorTotal() {
-            let valor_total_venda = 0;
+            let valor_total = 0;
             $('.valor-total').each(function() {
-                valor_total_venda += parseFloat($(this).val().replace('R$ ', ''));
+                valor_total += parseFloat($(this).val().replace('R$ ', ''));
             });
-            $('.valor-total-venda').val(`R$ ${valor_total_venda.toFixed(2)}`);
-        } 
+            $('.valor-total-venda').val(`R$ ${valor_total.toFixed(2)}`);
+        }
 
     </script>
 

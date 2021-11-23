@@ -50,6 +50,7 @@ Route::prefix('/produtos')->group(function() {
 Route::prefix('/vendas')->group(function() {
     Route::get('/index', [VendaController::class, 'index'])->name('vendas.index');
     Route::get('/create', [VendaController::class, 'create'])->name('vendas.create');
+    Route::get('/show/{id}', [VendaController::class, 'show'])->name('vendas.show');
     Route::post('/store', [VendaController::class, 'store'])->name('vendas.store');
     Route::get('/edit/{id}', [VendaController::class, 'edit'])->name('vendas.edit');
     Route::put('/update/{id}', [VendaController::class, 'update'])->name('vendas.update');
@@ -59,6 +60,7 @@ Route::prefix('/vendas')->group(function() {
 Route::prefix('/compras')->group(function() {
     Route::get('/index', [CompraController::class, 'index'])->name('compras.index');
     Route::get('/create', [CompraController::class, 'create'])->name('compras.create');
+    Route::get('/show/{id}', [CompraController::class, 'show'])->name('compras.show');
     Route::post('/store', [CompraController::class, 'store'])->name('compras.store');
     Route::get('/edit/{id}', [CompraController::class, 'edit'])->name('compras.edit');
     Route::put('/update/{id}', [CompraController::class, 'update'])->name('compras.update');

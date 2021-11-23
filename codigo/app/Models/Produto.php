@@ -16,4 +16,12 @@ class Produto extends Model
         'porcentagem_lucro',
         'quantidade'
     ];
+
+    public function itensVenda() {
+        return $this->hasMany(ItemVenda::class);
+    }
+
+    public function itensCompra() {
+        return $this->hasMany(ItemCompra::class);
+    }
 }

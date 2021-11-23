@@ -15,3 +15,22 @@ table tr {
 table tbody {
     background-color: #fff;
 }
+
+.valor, .cliente {
+    color: #257575;
+    width: 80%;
+    font-size: 18px;
+    background-color: #fff;
+    padding: 7px;
+    border: 1px solid #257575;
+}
+
+.title-table {
+    color: #257575;
+    font-size: 17px;
+    width: 80%;
+    padding: 7px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}

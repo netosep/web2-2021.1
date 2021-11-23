@@ -18,7 +18,7 @@ class StoreCompraRequest extends FormRequest
             'fornecedor_id' => 'required',
             'produto_id' => 'required',
             'quantidade' => 'required',
-            'valor' => 'required'
+            'valor_compra' => 'required'
         ];
     }
 
@@ -28,8 +28,7 @@ class StoreCompraRequest extends FormRequest
             'fornecedor_id.required' => 'O campo fornecedor é obrigatório.',
             'produto_id.required' => 'O campo produto é obrigatório.',
             'quantidade.required' => 'O campo quantidade é obrigatório.',
-            'quantidade.numeric' => 'O campo quantidade deve ser numérico.',
-            'valor.required' => 'O campo valor é obrigatório.'
+            'valor_compra.required' => 'O campo valor é obrigatório.'
         ];
     }
 }

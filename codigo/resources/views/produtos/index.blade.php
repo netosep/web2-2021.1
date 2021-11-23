@@ -15,7 +15,6 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Valor de compra</th>
                 <th scope="col">Valor de venda</th>
-                <th scope="col">Lucro <small>(%)</small></th>
                 <th scope="col">Quantidade</th>
                 <th scope="col">Ações</th>
             </tr>
@@ -24,10 +23,9 @@
             @foreach ($produtos as $produto)
                 <tr>
                     <th scope="col">{{ $produto->id }}</th>
-                    <td>{{ $produto->nome }}</td> 
-                    <td>{{ $produto->valor_compra }}</td>
-                    <td>{{ $produto->valor_venda }}</td>
-                    <td>{{ $produto->porcentagem_lucro }}</td>
+                    <td>{{ mb_strtoupper($produto->nome) }}</td> 
+                    <td>R$ {{ money_format('%i', $produto->valor_compra) }}</td>
+                    <td>R$ {{ money_format('%i', $produto->valor_venda) }}</td>
                     <td>{{ $produto->quantidade }}</td>
                     <td class="d-flex justify-content-center">
                         <a href="{{ route("produtos.edit", $produto->id) }}" class="btn btn-secondary btn-sm m-1">
@@ -36,7 +34,7 @@
                         <form action="{{ route("produtos.destroy", $produto->id) }}" class="m-0 p-0" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm m-1">
+                            <button type="button" class="btn btn-danger btn-sm m-1" onclick="confirm('Deseja realmente apagar esse item?') ? this.parentElement.submit() : ''">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </form>

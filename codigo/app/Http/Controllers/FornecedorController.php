@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class FornecedorController extends Controller
 {
     public function index() {
-        return view('fornecedores.index', ['fornecedores' => Fornecedor::all()]);
+        return view('fornecedores.index', ['fornecedores' => Fornecedor::all()->sortBy('id')]);
     }
 
     public function create() {

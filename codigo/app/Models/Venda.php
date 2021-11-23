@@ -21,4 +21,8 @@ class Venda extends Model
     public function itensVenda() {
         return $this->hasMany(ItemVenda::class);
     }
+
+    public function produto() {
+        return $this->hasManyThrough(ItemVenda::class, Produto::class);
+    }
 }

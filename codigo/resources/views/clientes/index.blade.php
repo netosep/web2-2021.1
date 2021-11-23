@@ -23,8 +23,8 @@
             @foreach ($clientes as $cliente)
                 <tr>
                     <th>{{ $cliente->id }}</th>
-                    <td>{{ $cliente->nome }}</td> 
-                    <td>{{ $cliente->debito }}</td>
+                    <td>{{ mb_strtoupper($cliente->nome) }}</td> 
+                    <td>R$ {{ money_format('%i', $cliente->debito) }}</td>
                     <td>{{ $cliente->endereco }}</td>
                     <td>{{ $cliente->descricao ? $cliente->descricao : "Sem descrição" }}</td>
                     <td class="d-flex justify-content-center">
@@ -34,7 +34,7 @@
                         <form action="{{ route("clientes.destroy", $cliente->id) }}" class="p-0 m-0" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm m-1">
+                            <button type="button" class="btn btn-danger btn-sm m-1" onclick="confirm('Deseja realmente apagar esse item?') ? this.parentElement.submit() : ''">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </form>

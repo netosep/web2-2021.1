@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset("css/main.css") }}">
     <link rel="stylesheet" href="{{ asset("css/table.css") }}">
     <link rel="stylesheet" href="{{ asset("css/form.css") }}">
+    <link rel="shortcut icon" href="{{ asset("img/coin.svg") }}" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -33,5 +34,7 @@
         @yield('conteudo')
     </div>
 </body>
+
+@stack('scripts')
 
 </html>

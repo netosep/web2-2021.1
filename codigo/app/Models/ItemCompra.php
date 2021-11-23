@@ -17,11 +17,11 @@ class ItemCompra extends Model
         'valor_total'
     ];
 
-    public function produto() {
-        return $this->belongsTo(Produto::class);
-    }
-
     public function compra() {
         return $this->belongsTo(Compra::class);
+    }
+
+    public function produto() {
+        return $this->belongsTo(Produto::class);
     }
 }

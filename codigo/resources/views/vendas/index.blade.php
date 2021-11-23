@@ -14,7 +14,8 @@
                 <th>#</th>
                 <th>Cliente</th>
                 <th>Data</th>
-                <th>Valor total <small>(R$)</small></th>
+                <th>Hora</th>
+                <th>Valor total</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -22,17 +23,21 @@
             @foreach ($vendas as $venda)
                 <tr>
                     <th>{{ $venda->id }}</th>
-                    <td>{{ $venda->cliente->nome }}</td> 
-                    <td>{{ $venda->created_at }}</td>
-                    <td>{{ $venda->valor_total }}</td>
+                    <td>{{ mb_strtoupper($venda->cliente->nome) }}</td> 
+                    <td>{{ date('d/m/Y', strtotime($venda->created_at)) }}</td>
+                    <td>{{ date('H:i', strtotime($venda->created_at)) }}</td>
+                    <td>R$ {{ money_format('%i', $venda->valor_total) }}</td>
                     <td class="d-flex justify-content-center">
-                        <a href="edit/{{ $venda->id }}" class="btn btn-secondary btn-sm m-1">
+                        <a href="{{ route('vendas.show', $venda->id) }}" class="btn btn-primary btn-sm m-1">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="{{ route('vendas.edit', $venda->id) }}" class="btn btn-secondary btn-sm m-1">
                             <i class="far fa-edit"></i>
                         </a>
-                        <form action="delete/{{ $venda->id }}" method="post">
+                        <form action="{{ route('vendas.destroy', $venda->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm m-1">
+                            <button type="button" class="btn btn-danger btn-sm m-1" onclick="confirm('Deseja realmente apagar esse item?') ? this.parentElement.submit() : ''">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </form>

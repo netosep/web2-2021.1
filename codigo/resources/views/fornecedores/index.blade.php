@@ -22,9 +22,9 @@
             @foreach ($fornecedores as $fornecedor)
                 <tr>
                     <th scope="col">{{ $fornecedor->id }}</th>
-                    <td>{{ $fornecedor->nome }}</td> 
+                    <td>{{ mb_strtoupper($fornecedor->nome) }}</td> 
                     <td>{{ $fornecedor->telefone }}</td>
-                    <td>{{ $fornecedor->endereco }}</td>
+                    <td>{{ mb_strtoupper($fornecedor->endereco) }}</td>
                     <td class="d-flex justify-content-center">
                         <a href="{{ route("fornecedores.edit", $fornecedor->id) }}" class="btn btn-secondary btn-sm m-1">
                             <i class="far fa-edit"></i>
@@ -32,7 +32,7 @@
                         <form action="{{ route("fornecedores.destroy", $fornecedor->id) }}" class="m-0 p-0" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm m-1">
+                            <button type="button" class="btn btn-danger btn-sm m-1" onclick="confirm('Deseja realmente apagar esse item?') ? this.parentElement.submit() : ''">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </form>

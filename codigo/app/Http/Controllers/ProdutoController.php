@@ -10,7 +10,7 @@ class ProdutoController extends Controller
 {
 
     public function index() {
-        return view('produtos.index', ['produtos' => Produto::all()]);
+        return view('produtos.index', ['produtos' => Produto::all()->sortBy('id')]);
     }
 
     public function create() {
@@ -27,17 +27,17 @@ class ProdutoController extends Controller
     }
 
     public function edit($id) {
-        $produto = Produto::find($id);
+        $produto = Produto::findOrFail($id);
         return view('produtos.edit', ['produto' => $produto]);
     }
 
     public function update(StoreProdutoRequest $request, $id) {
-        Produto::find($id)->update($request->all());
+        Produto::findOrFail($id)->update($request->all());
         return redirect()->route('produtos.index');
     }
 
     public function destroy($id) {
-        Produto::find($id)->delete();
+        Produto::findOrFail($id)->delete();
         return redirect()->route('produtos.index');
     }
 }

@@ -17,8 +17,8 @@
         </div>
         <div class="input m-3">
             <label for="lucro">Porcentagem de lucro <small>(%)</small></label>
-            <input type="number" class="form-control @error('lucro') is-invalid @enderror" min="0" name="lucro">
-            @error('lucro')
+            <input type="number" class="form-control @error('porcentagem_lucro') is-invalid @enderror" min="0" name="porcentagem_lucro">
+            @error('porcentagem_lucro')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

@@ -21,3 +21,7 @@
 .form-venda .input-submit {
     border-top: dotted 1px #257575;
 } 
+
+button {
+    cursor: pointer !important;
+}
