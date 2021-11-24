@@ -25,15 +25,15 @@
                     <th>{{ $i+1 }}</th>
                     <td>{{ mb_strtoupper($venda[$i]->nome_produto) }}</td>
                     <td>{{ $venda[$i]->quantidade }}</td>
-                    <td>R$ {{ money_format('%i', $venda[$i]->valor_unitario) }}</td>
-                    <td>R$ {{ money_format('%i', $venda[$i]->valor_total) }}</td>
+                    <td>R$ {{ number_format($venda[$i]->valor_unitario, 2, '.', '') }}</td>
+                    <td>R$ {{ number_format($venda[$i]->valor_total, 2, '.', '') }}</td>
                 </tr>
             @endfor
         </tbody>
     </table>
     <span class="valor mb-5 d-flex justify-content-between">
         <span class="ml-3">Valor Total da venda: </span>
-        <strong class="mr-5">R$ {{ money_format('%i', $venda[0]->valor_total_venda) }}</strong>
+        <strong class="mr-5">R$ {{ number_format($venda[0]->valor_total_venda, 2, '.', '') }}</strong>
     </span>
     
 @endsection

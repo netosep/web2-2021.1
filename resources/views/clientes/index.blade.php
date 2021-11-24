@@ -23,8 +23,8 @@
             @foreach ($clientes as $cliente)
                 <tr>
                     <th>{{ $cliente->id }}</th>
-                    <td>{{ mb_strtoupper($cliente->nome) }}</td> 
-                    <td>R$ {{ money_format('%i', $cliente->debito) }}</td>
+                    <td>{{ mb_strtoupper($cliente->nome) }}</td>
+                    <td>R$ {{ number_format($cliente->debito, 2, '.', '') }}</td>
                     <td>{{ $cliente->endereco }}</td>
                     <td>{{ $cliente->descricao ? $cliente->descricao : "Sem descrição" }}</td>
                     <td class="d-flex justify-content-center">

@@ -62,7 +62,7 @@
                     </div>
                     <div class="input">
                         <label>Valor unid. <small>(R$)</small></label>
-                        <input type="text" class="form-control valor-unid" value="R$ {{ money_format('%i', $itemVenda->valor_unitario) }}" disabled>
+                        <input type="text" class="form-control valor-unid" value="R$ {{ number_format($itemVenda->valor_unitario, 2, '.', '') }}" disabled>
                         @error('valor')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="input">
                         <label>Valor total <small>(R$)</small></label>
-                        <input type="text" class="form-control valor-total" value="R$ {{ money_format('%i', $itemVenda->valor_total) }}" disabled>
+                        <input type="text" class="form-control valor-total" value="R$ {{ number_format($itemVenda->valor_total, 2, '.', '') }}" disabled>
                         @error('valor')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -91,7 +91,7 @@
         <div class="input-submit d-flex justify-content-between">
             <div class="input" style="width: 70%">
                 <label>Valor total da venda</label>
-                <input type="text" value="R$ {{ money_format('%i', $venda->valor_total) }}" class="form-control valor-total-venda" disabled>
+                <input type="text" value="R$ {{ number_format($venda->valor_total, 2, '.', '') }}" class="form-control valor-total-venda" disabled>
             </div>
             <div class="input d-flex" style="width: 25%; align-items: flex-end;">
                 <button type="submit" class="form-control btn-success">

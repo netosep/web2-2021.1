@@ -26,7 +26,7 @@
                     <td>{{ mb_strtoupper($venda->cliente->nome) }}</td> 
                     <td>{{ date('d/m/Y', strtotime($venda->created_at)) }}</td>
                     <td>{{ date('H:i', strtotime($venda->created_at)) }}</td>
-                    <td>R$ {{ money_format('%i', $venda->valor_total) }}</td>
+                    <td>R$ {{ number_format($venda->valor_total, 2, '.', '') }}</td>
                     <td class="d-flex justify-content-center">
                         <a href="{{ route('vendas.show', $venda->id) }}" class="btn btn-primary btn-sm m-1">
                             <i class="fas fa-eye"></i>

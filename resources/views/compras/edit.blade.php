@@ -73,7 +73,7 @@
                         </div>
                         <div class="input">
                             <label>Valor total <small>(R$)</small></label>
-                            <input type="text" class="form-control valor-total" value="R$ {{ money_format('%i', $itemCompra->valor_total) }}" disabled>
+                            <input type="text" class="form-control valor-total" value="R$ {{ number_format($itemCompra->valor_total, 2, '.', '') }}" disabled>
                         </div>
                         <div class="buttons">
                             <div class="input">
@@ -89,7 +89,7 @@
         <div class="input-submit d-flex justify-content-between">
             <div class="input" style="width: 70%">
                 <label>Valor total</label>
-                <input type="text" class="form-control valor-total-venda" value="R$ {{ money_format('%i', $compra->valor_total) }}" disabled>
+                <input type="text" class="form-control valor-total-venda" value="R$ {{ number_format($compra->valor_total, 2, '.', '') }}" disabled>
             </div>
             <div class="input d-flex" style="width: 25%; align-items: flex-end;">
                 <button type="submit" class="form-control btn-success">

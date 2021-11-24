@@ -24,8 +24,8 @@
                 <tr>
                     <th scope="col">{{ $produto->id }}</th>
                     <td>{{ mb_strtoupper($produto->nome) }}</td> 
-                    <td>R$ {{ money_format('%i', $produto->valor_compra) }}</td>
-                    <td>R$ {{ money_format('%i', $produto->valor_venda) }}</td>
+                    <td>R$ {{ number_format($produto->valor_compra, 2, '.', '') }}</td>
+                    <td>R$ {{ number_format($produto->valor_venda, 2, '.', '') }}</td>
                     <td>{{ $produto->quantidade }}</td>
                     <td class="d-flex justify-content-center">
                         <a href="{{ route("produtos.edit", $produto->id) }}" class="btn btn-secondary btn-sm m-1">

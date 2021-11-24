@@ -26,7 +26,7 @@
                     <td>{{ mb_strtoupper($compra->fornecedor->nome) }}</td> 
                     <td>{{ date('d/m/Y', strtotime($compra->created_at)) }}</td>
                     <td>{{ date('H:i', strtotime($compra->created_at)) }}</td>
-                    <td>R$ {{ money_format('%i', $compra->valor_total) }}</td>
+                    <td>R$ {{ number_format($compra->valor_total, 2, '.', '') }}</td>
                     <td class="d-flex justify-content-center">
                         <a href="{{ route('compras.show', $compra->id) }}" class="btn btn-primary btn-sm m-1">
                             <i class="fas fa-eye"></i>
