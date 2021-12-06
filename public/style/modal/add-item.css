@@ -1,0 +1,94 @@
+.modal .modal-add-items-sell{
+    max-width: 600px !important;
+}
+
+.modal-add-items-sell .input-modal-add-item{
+    display: flex;
+}
+
+.input-modal-add-item .input-product{
+    width: 100%;
+}
+
+.input-modal-add-item .input-quantidade{
+    width: 130px;
+    margin-left: 1rem;
+}
+
+.input-modal-add-item .input-quantidade input{
+    text-align: center;
+}
+
+.modal-footer .confirm-add,
+.modal-footer .exit-add{
+    outline: none;
+    border: 0;
+    width: 120px;
+    height: 35px;
+    color: #fff;
+    border-radius: .3rem;
+}
+
+.modal-footer .exit-add{
+    background-color: #CD0000;
+    transition: opacity .3s;
+}
+
+.modal-footer .confirm-add{
+    background-color: #00AC4F;
+    transition: opacity .3s;
+}
+
+.modal-footer .confirm-add:hover,
+.modal-footer .exit-add:hover{
+    opacity: 80%;
+}
+
+.modal-footer .exit-add img{
+    width: 13px;
+    margin: 2px;
+}
+
+.modal-footer .confirm-add img{
+    width: 17px;
+    margin: 2px;
+}
+
+
+/* modal de compra */
+.modal .modal-add-items-buy .input{
+    margin: .2rem 0;
+}
+
+.modal .modal-add-items-buy{
+    max-width: 650px !important;
+}
+
+.input-modal-add-item .input-frete-unidad,
+.input-modal-add-item .input-produt-quant,
+.input-modal-add-item .input-ipi-icms{
+    display: flex;
+    justify-content: center;
+}
+
+.input-produt-quant .input-product{
+    width: 65%;
+}
+
+.input-frete-unidad .input-frete,
+.input-ipi-icms .input-icms{
+    margin-left: 1rem !important;
+}
+
+.input-produt-quant .input-quant{
+    margin-left: 1rem !important;
+    width: 35%;
+}
+
+.input-quant input,
+.input-valor-unit input,
+.input-frete input,
+.input-ipi input,
+.input-icms input{
+    text-align: center;
+}

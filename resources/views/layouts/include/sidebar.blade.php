@@ -1,0 +1,70 @@
+<div class="wrapper d-flex left-bar">
+    <div class="sidebar">
+        <ul class="menu-items">
+            <li href="#" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <a href="{{ route('page.dashboard') }}"><img src="{{ asset('img/dashboard.svg') }}" alt="Dashboard">Dashboard</a>
+            </li>
+            <li href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <a href="{{ route('cliente.index') }}"><img src="{{ asset('img/clientes.svg') }}" alt="Cliente">Clientes</a>
+            </li>
+
+            <li href="#pageSubmenuProdutos" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <a href="{{ route('produto.index') }}"><img src="{{ asset('img/produtos.svg') }}" alt="Produto">Produtos</a>
+            </li>
+
+            <li href="#pageSubmenuCategorias" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <a href="{{ route('categoria.index') }}"><img src="{{ asset('img/categorias.svg') }}" alt="Categoria">Categorias</a>
+            </li>
+
+            <li href="#pageSubmenuVendas" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <span><img src="{{ asset('img/vendas.svg') }}" alt="">Vendas</span>
+                <ul class="collapse list-unstyled" id="pageSubmenuVendas">
+                    <li><a href="{{ route('venda.create') }}">Realizar venda</a></li>
+                    <li><a href="{{ route('venda.index') }}">Ver vendas</a></li>
+                </ul>
+            </li>
+
+            <li href="#pageSubmenuCompras" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <span><img src="{{ asset('img/Compras.svg') }}" alt="">Compras</span>
+                <ul class="collapse list-unstyled" id="pageSubmenuCompras">
+                    <li><a href="{{ route('compra.create') }}">Registrar compra</a></li>
+                    <li><a href="{{ route('compra.index') }}">Ver compras</a></li>
+                </ul>
+            </li>
+
+            <li href="#pageSubmenuFornecedor" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <a href="{{ route('fornecedor.index') }}"><img src="{{ asset('img/fornecedor.svg') }}" alt="Fornecedor">Fornecedor</a>
+            </li>
+
+            <li href="#pageSubmenuFornecedoa" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <span><img src="{{ asset('img/financas.svg') }}" alt="Finanças">Finanças</span>
+                <ul class="collapse list-unstyled" id="pageSubmenuFornecedoa">
+                    <li><a href="{{ route('caixa.index') }}">Ver caixas</a></li>
+                    <li><a href="#">Cobranças</a></li>
+                    <li><a href="#">Pagamentos</a></li>
+                </ul>
+            </li>
+
+            <li href="#pageSubmenuFuncionarios" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <a href="{{ route('funcionario.index') }}"><img src="{{ asset('img/funcionario.svg') }}" alt="Funcionários">Funcionários</a>
+            </li>
+
+            <li href="#pageSubmenuRelatório" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <span><img src="{{ asset('img/relatorios.svg') }}" alt="Relatório">Relatório</span>
+            </li>
+        </ul>
+        <ul class="footer-sidebar dropdown">
+            <div class="text-center">
+                <button id="btn" data-toggle="modal" data-target="#logoff-modal">
+                    <img src="{{ asset('img/logout.svg') }}" alt="Logout">
+                    Sair do sistema
+                </button>
+
+                <!--- modal para sair-->
+                @include('pages.usuario.modal.logoff')
+                
+                <span id="clock"></span>
+            </div>
+        </ul>
+    </div>
+</div>
