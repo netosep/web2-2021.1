@@ -1,20 +1,20 @@
 @extends('layouts.main')
 
+@section('titulo', 'Produtos')
+
 @section('content-center')
     <div class="content-center">
         <div class="dashboard">
             <div class="title-content">
                 <div class="title-text">
                     <span>
-                        <a href="/DashboardController/dashboard">
-                            <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
-                            Dashboard
+                        <a href="{{ route('page.dashboard') }}">
+                            <i class="fas fa-home me-2"></i>Dashboard
                         </a>
                     </span>
                     <span>/</span>
                     <span>
-                        <img src="{{ asset('img/product-dark.svg') }}" alt="Produto">
-                        Produtos
+                        <i class="fas fa-box-open me-2"></i>Produtos
                     </span>
                 </div>
             </div>
@@ -27,8 +27,7 @@
                     </div>
 
                     <button type="button" id="btn" data-toggle="modal" data-target="#cadastrar-produto-modal">
-                        <img src="{{ asset('img/adicionar-item.svg') }}" alt="Adicionar produto">
-                        Cadastrar Produto
+                        <i class="fas fa-plus me-2"></i>Cadastrar Produto
                     </button>
                     <!-- modal para cadastro do produto -->
                     @include('pages.produto.modal.create')

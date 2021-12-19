@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('titulo', 'Caixas')
+
 @section('content-center')
     <div class="content-center">
         <div class="dashboard">
@@ -7,14 +9,16 @@
                 <div class="title-text">
                     <span>
                         <a href="{{ route('page.dashboard') }}">
-                            <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
-                            Dashboard
+                            <i class="fas fa-home me-2"></i>Dashboard
                         </a>
                     </span>
                     <span>/</span>
                     <span>
-                        <img src="{{ asset('img/cash-register.svg') }}" alt="Caixa">
-                        Caixa
+                        <i class="fas fa-money-bill-wave me-2"></i>Finanças
+                    </span>
+                    <span>/</span>
+                    <span>
+                        <i class="fas fa-cash-register me-2"></i>Caixas
                     </span>
                 </div>
             </div>
@@ -27,8 +31,7 @@
                     </div>
 
                     <button type="button" id="btn" data-toggle="modal" data-target="#cadastrar-caixa-modal">
-                        <img src="{{ asset('img/adicionar-item.svg') }}" alt="Adicionar caixa">
-                        Adicionar Caixa
+                        <i class="fas fa-plus me-2"></i>Adicionar Caixa
                     </button>
 
                     <!-- modal para cadastro de caixas -->

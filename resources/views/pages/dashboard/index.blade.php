@@ -1,42 +1,43 @@
 @extends('layouts.main')
 
+@section('titulo', 'Dashboard')
+
 @section('content-center')
     <div class="content-center">
         <div class="dashboard">
             <div class="title-content">
                 <div class="title-text">
                     <span>
-                        <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
-                        Dashboard
+                        <i class="fas fa-home me-2"></i>Dashboard
                     </span>
                     <span>/</span>
                 </div>
             </div>
             <div class="main-page">
                 <div class="dash-btns">
-                    <a href="{{ route('cliente.index') }}" style="background-color: #31736F;" class="button">
-                        <span><img src="{{ asset('img/clientes-btn.svg') }}" alt="Clientes">Clientes</span>
+                    <a href="{{ route('cliente.index') }}" style="background-color: #31736F;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Clientes">
+                        <i class="fas fa-users"></i>
                     </a>
-                    <a href="{{ route('produto.index') }}" style="background-color: #A50000;" class="button">
-                        <span><img src="{{ asset('img/produtos-btn.svg') }}" alt="Produtos">Produtos</span>
+                    <a href="{{ route('produto.index') }}" style="background-color: #A50000;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Produtos">
+                        <i class="fas fa-box-open"></i>
                     </a>
-                    <a href="{{ route('categoria.index') }}" style="background-color: #A1A500;" class="button">
-                        <span><img src="{{ asset('img/categorias-btn.svg') }}" alt="Categorias">Categorias</span>
+                    <a href="{{ route('categoria.index') }}" style="background-color: #A1A500;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Categorias">
+                        <i class="fas fa-list-ul"></i>
                     </a>
-                    <a href="#" style="background-color: #890765;" class="button">
-                        <span><img src="{{ asset('img/vendas-btn.svg') }}" alt="Vendas">Vendas</span>
+                    <a href="#" style="background-color: #890765;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Vendas">
+                        <i class="fas fa-shopping-cart"></i>
                     </a>
-                    <a href="#" style="background-color: #00FF66;" class="button">
-                        <span><img src="{{ asset('img/compas-btn.svg') }}" alt="Compras">Compras</span>
+                    <a href="#" style="background-color: #00FF66;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Compras">
+                        <i class="fas fa-shopping-basket"></i>
                     </a>
-                    <a href="#" style="background-color: #00A3FF;" class="button">
-                        <span><img src="{{ asset('img/fornecedor-btn.svg') }}" alt="Fornecedor">Fornecedor</span>
+                    <a href="#" style="background-color: #00A3FF;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Fornecedores">
+                        <i class="fas fa-truck"></i>
                     </a>
-                    <a href="#" style="background-color: #FF0099;" class="button">
-                        <span><img src="{{ asset('img/funcionario.svg') }}" alt="Funcionario">Funcionário</span>
+                    <a href="#" style="background-color: #47948F;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Finanças">
+                        <i class="fas fa-money-bill-wave"></i>
                     </a>
-                    <a href="#" style="background-color: #47948F;" class="button">
-                        <span><img src="{{ asset('img/financas-btn.svg') }}" alt="Finança">Finanças</span>
+                    <a href="#" style="background-color: #FF0099;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Funcionários">
+                        <i class="fas fa-user-tie"></i>
                     </a>
                 </div>
 
@@ -44,7 +45,9 @@
                     <div class="content">
                         <div class="section">
                             <div class="section-title">
-                                <span><img src="{{ asset('img/chart-icon.svg') }}" alt="Números">Números</span>
+                                <span>
+                                    <i class="fas fa-chart-line me-2"></i>Números
+                                </span>
                             </div>
                             <div class="section-card">
                                 <div class="card" style="background-color: #00A3FF !important;">
@@ -79,7 +82,7 @@
                         
                         <div class="section">
                             <div class="section-title">
-                                <span><img src="{{ asset('img/probaixoestoque-btn.svg') }}" alt="">Produtos com baixa no Estoque</span>
+                                <span><i class="fas fa-exclamation-circle me-2"></i>Produtos com baixa no Estoque</span>
                             </div>
                             <table>
                                 <thead>
@@ -103,7 +106,9 @@
 
                         <div class="section">
                             <div class="section-title">
-                                <span><img src="{{ asset('img/cliParcleasVencendo.svg') }}" alt="">Clientes com parcelas vencendo</span>
+                                <span>
+                                    <i class="fas fa-comments-dollar me-2"></i>Clientes com parcelas vencendo
+                                </span>
                             </div>
                             <table>
                                 <thead>

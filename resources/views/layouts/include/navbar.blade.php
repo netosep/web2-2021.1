@@ -9,23 +9,23 @@
         <img class="user-img" src="{{ asset('img/default-user.svg') }}" alt="Usuário">
 
         <div class="dropdown show">
-            <img class="arrow-icon dropdown" id="dropdownMenuLink" data-toggle="dropdown" src="{{ asset('img/arrow-icon.svg') }}" alt="Seta Configuração">
-            <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuLink">
+            <img class="arrow-icon dropdown" id="dropdownMenuLink" data-bs-toggle="dropdown" src="{{ asset('img/arrow-icon.svg') }}" alt="Seta Configuração">
+            <div class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="dropdownMenuLink">
                 <a href="#">
                     <div class="item-menu">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user mx-1"></i>
                         <p>Minha Conta</p>
                     </div>
                 </a>
                 <a href="#">
                     <div class="item-menu">
-                        <i class="fas fa-cog"></i>
+                        <i class="fas fa-cog mx-1"></i>
                         <p>Configurações</p>
                     </div>
                 </a>
                 <a href="#">
                     <div class="item-menu">
-                        <i class="fas fa-power-off"></i>
+                        <i class="fas fa-power-off mx-1"></i>
                         <p>Sair do sistema</p>
                     </div>
                 </a>

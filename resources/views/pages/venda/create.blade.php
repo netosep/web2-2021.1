@@ -1,6 +1,8 @@
 
 @extends('layouts.main')
 
+@section('titulo', 'Realizar Vendas')
+
 @section('content-center')
     <div class="content-center">
 
@@ -9,14 +11,14 @@
                 <div class="title-text">
                     <span>
                         <a href="{{ route('page.dashboard') }}">
-                            <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
-                            Dashboard
+                            <i class="fas fa-home me-2"></i>Dashboard
                         </a>
                     </span>
                     <span>/</span>
                     <span>
-                        <img src="{{ asset('img/car-compra.svg') }}" alt="Realizar venda">
-                        Venda
+                        <a href="{{ route('venda.index') }}">
+                            <i class="fas fa-shopping-cart me-2"></i>Vendas
+                        </a>
                     </span>
                     <span>/</span>
                     <span>Realizar Venda</span>

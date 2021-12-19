@@ -1,20 +1,20 @@
 @extends('layouts.main')
 
+@section('titulo', 'Categorias')
+
 @section('content-center')
     <div class="content-center">
         <div class="dashboard">
             <div class="title-content">
                 <div class="title-text">
                     <span>
-                        <a href="/DashboardController/dashboard">
-                            <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
-                            Dashboard
+                        <a href="{{ route('page.dashboard') }}">
+                            <i class="fas fa-home me-2"></i>Dashboard
                         </a>
                     </span>
                     <span>/</span>
                     <span>
-                        <img src="{{ asset('img/categoria-dark.svg') }}" alt="Categorias">
-                        Categorias
+                        <i class="fas fa-list-ul me-2"></i>Categorias
                     </span>
                 </div>
             </div>
@@ -27,8 +27,7 @@
                     </div>
 
                     <button type="button" id="btn" data-toggle="modal" data-target="#cadastrar-categoria-modal">
-                        <img src="{{ asset('img/adicionar-item.svg') }}" alt="Adicionar categoria">
-                        Adicionar Categoria
+                        <i class="fas fa-plus me-2"></i>Adicionar Categoria
                     </button>
 
                     <!-- modal para cadastro de categorias -->

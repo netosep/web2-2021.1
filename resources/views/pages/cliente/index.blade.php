@@ -1,20 +1,20 @@
 @extends('layouts.main')
 
+@section('titulo', 'Clientes')
+
 @section('content-center')
     <div class="content-center">
         <div class="dashboard">
             <div class="title-content">
                 <div class="title-text">
                     <span>
-                        <a href="#">
-                            <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
-                            Dashboard
+                        <a href="{{ route('page.dashboard') }}">
+                            <i class="fas fa-home me-2"></i>Dashboard
                         </a>
                     </span>
                     <span>/</span>
                     <span>
-                        <img src="{{ asset('img/people-icon.svg') }}" alt="Clientes">
-                        Clientes
+                        <i class="fas fa-users me-2"></i>Clientes
                     </span>
                 </div>
             </div>
@@ -27,8 +27,7 @@
                     </div>
 
                     <button type="button" id="btn" data-toggle="modal" data-target="#cadastrar-cliente-modal">
-                        <img src="{{ asset('img/adicionar-item.svg') }}" alt="Adicionar cliente">
-                        Cadastrar Cliente
+                        <i class="fas fa-plus me-2"></i>Cadastrar Cliente
                     </button>
 
                     <!-- modal cadastro de cliente -->

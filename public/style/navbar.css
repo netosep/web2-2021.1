@@ -4,12 +4,13 @@ nav {
     justify-content: space-between;
     width: 100%;
     height: 10%;
-    background-color: #25767b;
+    background: rgb(0,129,138);
+    background: linear-gradient(90deg, rgba(0,129,138,1) 0%, rgba(93,140,143,1) 100%);
     box-shadow: 3px 5px 5px rgba(152, 73, 73, 0.3);
 }
 
 nav .logo {
-    padding: 15px 35px;
+    padding: 0px 35px;
 }
 
 nav .logo a {
@@ -25,7 +26,7 @@ nav .logo a {
 nav .user-area {
     display: flex;
     align-items: center;
-    padding: 15px 35px;
+    padding: 0px 35px;
 }
 
 nav .user-area span {
@@ -64,7 +65,7 @@ nav .user-area .arrow-icon {
 .dropdown-menu a {
     text-decoration: none;
     color: #25767b;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .dropdown-menu a .item-menu {

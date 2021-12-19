@@ -1,6 +1,8 @@
 
 @extends('layouts.main')
 
+@section('titulo', 'Fornecedores')
+
 @section('content-center')
     <div class="content-center">
         <div class="dashboard">
@@ -8,14 +10,12 @@
                 <div class="title-text">
                     <span>
                         <a href="{{ route('page.dashboard') }}">
-                            <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
-                            Dashboard
+                            <i class="fas fa-home me-2"></i>Dashboard
                         </a>
                     </span>
                     <span>/</span>
                     <span>
-                        <img src="{{ asset('img/truck-icon.svg') }}" alt="Fornecedor">
-                        Fornecedores
+                        <i class="fas fa-truck me-2"></i>Fornecedores
                     </span>
                 </div>
             </div>
@@ -28,8 +28,7 @@
                     </div>
 
                     <button type="button" id="btn" data-toggle="modal" data-target="#cadastrar-fornecedor-modal">
-                        <img src="{{ asset('img/adicionar-item.svg') }}" alt="Adicionar fornecedor">
-                        Cadastrar Fornecedor
+                        <i class="fas fa-plus me-2"></i>Cadastrar Fornecedor
                     </button>
 
                     <!-- modal para cadastro do fornecedor -->

@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // rota teste
-Route::get('/', [UsuarioController::class, 'index'])->name('page.login');
+// Route::get('/', [UsuarioController::class, 'index'])->name('page.login');
+Route::get('/', [DashboardController::class, 'index'])->name('page.dashboard');
 
 Route::get('/login', [UsuarioController::class, 'index'])->name('page.login');
 

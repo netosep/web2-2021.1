@@ -1,4 +1,6 @@
 @extends('layouts.main')
+
+@section('titulo', 'Funcionários')
     
 @section('content-center')
     <div class="content-center">
@@ -7,14 +9,12 @@
                 <div class="title-text">
                     <span>
                         <a href="{{ route('page.dashboard') }}">
-                            <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
-                            Dashboard
+                            <i class="fas fa-home me-2"></i>Dashboard
                         </a>
                     </span>
                     <span>/</span>
                     <span>
-                        <img src="{{ asset('img/funcionario-dark.svg') }}" alt="Funcionario">
-                        Funcionários
+                        <i class="fas fa-user-tie me-2"></i>Funcionários
                     </span>
                 </div>
             </div>
@@ -27,8 +27,7 @@
                     </div>
 
                     <button type="button" id="btn" data-toggle="modal" data-target="#cadastrar-funcionario-modal">
-                        <img src="{{ asset('img/adicionar-item.svg') }}" alt="Adicionar funcionario">
-                        Cadastrar Funcionário
+                        <i class="fas fa-plus me-2"></i>Cadastrar Funcionário
                     </button>
 
                     <!-- modal para cadastro do funcionario -->

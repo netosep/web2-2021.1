@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('titulo', 'Realizar Compra')
+
 @section('content-center')
     <div class="content-center">
         <div class="dashboard buy-page">
@@ -7,17 +9,17 @@
                 <div class="title-text">
                     <span>
                         <a href="{{ route('page.dashboard') }}">
-                            <img src="{{ asset('img/dashboard-verde.svg') }}" alt="Dashboard">
-                            Dashboard
+                            <i class="fas fa-home me-2"></i>Dashboard
                         </a>
                     </span>
                     <span>/</span>
                     <span>
-                        <img src="{{ asset('img/plus-icon-dark.svg') }}" alt="Compras">
-                        Compras
-                        <span>/</span>
-                        Registrar compra
+                        <a href="{{ route('compra.index') }}">
+                            <i class="fas fa-shopping-basket me-2"></i>Compras
+                        </a>
                     </span>
+                    <span>/</span>
+                    <span>Registrar compra</span>
                 </div>
             </div>
 
