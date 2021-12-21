@@ -35,7 +35,14 @@ Route::get('/produtos', [ProdutoController::class, 'index'])->name('produto.inde
 
 Route::get('/clientes', [ClienteController::class, 'index'])->name('cliente.index');
 
-Route::get('/categorias', [CategoriaController::class, 'index'])->name('categoria.index');
+Route::prefix('/categorias')->group(function () {
+    Route::get('/', [CategoriaController::class, 'index'])->name('categoria.index');
+    //Route::get('/create', [CategoriaController::class, 'create'])->name('categoria.create');
+    Route::post('/store', [CategoriaController::class, 'store'])->name('categoria.store');
+    Route::get('/edit/{id}', [CategoriaController::class, 'edit'])->name('categoria.edit');
+    Route::post('/update/{id}', [CategoriaController::class, 'update'])->name('categoria.update');
+    Route::get('/destroy/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
+});
 
 Route::prefix('/vendas')->group(function () {
     Route::get('/', [VendaController::class, 'index'])->name('venda.index');

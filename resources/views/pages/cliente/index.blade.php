@@ -60,15 +60,14 @@
                                     <td>R$ </td>
                                     <td>R$ </td>
                                     <td>
-                                        <button title="Ver cliente" onclick="">
-                                            <img src="{{ asset('img/eye-icon.svg') }}" alt="">
+                                        <button class="btn btn-success btn-sm p-1" title="Ver cliente" onclick="">
+                                            <i class="fas fa-eye"></i>
                                         </button>
-                                        <button title="Editar cliente" onclick="editCliente('')" data-toggle="modal" data-target="#editar-cliente-modal">
-                                            <img src="{{ asset('img/pencil-icon.svg') }}" alt="">
+                                        <button class="btn btn-primary btn-sm p-1" title="Editar cliente" data-toggle="modal" data-target="#editar-cliente-modal">
+                                            <i class="fas fa-pen"></i>
                                         </button>
-                                        
-                                        <button title="Exluir cliente" onclick="deleteItem('')">
-                                            <img src="{{ asset('img/trash-icon.svg') }}" alt="">
+                                        <button class="btn btn-danger btn-sm p-1" title="Exluir cliente" onclick="deleteItem('')">
+                                            <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
                                 </tr>

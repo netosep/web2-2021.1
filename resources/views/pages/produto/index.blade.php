@@ -56,14 +56,14 @@
                                 <td>R$ </td>
                                 <td></td>
                                 <td>
-                                    <button type="button" title="Ver produto" onclick="">
-                                        <img src="{{ asset('img/eye-icon.svg') }}" alt="Ver produto">
+                                    <button class="btn btn-success btn-sm p-1" title="Ver produto" onclick="">
+                                        <i class="fas fa-eye"></i>
                                     </button>
-                                    <button type="button" title="Editar produto" onclick="editProduto(this)">
-                                        <img src="{{ asset('img/pencil-icon.svg') }}" data-toggle="modal" data-target="#editar-produto-modal" alt="Editar produto">
+                                    <button class="btn btn-primary btn-sm p-1" title="Editar produto" data-toggle="modal" data-target="#editar-produto-modal">
+                                        <i class="fas fa-pen"></i>
                                     </button>
-                                    <button type="button" title="Exluir produto" onclick="deleteItem('')">
-                                        <img src="{{ asset('img/trash-icon.svg') }}" alt="Exluir produto">
+                                    <button class="btn btn-danger btn-sm p-1" title="Exluir produto" onclick="deleteItem('')">
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
                             </tr>

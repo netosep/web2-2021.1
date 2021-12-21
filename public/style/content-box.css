@@ -1,6 +1,6 @@
 .item-area {
     height: 92%;
-    background-color: #FFF;
+    background-color: #fff;
     margin: .5rem .5rem 0 .5rem;
     padding: .5rem;
 }
@@ -47,7 +47,7 @@
     padding: 2px;
     border-radius: .5rem;
     background-color: #68A2A5;
-    color: #FFF;
+    color: #fff;
     font-size: 17px;
     cursor: pointer;
     transition: opacity .3s;

@@ -55,14 +55,14 @@
                                     <td></td>
                                     
                                     <td>
-                                        <button title="Ver categoria" onclick="">
-                                            <img src="{{ asset('img/eye-icon.svg') }}" alt="Ver categoria">
+                                        <button class="btn btn-success btn-sm p-1" title="Ver categoria" onclick="">
+                                            <i class="fas fa-eye"></i>
                                         </button>
-                                        <button title="Editar categoria" onclick="editCategoria('')">
-                                            <img src="{{ asset('img/pencil-icon.svg') }}" data-toggle="modal" data-target="#editar-categoria-modal" alt="Editar categoria">
+                                        <button class="btn btn-primary btn-sm p-1" title="Editar categoria" data-toggle="modal" data-target="#editar-categoria-modal" onclick="editCategoria('')">
+                                            <i class="fas fa-pen"></i>
                                         </button>
-                                        <button title="Exluir categoria" onclick="deleteItem('')">
-                                            <img src="{{ asset('img/trash-icon.svg') }}" alt="Excluir categoria">
+                                        <button class="btn btn-danger btn-sm p-1" title="Exluir categoria" onclick="deleteItem('')">
+                                            <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
                                 </tr>
