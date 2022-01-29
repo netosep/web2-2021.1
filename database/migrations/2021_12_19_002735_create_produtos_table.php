@@ -14,10 +14,10 @@ class CreateProdutosTable extends Migration
     public function up()
     {
         Schema::create('produtos', function (Blueprint $table) {
-            $table->id('produto_id');
+            $table->id();
             $table->unsignedBigInteger('categoria_id');
             $table->string('nome_produto');
-            $table->string('descricao_produto');
+            $table->string('descricao_produto')->nullable();
             $table->double('icms')->default(0);
             $table->double('frete')->default(0);
             $table->double('acrescimo_despesas')->default(0);
@@ -30,7 +30,7 @@ class CreateProdutosTable extends Migration
             $table->boolean('ativo')->default(true);
             $table->timestamps();
 
-            $table->foreign('categoria_id')->references('categoria_id')->on('categorias');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }
 

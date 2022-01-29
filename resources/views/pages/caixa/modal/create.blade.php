@@ -10,11 +10,13 @@
                 </div>
             </div>
 
-            <form action="" method="POST">
+            <form action="{{ route('caixa.store') }}" method="POST">
+                @method('POST')
+                @csrf
                 <div class="form">
                     <div class="input-num-caixa">
-                        <label for="num-caixa">Número do caixa <small>(somente números)</small></label>
-                        <input type="text" name="num-caixa" oninput="validaInputNumber(this)" maxlength="99" placeholder="Ex.: 1" required>
+                        <label for="identificador">Identificador do caixa</label>
+                        <input type="text" name="identificador" oninput="validaInput(this)" maxlength="99" placeholder="Ex.: 0001-A" required>
                     </div>
                 </div>
 

@@ -10,19 +10,32 @@
                 </div>
             </div>
 
-            <form action="" method="POST">
+            <form action="{{ route('produto.store') }}" method="POST">
+                @method('POST')
+                @csrf
                 <div class="form">
                     <div class="input input-nome-produto">
-                        <label for="nome-produto">Nome do produto</label>
+                        <label for="nome_produto">Nome do produto</label>
                         <input type="text" name="nome_produto" oninput="validaInput(this)" placeholder="Boneco Max Steel" required>
                     </div>
-                    <div class="input input-categoria">
-                        <label for="categoria">Categoria</label>
-                        <select name="categoria" required>
+                    <div class="input input-categoria ms-3">
+                        <label for="categoria_id">Categoria</label>
+                        <select name="categoria_id" id="selectpicker" data-live-search="true" required>
                             <option value="" disabled selected>Selecione uma categoria</option>
-                            {{-- for each de categorias --}}
+                            @foreach ($categorias as $categoria)
+                                <option value="{{ $categoria->id }}">{{ $categoria->nome_categoria }}</option>
+                            @endforeach
                         </select>
                     </div>
+                    {{-- <div class="input input-categoria ms-3">
+                        <label for="categoria_id">Categoria</label>
+                        <input list="categorias" name="categoria_id" required>
+                        <datalist id="categorias">
+                            @foreach ($categorias as $categoria)
+                                <option data-value="{{ $categoria->id }}" value="{{ $categoria->id }}">{{ $categoria->nome_categoria }}</option>
+                            @endforeach
+                        </datalist>
+                    </div> --}}
                 </div>
 
                 <div class="modal-footer">

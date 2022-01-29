@@ -10,10 +10,12 @@
                 </div>
             </div>
             <div class="form">
-                <form action="" method="POST">
+                <form action="{{ route('cliente.store') }}" method="POST">
+                    @method('POST')
+                    @csrf
                     <div class="input input-nome-cliente">
-                        <label for="nome-cliente">Nome do cliente</label>
-                        <input type="text" oninput="validaInput(this)" name="nome" placeholder="José da Silva" maxlength="100" required>
+                        <label for="nome_cliente">Nome do cliente</label>
+                        <input type="text" oninput="validaInput(this)" name="nome_cliente" placeholder="José da Silva" maxlength="100" required>
                     </div>
                     <div class="input-ddd-tel-cpf">
                         <div class="input input-catagoria">
@@ -25,8 +27,8 @@
                             <input type="text" oninput="validaInputNumber(this)" name="ddd" maxlength="2" placeholder="38" required>
                         </div>
                         <div class="input input-num-telefone">
-                            <label for="num_telefone">Telefone</label>
-                            <input type="text" oninput="validaInputNumber(this)" name="num_telefone" placeholder="9 12345678" maxlength="9" required>
+                            <label for="numero_telefone">Telefone</label>
+                            <input type="text" oninput="validaInputNumber(this)" name="numero_telefone" placeholder="9 12345678" maxlength="9" required>
                         </div>
                     </div>
                     <div class="input-endereco-num">
@@ -50,7 +52,7 @@
                         </div>
                         <div class="input input-estado">
                             <label for="estado">Estado</label>
-                            <input type="text" oninput="validaInput(this)" maxlength="2" placeholder="SP" name="estado" required>
+                            <input type="text" oninput="validaInput(this)" name="estado" placeholder="SP" maxlength="2" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -69,3 +71,9 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        
+    </script>
+@endpush

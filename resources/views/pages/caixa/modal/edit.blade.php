@@ -10,16 +10,18 @@
                 </div>
             </div>
 
-            <form action="" method="POST">
+            <form action="{{ route('caixa.update') }}" method="POST">
+                @method('PUT')
+                @csrf
                 <div class="form">
                     <div class="input-num-caixa">
-                        <label for="num-caixa">Número do caixa <small>(somente números)</small></label>
-                        <input type="text" name="num-caixa" id="num-caixa" oninput="validaInputNumber(this)" maxlength="99" placeholder="Ex.: 000001" required>
+                        <label for="identificador">Identificador do caixa</label>
+                        <input type="text" name="identificador" id="identificador" oninput="validaInput(this)" maxlength="99" placeholder="Ex.: 001-A" required>
                     </div>
                 </div>
 
                 <!-- levando o id da caixa via POST -->
-                <input name="id_caixa" id="id-caixa" style="display: none;" required>
+                <input type="hidden" name="id_caixa" id="id-caixa" required>
 
                 <div class="modal-footer">
                     <button type="button" class="close" data-dismiss="modal">

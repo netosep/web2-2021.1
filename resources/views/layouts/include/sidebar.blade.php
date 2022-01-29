@@ -55,7 +55,7 @@
                     <i class="fas fa-money-bill-wave mx-3"></i>Finanças
                 </a>
                 <ul class="collapse list-unstyled" id="pageSubmenuFornecedoa">
-                    <li><a href="{{ route('caixa.index') }}">Ver caixas</a></li>
+                    <li><a href="{{ route('caixa.index') }}">Caixas</a></li>
                     <li><a href="#">Cobranças</a></li>
                     <li><a href="#">Pagamentos</a></li>
                 </ul>

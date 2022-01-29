@@ -10,16 +10,18 @@
                 </div>
             </div>
 
-            <form action="" method="POST">
+            <form action="{{ route('categoria.update') }}" method="POST">
+                @method('PUT')
+                @csrf
                 <div class="form">
                     <div class="input-nome-categoria">
-                        <label for="nomecategoria">Nome da categoria</label>
-                        <input type="text" name="nomecategoria" id="nome-categoria" oninput="validaInput(this)" maxlength="20" placeholder="Brinquedos" required>
+                        <label for="nome_categoria">Nome da categoria</label>
+                        <input type="text" name="nome_categoria" id="nome-categoria" oninput="validaInput(this)" maxlength="20" placeholder="Brinquedos" required>
                     </div>
                 </div>
 
                 <!-- levando o id da categoria via POST -->
-                <input name="id_categoria" id="id-categoria" style="display: none;" required>
+                <input type="hidden" name="id_categoria" id="id-categoria" required>
 
                 <div class="modal-footer">
                     <button type="button" class="close" data-dismiss="modal">

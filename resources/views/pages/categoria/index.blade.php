@@ -46,26 +46,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            @forelse ($categorias as $categoria)
                                 <tr>
-                                    <td>
-                                        
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    
+                                    <td>{{ $categoria->id }}</td>
+                                    <td>{{ $categoria->nome_categoria }}</td>
+                                    <td>{{ count($categoria->produtos) }}</td>
                                     <td>
                                         <button class="btn btn-success btn-sm p-1" title="Ver categoria" onclick="">
                                             <i class="fas fa-eye"></i>
                                         </button>
-                                        <button class="btn btn-primary btn-sm p-1" title="Editar categoria" data-toggle="modal" data-target="#editar-categoria-modal" onclick="editCategoria('')">
+                                        <button class="btn btn-primary btn-sm p-1" title="Editar categoria" data-toggle="modal" data-target="#editar-categoria-modal" onclick="editItem('{{ $categoria->id }}')">
                                             <i class="fas fa-pen"></i>
                                         </button>
-                                        <button class="btn btn-danger btn-sm p-1" title="Exluir categoria" onclick="deleteItem('')">
+                                        <button class="btn btn-danger btn-sm p-1" title="Exluir categoria" onclick="confirm('Tem certeza que deseja excluir esse item?') ? $(this).find('form').submit() : ''">
+                                            <form action="{{ route('categoria.delete', $categoria->id) }}" method="POST" style="display: none">@method('DELETE') @csrf</form>
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
                                 </tr>
+                            @empty
+                                <tr><td colspan="4">Nenhuma categoria cadastrada</td></tr>
+                            @endforelse
                         </tbody>
                     </table>
 
@@ -77,30 +78,27 @@
     </div>
 @endsection
 
-{{-- <script>
-
-    var categorias = [];
-
-
-    function editCategoria(idCategoria) {
-        var editCategoriaModal = document.getElementById("editar-categoria-modal");
-        var categoriaEdit;
-
-        categorias.forEach(categoria => {
-            if(categoria.id == idCategoria){
-                categoriaEdit = categoria;
-            }
-        });
-
-        var inputEdit = {
-            id: editCategoriaModal.querySelector("#id-categoria"),
-            nome: editCategoriaModal.querySelector("#nome-categoria")
+@push('scripts')
+    @if (session('success'))
+        <script>
+            toastr.options = { "positionClass": "toast-bottom-right"}
+            toastr.success('{{ session('success') }}')
+        </script>
+    @endif
+    <script>
+        function editItem(id) {
+            $.ajax({
+                url: '{{ route('categoria.edit') }}',
+                type: 'POST',
+                data: {
+                    id_categoria: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    $('#id-categoria').val(data.id);
+                    $('#nome-categoria').val(data.nome_categoria);
+                }
+            });
         }
-
-        inputEdit.id.value = categoriaEdit.id;
-        inputEdit.nome.value = categoriaEdit.nome;
-
-    }
-
-
-</script> --}}
+    </script>
+@endpush

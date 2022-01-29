@@ -49,24 +49,29 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($fornecedores as $fornecedor)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $fornecedor->id }}</td>
+                                    <td>{{ $fornecedor->nome_fornecedor }}</td>
+                                    <td>{{ $fornecedor->telefone }}</td>
+                                    <td>{{ $fornecedor->cidade }}</td>
+                                    <td>{{ $fornecedor->estado }}</td>
                                     <td>
-                                        <button title="Ver fornecedor" onclick="">
-                                            <img src="{{ asset('img/eye-icon.svg') }}" alt="Ver fornecedor">
+                                        <button class="btn btn-success btn-sm p-1" title="Ver fornecedor" onclick="">
+                                            <i class="fas fa-eye"></i>
                                         </button>
-                                        <button title="Editar fornecedor" onclick="editFornecedor('')">
-                                            <img src="{{ asset('img/pencil-icon.svg') }}" data-toggle="modal" data-target="#editar-fornecedor-modal" alt="Editar fornecedor">
+                                        <button class="btn btn-primary btn-sm p-1" title="Editar fornecedor" data-toggle="modal" data-target="#editar-fornecedor-modal" onclick="editItem('{{ $fornecedor->id }}')">
+                                            <i class="fas fa-pen"></i>
                                         </button>
-                                        <button title="Exluir fornecedor" onclick="deleteItem('')">
-                                            <img src="{{ asset('img/trash-icon.svg') }}" alt="Excluir fornecedor">
+                                        <button class="btn btn-danger btn-sm p-1" title="Exluir fornecedor" onclick="confirm('Tem certeza que deseja excluir esse item?') ? $(this).find('form').submit() : ''">
+                                            <form action="{{ route('fornecedor.delete', $fornecedor->id) }}" method="POST" style="display: none">@method('DELETE') @csrf</form>
+                                            <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
                                 </tr>
+                            @empty
+                                <tr><td colspan="6">Nenhum fornecedor cadastrado</td></tr>
+                            @endforelse
                         </tbody>
                     </table>
 
@@ -79,36 +84,31 @@
     </div>
 @endsection
 
-{{-- <script>
-
-    var fornecedores = [];
-
-
-    function editFornecedor(idFornecedor) {
-        var editFornecedorModal = document.getElementById("editar-fornecedor-modal");
-        var fornecedorEdit;
-
-        fornecedores.forEach(fornecedor => {
-            if(fornecedor.id == idFornecedor){
-                fornecedorEdit = fornecedor;
-            }
-        });
-
-        var inputEdit = {
-            id: editFornecedorModal.querySelector("#id-fornecedor"),
-            nome: editFornecedorModal.querySelector("#nome-fornecedor"),
-            telefone: editFornecedorModal.querySelector("#telefone"),
-            cidade: editFornecedorModal.querySelector("#cidade"),
-            estado: editFornecedorModal.querySelector("#estado")
+@push('scripts')
+    @if (session('success'))
+        <script>
+            toastr.options = { "positionClass": "toast-bottom-right"}
+            toastr.success('{{ session('success') }}')
+        </script>
+    @endif
+    <script>
+        function editItem(id) {
+            $.ajax({
+                url: '{{ route('fornecedor.edit') }}',
+                type: 'POST',
+                data: {
+                    id_fornecedor: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    $('#id-fornecedor').val(data.id);
+                    $('#nome-fornecedor').val(data.nome_fornecedor);
+                    $('#telefone').val(data.telefone);
+                    $('#cidade').val(data.cidade);
+                    $('#estado').val(data.estado);
+                }
+            })
         }
-
-        inputEdit.id.value = fornecedorEdit.id;
-        inputEdit.nome.value = fornecedorEdit.nome;
-        inputEdit.telefone.value = fornecedorEdit.telefone;
-        inputEdit.cidade.value = fornecedorEdit.cidade;
-        inputEdit.estado.value = fornecedorEdit.estado;
-
-    }
-
-</script> --}}
+    </script>
+@endpush
 

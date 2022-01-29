@@ -48,25 +48,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr id="item-details">
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>R$ </td>
-                                <td>R$ </td>
-                                <td></td>
-                                <td>
-                                    <button class="btn btn-success btn-sm p-1" title="Ver produto" onclick="">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-primary btn-sm p-1" title="Editar produto" data-toggle="modal" data-target="#editar-produto-modal">
-                                        <i class="fas fa-pen"></i>
-                                    </button>
-                                    <button class="btn btn-danger btn-sm p-1" title="Exluir produto" onclick="deleteItem('')">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @forelse ($produtos as $produto)
+                                <tr id="item-details">
+                                    <td>{{ $produto->id < 10 ? '0'.$produto->id : $produto->id }}</td>
+                                    <td>{{ $produto->nome_produto }}</td>
+                                    <td>{{ $produto->categoria->nome_categoria }}</td>
+                                    <td>R$ {{ number_format($produto->valor_compra, 2, ',', '') }}</td>
+                                    <td>R$ {{ number_format($produto->valor_venda, 2, ',', '') }}</td>
+                                    <td>{{ $produto->quantidade }} unid.</td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm p-1" title="Ver produto" onclick="">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-sm p-1" title="Editar produto" onclick="editItem('{{ $produto->id }}')" data-toggle="modal" data-target="#editar-produto-modal">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm p-1" title="Exluir produto" onclick="confirm('Tem certeza que deseja excluir esse item?') ? $(this).find('form').submit() : ''">
+                                            <form action="{{ route('produto.delete', $produto->id) }}" method="POST" style="display: none">@method('DELETE') @csrf</form>
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr><td colspan="7">Nenhum produto cadastrado</td></tr>
+                            @endforelse
                         </tbody>
                     </table>
 
@@ -79,32 +84,28 @@
     </div>
 @endsection
         
-
-{{-- <script>
-    var produtos = [];
-
-
-    function editProduto(idCategoria) {
-        idCategoria = idCategoria.parentNode.parentNode.querySelector("input").value;
-
-        var editProdutoModal = document.getElementById("editar-produto-modal");
-        var produtoEdit;
-
-        produtos.forEach(produto => {
-            if (produto.idCategoria == idCategoria) {
-                produtoEdit = produto;
-            }
-        });
-
-        var inputEdit = {
-            idProduto: editProdutoModal.querySelector("#id-produto"),
-            nome: editProdutoModal.querySelector("#nome-produto"),
-            categoria: editProdutoModal.querySelector("#categoria")
+@push('scripts')
+    @if (session('success'))
+        <script>
+            toastr.options = { "positionClass": "toast-bottom-right"}
+            toastr.success('{{ session('success') }}')
+        </script>
+    @endif
+    <script>
+        function editItem(id) {
+            $.ajax({
+                url: '{{ route('produto.edit') }}',
+                type: 'POST',
+                data: {
+                    id_produto: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    $('#id-produto').val(data.id);
+                    $('#nome-produto').val(data.nome_produto);
+                    $('#categoria-id').val(data.categoria_id);
+                }
+            });
         }
-
-        inputEdit.idProduto.value = produtoEdit.id;
-        inputEdit.nome.value = produtoEdit.nome;
-        inputEdit.categoria.value = produtoEdit.idCategoria;
-
-    }
-</script> --}}
+    </script>
+@endpush

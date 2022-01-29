@@ -9,20 +9,15 @@
                     </div>
                 </div>
             </div>
-
             <form action="{{ route('categoria.store') }}" method="POST">
+                @method('POST')
                 @csrf
                 <div class="form">
                     <div class="input-nome-categoria">
                         <label for="nome_categoria">Nome da categoria</label>
                         <input type="text" name="nome_categoria" oninput="validaInput(this)" value="{{ old('nome_categoria') }}" maxlength="20" placeholder="Brinquedos" required>
                     </div>
-                    <div class="input-descricao-categoria">
-                        <label for="descricao_categoria">Descrição</label>
-                        <textarea name="descricao_categoria" oninput="validaInput(this)" maxlength="100" placeholder="Brinquedos para crianças"></textarea>
-                    </div>
                 </div>
-
                 <div class="modal-footer">
                     <button type="button" class="close" data-dismiss="modal">
                         Cancelar

@@ -24,8 +24,8 @@ class CreateItensCompraTable extends Migration
             $table->double('quantidade')->default(0);
             $table->timestamps();
 
-            $table->foreign('compra_id')->references('compra_id')->on('compras');
-            $table->foreign('produto_id')->references('produto_id')->on('produtos');
+            $table->foreign('compra_id')->references('id')->on('compras');
+            $table->foreign('produto_id')->references('id')->on('produtos');
         });
     }
 

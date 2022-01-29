@@ -14,9 +14,9 @@ class CreateClientesTable extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->id('cliente_id');
+            $table->id();
             $table->string('nome_cliente');
-            $table->string('cpf_cnpj');
+            $table->string('cpf');
             $table->double('credito')->default(0);
             $table->double('debito')->default(0);
             $table->boolean('ativo')->default(true);

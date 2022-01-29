@@ -9,17 +9,9 @@
         <div class="dashboard sell-products">
             <div class="title-content">
                 <div class="title-text">
-                    <span>
-                        <a href="{{ route('page.dashboard') }}">
-                            <i class="fas fa-home me-2"></i>Dashboard
-                        </a>
-                    </span>
+                    <span><a href="{{ route('page.dashboard') }}"><i class="fas fa-home me-2"></i>Dashboard</a></span>
                     <span>/</span>
-                    <span>
-                        <a href="{{ route('venda.index') }}">
-                            <i class="fas fa-shopping-cart me-2"></i>Vendas
-                        </a>
-                    </span>
+                    <span><a href="{{ route('venda.index') }}"><i class="fas fa-shopping-cart me-2"></i>Vendas</a></span>
                     <span>/</span>
                     <span>Realizar Venda</span>
                 </div>
@@ -52,131 +44,29 @@
                         <div class="sell-info">
                             <div class="client">
                                 <button type="button" id="btn" data-toggle="modal" data-target="#client-modal">
-                                    <img src="{{ asset('img/Selecionar-Cliente.svg') }}" alt="Cliente">
-                                    Cliente
+                                    <i class="fas fa-user me-2"></i>Cliente
                                 </button>
-                                <div class="data-sell-info">
-                                    <input type="text" id="name-client" value="CLIENTE PADRÃO" disabled>
-                                </div>
+                                <div class="data-sell-info"><input type="text" id="name-client" value="CLIENTE PADRÃO" disabled></div>
 
                                 <!-- modal para selecionar o cliente -->
-                                <div class="modal fade" id="client-modal" tabindex="-1" aria-labelledby="client-modalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header float-right">
-                                                <h5>Cliente</h5>
-                                                <div class="close-modal">
-                                                    <img data-dismiss="modal" src="{{ asset('img/block-icon-black.svg') }}" alt="Fechar">
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-select">
-                                                <label for="cliente">Selecione um cliente</label>
-                                                <select name="cliente" id="nome-cliente">
-                                                    <option value="1" selected>CLIENTE PADRÃO</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="confirm" data-dismiss="modal">
-                                                    <img src="{{ asset('img/check-icon.svg') }}" alt="Confirmar">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- fim modal -->
-
+                                @include('pages.venda.modal.cliente')
                             </div>
                             <div class="payment">
                                 <button type="button" id="btn" onclick="metPagamento()" data-toggle="modal" data-target="#payment-modal">
-                                    <img src="{{ asset('img/Meio-Pagamento.svg') }}" alt="Metodo de Pagamento">
-                                    Pagamento
+                                    <i class="fas fa-credit-card me-2"></i>Pagamento
                                 </button>
-                                <div class="data-sell-info">
-                                    <input type="text" id="met-pag" value="À VISTA" disabled required>
-                                </div>
+                                <div class="data-sell-info"><input type="text" id="met-pag" value="À VISTA" disabled required></div>
 
                                 <!-- modal para o metodo de pagamento -->
-                                <div class="modal fade" id="payment-modal" tabindex="-1" aria-labelledby="logoff-modalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header float-right">
-                                                <h5>Método de Pagamento</h5>
-                                                <div class="close-modal">
-                                                    <img data-dismiss="modal" src="{{ asset('img/block-icon-black.svg') }}" alt="Fechar">
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-select d-flex">
-                                                <div class="input-met-pag">
-                                                    <label for="metodo-pagamento">Selecione o método de pagamento</label>
-                                                    <select name="metodo-pagamento" id="metodo-pagamento" onchange="metPagamento()" required>
-                                                        <option value="1" selected>À VISTA</option>
-                                                    </select>
-                                                </div>
-                                                <div class="input-parcel">
-                                                    <label for="num-parcelas">Número de parcelas</label>
-                                                    <input type="text" id="input-parcela" name="num-parcelas" min="1" max="99" oninput="validaInputNumber(this)" maxlength="2" value="1" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="confirm" data-dismiss="modal">
-                                                    <img src="{{ asset('img/check-icon.svg') }}" alt="Confirmar">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- fim modal -->
-
+                                @include('pages.venda.modal.met-pagamento')
                             </div>
                             <div class="add-product">
                                 <button type="button" id="btn-add-item" data-toggle="modal" data-target="#add-item-modal">
-                                    <img src="{{ asset('img/adicionar-item.svg') }}" alt="Adicionar Item">
-                                    Adicionar Item
+                                    <i class="fas fa-plus me-2"></i>Adicionar Item
                                 </button>
 
                                 <!-- modal add-items -->
-                                <div class="modal fade" id="add-item-modal" tabindex="-1" aria-labelledby="logoff-modalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-add-items-sell modal-dialog-centered">
-                                        <div class="modal-content modal-content-add-items">
-                                            <div class="modal-header float-right">
-                                                <h5>Adicionar um item a venda</h5>
-                                                <div class="close-modal">
-                                                    <img data-dismiss="modal" src="{{ asset('img/block-icon-black.svg') }}" alt="Fechar">
-                                                </div>
-                                            </div>
-                                            <div class="modal-select">
-                                                <div class="input-modal-add-item">
-                                                    <div class="input-product">
-                                                        <label>Nome do produto</label>
-                                                        <select id="nome-produto" class="select name-product" required>
-                                                            <option value="" disabled selected>Selecione um produto</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="input-quantidade">
-                                                        <label>Quantidade</label>
-                                                        <input id="quantidade-item" oninput="validaInputNumber(this)" class="quant-product" type="text" min="1" value="1" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="exit-add" data-dismiss="modal" class="cancel btn-modal">
-                                                    Cancelar
-                                                    <img src="{{ asset('img/block-icon.svg') }}" alt="Cancelar">
-                                                </button>
-                                                <button type="button" class="confirm-add" id="btn-add-item-modal" data-dismiss="modal" class="confirm btn-modal">
-                                                    Adicionar
-                                                    <img src="{{ asset('img/check-icon.svg') }}" alt="Confirmar">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- fim modal  -->
-
+                                @include('pages.venda.modal.add-item')
                             </div>
                         </div>
                     </div>
@@ -184,17 +74,17 @@
                 
                 <div class="sell-attributes">
                     <div class="value-cart">
-                        <span id="total-value">Valor total R$</span>
-                        <span id="value-cart">0.00</span>
+                        <span>
+                            <span id="total-value">Valor total R$</span>
+                        </span>
+                        <span id="value-cart">0,00</span>
                     </div>
                     <div class="buttons">
                         <button type="button" id="cancelar-venda" class="cancel">
-                            <span>Cancelar Venda</span>
-                            <img src="{{ asset('img/block-icon.svg') }}" alt="Cancelar venda">
+                            <span class="d-flex align-items-center">Cancelar Venda<i class="fas fa-times ms-3"></i></span>
                         </button>
                         <button type="submit" id="finalizar-venda" class="accept">
-                            <span>Finalizar Venda</span>
-                            <img src="{{ asset('img/check-icon.svg') }}" alt="Finalizar venda">
+                            <span class="d-flex align-items-center">Finalizar Venda<i class="fas fa-check ms-3"></i></span>
                         </button>
                     </div>
                 </div>

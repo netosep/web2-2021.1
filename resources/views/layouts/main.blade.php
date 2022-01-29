@@ -30,6 +30,9 @@
 
     <!-- bootstrap -->
     <link href="{{ asset('vendor/bootstrap-5.1.3/css/bootstrap.min.css') }}" rel="stylesheet" media="all">
+    
+    <!-- toastr -->
+    <link rel="stylesheet" href="{{ asset('vendor/toastr/css/toastr.min.css') }}"> 
 </head>
 
 <body>
@@ -49,7 +52,6 @@
 
 <!-- scripts -->
 <script src="{{ asset('js/time.js') }}"></script>
-<script src="{{ asset('js/deleteItem.js') }}"></script>
 <script src="{{ asset('js/searchItem.js') }}"></script>
 <script src="{{ asset('js/validaInput.js') }}"></script>
 <script src="{{ asset('js/toastNotify.js') }}"></script>
@@ -63,8 +65,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/e386f7fbce.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
 <!-- fontawesome -->
 <script src="{{ asset('vendor/fontawesome-5.15.4/js/all.js') }}"></script>
+
+<!-- toastr -->
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+@stack('scripts')
 
 </html>

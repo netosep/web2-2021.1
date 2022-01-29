@@ -42,24 +42,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>R$ </td>
-                                <td></td>
-                                <td>
-                                    <a title="Ver venda" href="#">
-                                        <img src="{{ asset('img/eye-icon.svg') }}" alt="">
-                                    </a>
-                                    <a title="Editar venda" href="#">
-                                        <img src="{{ asset('img/pencil-icon.svg') }}" alt="">
-                                    </a>
-                                    <a title="Exluir venda" href="#" onclick="deleteItem('')">
-                                        <img src="{{ asset('img/trash-icon.svg') }}" alt="">
-                                    </a>
-                                </td>
-                            </tr>
+                            @forelse ($vendas as $venda)
+                                <tr>
+                                    <td>{{ $venda->id }}</td>
+                                    <td>{{ 'add' }}</td>
+                                    <td>{{ 'add' }}</td>
+                                    <td>R$ {{ $venda->valor_total }}</td>
+                                    <td>{{ $venda->created_at }}</td>
+                                    <td>
+                                        <a title="Ver venda" href="#">
+                                            <img src="{{ asset('img/eye-icon.svg') }}" alt="">
+                                        </a>
+                                        <a title="Editar venda" href="#">
+                                            <img src="{{ asset('img/pencil-icon.svg') }}" alt="">
+                                        </a>
+                                        <a title="Exluir venda" href="#" onclick="deleteItem('')">
+                                            <img src="{{ asset('img/trash-icon.svg') }}" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr><td colspan="6">Nenhuma venda cadastrada</td></tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

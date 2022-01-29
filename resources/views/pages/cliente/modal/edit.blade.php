@@ -10,10 +10,12 @@
                 </div>
             </div>
             <div class="form">
-                <form action="" method="POST">
+                <form action="{{ route('cliente.update') }}" method="POST">
+                    @method('PUT')
+                    @csrf
                     <div class="input input-nome-cliente">
                         <label for="nome-cliente">Nome do cliente</label>
-                        <input type="text" oninput="validaInput(this)" name="nome" id="nome" placeholder="José da Silva" maxlength="100" required>
+                        <input type="text" oninput="validaInput(this)" name="nome_cliente" id="nome-cliente" placeholder="José da Silva" maxlength="100" required>
                     </div>
                     <div class="input-ddd-tel-cpf">
                         <div class="input input-catagoria">
@@ -25,8 +27,8 @@
                             <input type="text" oninput="validaInputNumber(this)" name="ddd" id="ddd" maxlength="2" placeholder="38" required>
                         </div>
                         <div class="input input-num-telefone">
-                            <label for="num_telefone">Telefone</label>
-                            <input type="text" oninput="validaInputNumber(this)" name="num_telefone" id="telefone" placeholder="9 12345678" maxlength="9" required>
+                            <label for="numero_telefone">Telefone</label>
+                            <input type="text" oninput="validaInputNumber(this)" name="numero_telefone" id="telefone" placeholder="9 12345678" maxlength="9" required>
                         </div>
                     </div>
                     <div class="input-endereco-num">
@@ -55,7 +57,9 @@
                     </div>
 
                     <!-- levando o id do cliente via POST -->
-                    <input name="id_cliente" id="id-cliente" style="display: none;" required>
+                    <input type="hidden" name="id_cliente" id="id-cliente" required>
+                    <input type="hidden" name="id_contato" id="id-contato" required>
+                    <input type="hidden" name="id_endereco" id="id-endereco" required>
 
                     <div class="modal-footer">
                         <button type="button" class="close" data-dismiss="modal">

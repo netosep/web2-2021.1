@@ -44,31 +44,44 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Número do caixa</th>
+                                <th>Identificador do caixa</th>
                                 <th>Valor em caixa</th>
                                 <th>Status</th>
+                                <th>Operação</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>R$ </td>
-                                <td></td>
-                                <td>
-                                    <button title="Ver caixa" onclick="">
-                                        <img src="{{ asset('img/eye-icon.svg') }}" alt="Ver caixa">
-                                    </button>
-                                    <button title="Editar caixa" onclick="editCaixa('')">
-                                        <img src="{{ asset('img/pencil-icon.svg') }}" data-toggle="modal" data-target="#editar-caixa-modal" alt="Editar caixa">
-                                    </button>
-                                    <!-- <button title="Exluir caixa" onclick="deleteCaixa('', '')"> -->
-                                    <button title="Exluir caixa">
-                                        <img src="{{ asset('img/trash-icon.svg') }}" alt="Excluir caixa">
-                                    </button>
-                                </td>
-                            </tr>
+                            @forelse ($caixas as $caixa)
+                                <tr>
+                                    <td>{{ $caixa->id < 10 ? '0'.$caixa->id : $caixa->id }}</td>
+                                    <td>{{ $caixa->identificador }}</td>
+                                    <td>R$ {{ number_format($caixa->valor_em_caixa, 2, ',', '') }}</td>
+                                    <td>{{ $caixa->status == 'A' ? 'Aberto' : 'Fechado' }}</td>
+                                    <td>{{ $caixa->ativo ? 'Ativo' : 'Desativado' }}</td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm p-1" title="Ver caixa" onclick="" disabled>
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-sm p-1" title="Editar caixa" onclick="editItem('{{ $caixa->id }}')" data-toggle="modal" data-target="#editar-caixa-modal">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        @if ($caixa->ativo)
+                                            <button class="btn btn-danger btn-sm p-1" title="Desativar caixa" onclick="confirm('Tem certeza que deseja desativar esse caixa?') ? $(this).find('form').submit() : ''">
+                                                <form action="{{ route('caixa.desativar', $caixa->id) }}" method="POST" style="display: none">@method('PUT') @csrf</form>
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-secondary btn-sm p-1" title="Ativar caixa" onclick="confirm('Ativar esse caixa?') ? $(this).find('form').submit() : ''">
+                                                <form action="{{ route('caixa.ativar', $caixa->id) }}" method="POST" style="display: none">@method('PUT') @csrf</form>
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr><td colspan="5">Nenhum caixa cadastrado</td></tr>
+                            @endforelse
                         </tbody>
                     </table>
 
@@ -81,28 +94,27 @@
     </div>
 @endsection
 
-<!-- <script>
-
-    var caixas = [];
-
-    function editCaixa(idCaixa) {
-        var editCaixaModal = document.getElementById("editar-caixa-modal");
-        var caixaEdit;
-
-        caixas.forEach(caixa => {
-            if(caixa.id == idCaixa){
-                caixaEdit = caixa;
-            }
-        });
-
-        var inputEdit = {
-            id: editCaixaModal.querySelector("#id-caixa"),
-            numero: editCaixaModal.querySelector("#num-caixa")
+@push('scripts')
+    @if (session('success'))
+        <script>
+            toastr.options = { "positionClass": "toast-bottom-right"}
+            toastr.success('{{ session('success') }}')
+        </script>
+    @endif
+    <script>
+        function editItem(id) {
+            $.ajax({
+                url: '{{ route('caixa.edit') }}',
+                type: 'POST',
+                data: {
+                    id_caixa: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    $('#id-caixa').val(data.id);
+                    $('#identificador').val(data.identificador);
+                }
+            });
         }
-
-        inputEdit.id.value = caixaEdit.id;
-        inputEdit.numero.value = caixaEdit.numero;
-        
-    }
-
-</script> -->
+    </script>
+@endpush

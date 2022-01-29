@@ -22,7 +22,7 @@ class CreateDevolucoesTable extends Migration
             $table->double('quantidade');
             $table->timestamps();
 
-            $table->foreign('produto_id')->references('produto_id')->on('produtos');
+            $table->foreign('produto_id')->references('id')->on('produtos');
             $table->foreign('item_venda_id')->references('item_venda_id')->on('itens_venda');
             $table->foreign('funcionario_id')->references('funcionario_id')->on('funcionarios');
         });

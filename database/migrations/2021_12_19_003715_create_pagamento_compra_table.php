@@ -14,7 +14,7 @@ class CreatePagamentoCompraTable extends Migration
     public function up()
     {
         Schema::create('pagamento_compra', function (Blueprint $table) {
-            $table->id('pagamento_compra_id');
+            $table->id();
             $table->unsignedBigInteger('compra_id');
             $table->unsignedBigInteger('forma_pagamento_id');
             $table->integer('parcelas')->default(1);
@@ -24,8 +24,8 @@ class CreatePagamentoCompraTable extends Migration
             $table->char('status', 2)->default('NP'); // NP = Não Pago, EP = Em Pagamento, PG = Pago, VL = Vencido, CA = Cancelado
             $table->timestamps();
 
-            $table->foreign('compra_id')->references('compra_id')->on('compras');
-            $table->foreign('forma_pagamento_id')->references('forma_pagamento_id')->on('formas_pagamento');
+            $table->foreign('compra_id')->references('id')->on('compras');
+            $table->foreign('forma_pagamento_id')->references('id')->on('formas_pagamento');
         });
     }
 

@@ -14,10 +14,11 @@ class CreateCaixasTable extends Migration
     public function up()
     {
         Schema::create('caixas', function (Blueprint $table) {
-            $table->id('caixa_id');
-            $table->string('descricao');
+            $table->id();
+            $table->string('identificador')->nullable();
             $table->double('valor_em_caixa')->default(0);
-            $table->char('status', 1)->default('A'); // A = Aberto, F = Fechado
+            $table->char('status', 1)->default('F'); // A = Aberto, F = Fechado
+            $table->boolean('ativo')->default(true);
             $table->timestamps();
         });
     }

@@ -10,24 +10,26 @@
                 </div>
             </div>
 
-            <form action="" method="POST">
-                <div class="form">
+            <form action="{{ route('fornecedor.store') }}" method="POST">
+                @method('POST')
+                @csrf
+                <div class="form" style="flex-direction: column">
                     <div class="input input-nome-fornecedor">
-                        <label for="nome">Nome do fornecedor</label>
-                        <input type="text" name="nome-fornecedor" oninput="validaInput(this)" placeholder="Brinquedos LTDA" maxlength="100" required>
+                        <label for="nome_fornecedor">Nome do fornecedor</label>
+                        <input type="text" name="nome_fornecedor" oninput="validaInput(this)" placeholder="Brinquedos LTDA" maxlength="100" required>
                     </div>
                     <div class="input-tel-cid-est">
                         <div class="input input-telefone-fornecedor">
                             <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone-fornecedor" oninput="validaInputNumber(this)" placeholder="11 9 12345678" maxlength="11" required>
+                            <input type="text" name="telefone" oninput="validaInputNumber(this)" placeholder="11 9 12345678" maxlength="11" required>
                         </div>
                         <div class="input input-cidade-fornecedor">
                             <label for="cidade">Cidade</label>
-                            <input type="text" name="cidade-fornecedor" oninput="validaInput(this)" placeholder="Guarabira" maxlength="30" required>
+                            <input type="text" name="cidade" oninput="validaInput(this)" placeholder="Guarabira" maxlength="30" required>
                         </div>
                         <div class="input input-estado-fornecedor">
-                            <label for="estado-fornecedor">Estado</label>
-                            <input type="text" name="estado-fornecedor" oninput="validaInput(this)" placeholder="MG" maxlength="2" required>
+                            <label for="estado">Estado</label>
+                            <input type="text" name="estado" oninput="validaInput(this)" placeholder="MG" maxlength="2" required>
                         </div>
                     </div>
                 </div>

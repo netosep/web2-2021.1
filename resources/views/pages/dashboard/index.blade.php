@@ -30,13 +30,13 @@
                     <a href="#" style="background-color: #00FF66;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Compras">
                         <i class="fas fa-shopping-basket"></i>
                     </a>
-                    <a href="#" style="background-color: #00A3FF;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Fornecedores">
+                    <a href="{{ route('fornecedor.index') }}" style="background-color: #00A3FF;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Fornecedores">
                         <i class="fas fa-truck"></i>
                     </a>
-                    <a href="#" style="background-color: #47948F;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Finanças">
-                        <i class="fas fa-money-bill-wave"></i>
+                    <a href="{{ route('caixa.index') }}" style="background-color: #47948F;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Caixas">
+                        <i class="fas fa-cash-register"></i>
                     </a>
-                    <a href="#" style="background-color: #FF0099;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Funcionários">
+                    <a href="{{ route('funcionario.index') }}}" style="background-color: #FF0099;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Funcionários">
                         <i class="fas fa-user-tie"></i>
                     </a>
                 </div>
@@ -70,10 +70,10 @@
                                 </div>
                                 <div class="card" style="background-color: #11858C !important;">
                                     <div class="title-card" style="background-color: #25767B !important;">
-                                        <span>Total de Clientes</span>
+                                        <span>Clientes cadastrados</span>
                                     </div>
                                     <div class="card-body">
-                                        <strong>5</strong>
+                                        <strong>{{ $quantidade_clientes }}</strong>
                                         <span>clientes</span>
                                     </div>
                                 </div>
@@ -136,7 +136,6 @@
         </div>
     </div>
 @endsection
-
 
 <!-- scripts -->
 {{-- <script src="{{ asset('') }}https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> --> --}}

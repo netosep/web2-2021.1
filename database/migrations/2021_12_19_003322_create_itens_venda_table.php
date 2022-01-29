@@ -21,8 +21,8 @@ class CreateItensVendaTable extends Migration
             $table->double('quantidade')->default(0);
             $table->timestamps();
 
-            $table->foreign('venda_id')->references('venda_id')->on('vendas');
-            $table->foreign('produto_id')->references('produto_id')->on('produtos');
+            $table->foreign('venda_id')->references('id')->on('vendas');
+            $table->foreign('produto_id')->references('id')->on('produtos');
         });
     }
 

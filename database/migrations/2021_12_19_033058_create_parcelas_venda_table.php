@@ -14,7 +14,7 @@ class CreateParcelasVendaTable extends Migration
     public function up()
     {
         Schema::create('parcelas_venda', function (Blueprint $table) {
-            $table->id('parcela_venda_id');
+            $table->id();
             $table->unsignedBigInteger('pagamento_venda_id');
             $table->integer('numero_parcela');
             $table->date('data_vencimento');
@@ -23,7 +23,7 @@ class CreateParcelasVendaTable extends Migration
             $table->char('status', 2);
             $table->timestamps();
 
-            $table->foreign('pagamento_venda_id')->references('pagamento_venda_id')->on('pagamento_venda');
+            $table->foreign('pagamento_venda_id')->references('id')->on('pagamento_venda');
         });
     }
 

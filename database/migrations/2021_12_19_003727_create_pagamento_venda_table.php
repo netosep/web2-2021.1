@@ -14,7 +14,7 @@ class CreatePagamentoVendaTable extends Migration
     public function up()
     {
         Schema::create('pagamento_venda', function (Blueprint $table) {
-            $table->id('pagamento_venda_id');
+            $table->id();
             $table->unsignedBigInteger('venda_id');
             $table->unsignedBigInteger('forma_pagamento_id');
             $table->integer('parcelas')->default(1);
@@ -24,8 +24,8 @@ class CreatePagamentoVendaTable extends Migration
             $table->char('status', 2)->default('NP'); // NP = Não Pago, EP = Em Pagamento, PG = Pago, VL = Vencido, CA = Cancelado
             $table->timestamps();
 
-            $table->foreign('venda_id')->references('venda_id')->on('vendas');
-            $table->foreign('forma_pagamento_id')->references('forma_pagamento_id')->on('formas_pagamento');
+            $table->foreign('venda_id')->references('id')->on('vendas');
+            $table->foreign('forma_pagamento_id')->references('id')->on('formas_pagamento');
         });
     }
 
