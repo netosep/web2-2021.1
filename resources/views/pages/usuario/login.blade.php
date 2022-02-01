@@ -9,6 +9,8 @@
     <link rel="shortcut icon" href="{{ asset('img/favicon.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('style/main.css') }}">
     <link rel="stylesheet" href="{{ asset('style/login.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('vendor/toastr/css/toastr.min.css') }}"> 
 </head>
 
 <body>
@@ -23,7 +25,9 @@
                     </a>
                 </div>
             </div>
-            <form action="" method="POST">
+            <form action="{{ route('login.store') }}" method="POST">
+                @method('POST')
+                @csrf
                 <div class="login-form">
                     <div class="main-items">
                         <div class="title-logo">
@@ -47,7 +51,11 @@
                                     <input type="password" name="senha" maxlength="50" required>
                                 </div>
                                 <div class="alert">
-                                    <small><strong></strong></small>
+                                    <strong>
+                                        @if(session('error'))
+                                            {{ session('error') }}
+                                        @endif
+                                    </strong>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +66,7 @@
                         </div>
                         <div class="mini-footer">
                             {{-- <a href="#">Esqueci minha senha</a> --}}
-                            <a href="{{ route('page.dashboard') }}">Acessar telas (teste)</a>
+                            {{-- <a href="{{ route('page.dashboard') }}">Acessar telas (teste)</a> --}}
                         </div>
                     </div>
                 </div>

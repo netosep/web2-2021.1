@@ -72,10 +72,15 @@
                     <i class="fas fa-chart-bar mx-3"></i>Relatórios
                 </a>
             </li>
+            <li href="#pageSubmenuRelatório" data-toggle="collapse" aria-expanded="false" class="dropdown">
+                <a href="#">
+                    <i class="fas fa-info-circle mx-3"></i>Sobre
+                </a>
+            </li>
         </ul>
         <ul class="footer-sidebar dropdown">
             <div class="text-center">
-                <button id="btn" data-toggle="modal" data-target="#logoff-modal">
+                <a  href="{{ route('login.logout') }}" id="btn"{{--  data-toggle="modal" data-target="#logoff-modal" --}}>
                     <i class="fas fa-power-off m-1"></i>
                     Sair do sistema
                 </button>

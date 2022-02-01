@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateClientesTable extends Migration
@@ -22,6 +23,14 @@ class CreateClientesTable extends Migration
             $table->boolean('ativo')->default(true);
             $table->timestamps();
         });
+
+        DB::table('clientes')->insert([
+            'nome_cliente' => 'Cliente Padrão',
+            'cpf' => '00000000000',
+            'credito' => 0,
+            'debito' => 0,
+            'ativo' => true,
+        ]);
     }
 
     /**

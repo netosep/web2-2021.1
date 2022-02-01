@@ -11,12 +11,20 @@
                 <div class="input-modal-add-item">
                     <div class="input-product">
                         <label>Nome do produto</label>
-                        <select id="nome-produto" class="select name-product" required>
+                        <input list="produtos" id="input-produto" type="text" placeholder="Pesquise ou selecione da lista" onchange="selectProduto()">
+                        <datalist id="produtos">
+                            @foreach ($produtos as $produto)
+                                <option data-id="{{ $produto->id }}" data-valor="{{ $produto->valor_venda }}" value="{{ mb_strtoupper($produto->nome_produto) }}">
+                            @endforeach
+                        </datalist>
+                        <small style="display: none" id="produto-erro" class="text-danger"></small>
+
+                        {{-- <select id="nome-produto" class="select name-product" required>
                             <option value="" disabled selected>Selecione um produto</option>
                             @foreach ($produtos as $produto)
                                 <option value="{{ $produto->id }}">{{ $produto->nome_produto }}</option>
                             @endforeach
-                        </select>
+                        </select> --}}
                     </div>
                     <div class="input-quantidade">
                         <label>Quantidade</label>
@@ -29,7 +37,7 @@
                     Cancelar
                     <img src="{{ asset('img/block-icon.svg') }}" alt="Cancelar">
                 </button>
-                <button type="button" class="confirm-add" id="btn-add-item-modal" data-dismiss="modal" class="confirm btn-modal">
+                <button type="button" class="confirm-add" id="btn-add-item-modal" data-dismiss="modal" class="confirm btn-modal" onclick="setProduto()">
                     Adicionar
                     <img src="{{ asset('img/check-icon.svg') }}" alt="Confirmar">
                 </button>

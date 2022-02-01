@@ -50,28 +50,50 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            @forelse ($funcionarios as $funcionario)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>R$</td>
-                                    <td></td>
-                                    
+                                    <td>{{ $funcionario->id < 10 ? '0'.$funcionario->id : $funcionario->id }}</td>
+                                    <td>{{ $funcionario->nome_funcionario }}</td>
+                                    <td>{{ $funcionario->telefone }}</td>
+                                    <td>{{ $funcionario->cargo }}</td>
                                     <td>
-                                        <button title="Ver funcionario" onclick="">
-                                            <img src="{{ asset('img/eye-icon.svg') }}" alt="Ver funcionario">
+                                        @if ($funcionario->nivel_acesso == 0) 
+                                            --
+                                        @elseif ($funcionario->nivel_acesso == 1) 
+                                            ADMIN
+                                        @else 
+                                            CAIXA
+                                        @endif
+                                    </td>
+                                    <td>R$ {{ number_format($funcionario->salario, 2, ',', '') }}</td>
+                                    <td>
+                                        {{ $funcionario->caixa != null ? $funcionario->caixa->identificador : '--' }}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm p-1" title="Ver funcionario" onclick="">
+                                            <i class="fas fa-eye"></i>
                                         </button>
-                                        <button title="Editar funcionario" onclick="editFuncionario('')">
-                                            <img src="{{ asset('img/pencil-icon.svg') }}" data-toggle="modal" data-target="#editar-funcionario-modal" alt="Editar funcionario">
-                                        </button>
-                                        <button title="Exluir funcionario" onclick="deleteItem('')">
-                                            <img src="{{ asset('img/trash-icon.svg') }}" alt="Excluir funcionario">
-                                        </button>
+                                        @if ($funcionario->id == 1)
+                                            <button class="btn btn-primary btn-sm p-1" title="Não disponível" disabled>
+                                                <i class="fas fa-pen"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm p-1" title="Não disponível" disabled>
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-primary btn-sm p-1" title="Editar funcionario" onclick="editItem('{{ $funcionario->id }}')" data-toggle="modal" data-target="#editar-funcionario-modal">
+                                                <i class="fas fa-pen"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm p-1" title="Exluir funcionario" onclick="confirm('Tem certeza que deseja excluir esse item?') ? $(this).find('form').submit() : ''">
+                                                <form action="{{ route('funcionario.delete', $funcionario->id) }}" method="POST" style="display: none">@method('DELETE') @csrf</form>
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr> 
+                            @empty
+                                <tr><td colspan="8">Nenhum funcionário cadastrado</td></tr>
+                            @endforelse
                         </tbody>
                     </table>
 
@@ -83,6 +105,59 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    @if (session('success'))
+        <script>
+            toastr.options = { "positionClass": "toast-bottom-right"}
+            toastr.success('{{ session('success') }}')
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            toastr.options = { "positionClass": "toast-bottom-right"}
+            toastr.error('{{ session('error') }}')
+        </script>
+    @endif
+    <script>
+        function ativarInputs(checkbox) {
+            if ($(checkbox).is(':checked')) {
+                $('#usuario').attr('disabled', false).css('background-color', '#f6f6f6');
+                $('#nivel-acesso').attr('disabled', false).css('background-color', '#f6f6f6');
+                $('#caixa-cadastro').attr('disabled', false).css('background-color', '#f6f6f6');
+                $('#senha').attr('disabled', false).css('background-color', '#f6f6f6');
+                $('#confirma-senha').attr('disabled', false).css('background-color', '#f6f6f6');
+            } else {
+                $('#usuario').attr('disabled', true).css('background-color', '#e5e5e5');
+                $('#nivel-acesso').attr('disabled', true).css('background-color', '#e5e5e5');
+                $('#caixa-cadastro').attr('disabled', true).css('background-color', '#e5e5e5');
+                $('#senha').attr('disabled', true).css('background-color', '#e5e5e5');
+                $('#confirma-senha').attr('disabled', true).css('background-color', '#e5e5e5');
+            }
+        }
+
+        function editItem(id) {
+            $.ajax({
+                url: '{{ route('funcionario.edit') }}',
+                type: 'POST',
+                data: {
+                    id_funcionario: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    $('#id-funcionario').val(data.id);
+                    $('#nome-funcionario').val(data.nome_funcionario);
+                    $('#cpf').val(data.cpf);
+                    $('#telefone').val(data.telefone);
+                    $('#email').val(data.email);
+                    $('#endereco').val(data.endereco_completo);
+                    $('#cargo').val(data.cargo);
+                    $('#salario').val(data.salario);
+                }
+            });
+        }
+    </script>
+@endpush
 
 {{-- <script>
 

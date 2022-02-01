@@ -9,15 +9,21 @@
             </div>
 
             <div class="modal-select">
-                <label for="cliente">Selecione um cliente</label>
-                <select name="cliente" id="nome-cliente">
-                    <option value="1" selected>CLIENTE PADRÃO</option>
-                </select>
+                <label for="cliente">Nome do cliente</label>
+                <input list="clientes" id="nome-cliente" placeholder="Pesquise ou selecione da lista" onchange="selectCliente()">
+                <datalist id="clientes">
+                    @foreach($clientes as $cliente)
+                        <option data-value="{{ $cliente->id }}" value="{{ mb_strtoupper($cliente->nome_cliente) }}">
+                    @endforeach
+                </datalist>
+                <small style="display: none" id="cliente-erro" class="text-danger"></small>
+                <!-- id do cliente -->
+                <input type="hidden" name="cliente_id" id="cliente_id" value="1">
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="confirm" data-dismiss="modal">
-                    <img src="{{ asset('img/check-icon.svg') }}" alt="Confirmar">
+                <button type="button" class="confirm p-3" data-dismiss="modal">
+                    OK<i class="fas fa-check ms-2"></i>
                 </button>
             </div>
         </div>

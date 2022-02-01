@@ -51,7 +51,7 @@
                         <tbody>
                             @forelse ($clientes as $cliente)
                                 <tr>
-                                    <td>{{ $cliente->id }}</td>
+                                    <td>{{ $cliente->id < 10 ? '0'.$cliente->id : $cliente->id }}</td>
                                     <td>{{ $cliente->nome_cliente }}</td>
                                     <td>{{ isset($cliente->contatos[0]) ? "(".$cliente->contatos[0]->ddd.") ".$cliente->contatos[0]->numero_telefone : "--" }}</td>
                                     <td>{{ $cliente->cpf }}</td>
@@ -61,13 +61,22 @@
                                         <button class="btn btn-success btn-sm p-1" title="Ver cliente" onclick="">
                                             <i class="fas fa-eye"></i>
                                         </button>
-                                        <button class="btn btn-primary btn-sm p-1" title="Editar cliente" onclick="editItem('{{ $cliente->id }}')" data-toggle="modal" data-target="#editar-cliente-modal">
-                                            <i class="fas fa-pen"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm p-1" title="Exluir cliente" onclick="confirm('Tem certeza que deseja excluir esse item?') ? $(this).find('form').submit() : ''">
-                                            <form action="{{ route('cliente.delete', $cliente->id) }}" method="POST" style="display: none">@method('DELETE') @csrf</form>
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
+                                        @if ($cliente->id == 1)
+                                            <button class="btn btn-primary btn-sm p-1" title="Editar cliente" disabled>
+                                                <i class="fas fa-pen"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm p-1" title="Exluir cliente" disabled>
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-primary btn-sm p-1" title="Editar cliente" onclick="editItem('{{ $cliente->id }}')" data-toggle="modal" data-target="#editar-cliente-modal">
+                                                <i class="fas fa-pen"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm p-1" title="Exluir cliente" onclick="confirm('Tem certeza que deseja excluir esse item?') ? $(this).find('form').submit() : ''">
+                                                <form action="{{ route('cliente.delete', $cliente->id) }}" method="POST" style="display: none">@method('DELETE') @csrf</form>
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Validate\LoginValidate;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -10,9 +11,13 @@ class CategoriaController extends Controller
 
     public function index()
     {
-        return view('pages.categoria.index', [
-            'categorias' => Categoria::with('produtos')->where('ativo', true)->orderBy('id')->get()
-        ]);
+        if (LoginValidate::hasSession()) {
+            return view('pages.categoria.index', [
+                'categorias' => Categoria::with('produtos')->where('ativo', true)->orderBy('id')->get()
+            ]);
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
     public function create()
@@ -22,8 +27,12 @@ class CategoriaController extends Controller
 
     public function store(Request $request)
     {
-        Categoria::create($request->all());
-        return redirect()->route('categoria.index')->with('success', 'Categoria cadastrada com sucesso!');
+        if (LoginValidate::hasSession()) {
+            Categoria::create($request->all());
+            return redirect()->route('categoria.index')->with('success', 'Categoria cadastrada com sucesso!');
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
     public function show($id)
@@ -33,19 +42,31 @@ class CategoriaController extends Controller
 
     public function edit(Request $request)
     {
-        return response()->json(Categoria::findOrFail($request->id_categoria));
+        if (LoginValidate::hasSession()) {
+            return response()->json(Categoria::findOrFail($request->id_categoria));
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
     public function update(Request $request)
     {
-        Categoria::findOrFail($request->id_categoria)->update($request->all());
-        return redirect()->route('categoria.index')->with('success', 'Categoria atualizada com sucesso!');
+        if (LoginValidate::hasSession()) {
+            Categoria::findOrFail($request->id_categoria)->update($request->all());
+            return redirect()->route('categoria.index')->with('success', 'Categoria atualizada com sucesso!');
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
     public function destroy($id)
     {
-        Categoria::findOrFail($id)->update(['ativo' => false]);
-        return redirect()->route('categoria.index')->with('success', 'Categoria excluída com sucesso!');
+        if (LoginValidate::hasSession()) {
+            Categoria::findOrFail($id)->update(['ativo' => false]);
+            return redirect()->route('categoria.index')->with('success', 'Categoria excluída com sucesso!');
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
 }

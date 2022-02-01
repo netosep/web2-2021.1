@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Validate\LoginValidate;
 use Illuminate\Http\Request;
 
 class CompraController extends Controller
@@ -9,7 +9,11 @@ class CompraController extends Controller
 
     public function index()
     {
-        return view('pages.compra.index');
+        if (LoginValidate::hasSession()) {
+            return view('pages.compra.index');
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
     public function create()

@@ -5,7 +5,7 @@
     <div class="user-area">
         <span id="date-time"></span>
         <img class="divisor" src="{{ asset('img/separador.svg') }}" alt="Separador">
-        <span class="username">username</span>
+        <span class="username">{{ session('user')->nome_funcionario }}</span>
         <img class="user-img" src="{{ asset('img/default-user.svg') }}" alt="Usuário">
 
         <div class="dropdown show">
@@ -13,19 +13,19 @@
             <div class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="dropdownMenuLink">
                 <a href="#">
                     <div class="item-menu">
-                        <i class="fas fa-user mx-1"></i>
+                        <i class="fas fa-user mx-2"></i>
                         <p>Minha Conta</p>
                     </div>
                 </a>
-                <a href="#">
+                {{-- <a href="#">
                     <div class="item-menu">
-                        <i class="fas fa-cog mx-1"></i>
+                        <i class="fas fa-cog mx-2"></i>
                         <p>Configurações</p>
                     </div>
-                </a>
-                <a href="#">
+                </a> --}}
+                <a href="{{ route('login.logout') }}">
                     <div class="item-menu">
-                        <i class="fas fa-power-off mx-1"></i>
+                        <i class="fas fa-power-off mx-2"></i>
                         <p>Sair do sistema</p>
                     </div>
                 </a>

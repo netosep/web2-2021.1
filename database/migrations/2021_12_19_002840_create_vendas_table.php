@@ -23,7 +23,7 @@ class CreateVendasTable extends Migration
             $table->timestamps();
 
             $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('funcionario_id')->references('funcionario_id')->on('funcionarios');
+            $table->foreign('funcionario_id')->references('id')->on('funcionarios');
             $table->foreign('caixa_id')->references('id')->on('caixas');
         });
     }

@@ -23,11 +23,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// rota teste
-// Route::get('/', [UsuarioController::class, 'index'])->name('page.login');
-Route::get('/', [DashboardController::class, 'index'])->name('page.dashboard');
-
-Route::get('/login', [UsuarioController::class, 'index'])->name('page.login');
+Route::prefix('/login')->group(function () {
+    Route::get('/', [UsuarioController::class, 'index'])->name('login.index');
+    Route::post('/', [UsuarioController::class, 'store'])->name('login.store');
+    Route::get('/logout', [UsuarioController::class, 'logout'])->name('login.logout');
+});
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('page.dashboard');
 
@@ -42,6 +42,7 @@ Route::prefix("/clientes")->group(function() {
 Route::prefix('/produtos')->group(function() {
     Route::get('/', [ProdutoController::class, 'index'])->name('produto.index');
     Route::post('/', [ProdutoController::class, 'store'])->name('produto.store');
+    Route::get('/get-all', [ProdutoController::class, 'getAll'])->name('produto.getAll');
     Route::post('/edit', [ProdutoController::class, 'edit'])->name('produto.edit');
     Route::put('/update', [ProdutoController::class, 'update'])->name('produto.update');
     Route::delete('/delete/{id}', [ProdutoController::class, 'destroy'])->name('produto.delete');
@@ -58,6 +59,7 @@ Route::prefix('/categorias')->group(function () {
 Route::prefix('/vendas')->group(function () {
     Route::get('/', [VendaController::class, 'index'])->name('venda.index');
     Route::get('/realizar-venda', [VendaController::class, 'create'])->name('venda.create');
+    Route::post('/', [VendaController::class, 'store'])->name('venda.store');
 });
 
 Route::prefix('/compras')->group(function () {
@@ -85,4 +87,10 @@ Route::prefix('/financas')->group(function() {
     });
 });
 
-Route::get('/funcionarios', [FuncionarioController::class, 'index'])->name('funcionario.index');
+Route::prefix('/funcionarios')->group(function() {
+    Route::get('/', [FuncionarioController::class, 'index'])->name('funcionario.index');
+    Route::post('/', [FuncionarioController::class, 'store'])->name('funcionario.store');
+    Route::post('/edit', [FuncionarioController::class, 'edit'])->name('funcionario.edit');
+    Route::put('/update', [FuncionarioController::class, 'update'])->name('funcionario.update');
+    Route::delete('/delete/{id}', [FuncionarioController::class, 'destroy'])->name('funcionario.delete');
+});

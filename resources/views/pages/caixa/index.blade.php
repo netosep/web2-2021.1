@@ -60,27 +60,42 @@
                                     <td>{{ $caixa->status == 'A' ? 'Aberto' : 'Fechado' }}</td>
                                     <td>{{ $caixa->ativo ? 'Ativo' : 'Desativado' }}</td>
                                     <td>
-                                        <button class="btn btn-success btn-sm p-1" title="Ver caixa" onclick="" disabled>
+                                        <button class="btn btn-success btn-sm p-1" title="Ver caixa">
                                             <i class="fas fa-eye"></i>
                                         </button>
-                                        <button class="btn btn-primary btn-sm p-1" title="Editar caixa" onclick="editItem('{{ $caixa->id }}')" data-toggle="modal" data-target="#editar-caixa-modal">
-                                            <i class="fas fa-pen"></i>
-                                        </button>
-                                        @if ($caixa->ativo)
-                                            <button class="btn btn-danger btn-sm p-1" title="Desativar caixa" onclick="confirm('Tem certeza que deseja desativar esse caixa?') ? $(this).find('form').submit() : ''">
-                                                <form action="{{ route('caixa.desativar', $caixa->id) }}" method="POST" style="display: none">@method('PUT') @csrf</form>
-                                                <i class="fas fa-times"></i>
+                                        @if ($caixa->id == 1)
+                                            <button class="btn btn-primary btn-sm p-1" disabled>
+                                                <i class="fas fa-pen"></i>
                                             </button>
+                                            @if ($caixa->ativo)
+                                                <button class="btn btn-danger btn-sm p-1" disabled>
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            @else
+                                                <button class="btn btn-secondary btn-sm p-1" disabled>
+                                                    <i class="fas fa-play"></i>
+                                                </button>
+                                            @endif
                                         @else
-                                            <button class="btn btn-secondary btn-sm p-1" title="Ativar caixa" onclick="confirm('Ativar esse caixa?') ? $(this).find('form').submit() : ''">
-                                                <form action="{{ route('caixa.ativar', $caixa->id) }}" method="POST" style="display: none">@method('PUT') @csrf</form>
-                                                <i class="fas fa-play"></i>
+                                            <button class="btn btn-primary btn-sm p-1" title="Editar caixa" onclick="editItem('{{ $caixa->id }}')" data-toggle="modal" data-target="#editar-caixa-modal">
+                                                <i class="fas fa-pen"></i>
                                             </button>
+                                            @if ($caixa->ativo)
+                                                <button class="btn btn-danger btn-sm p-1" title="Desativar caixa" onclick="confirm('Tem certeza que deseja desativar esse caixa?') ? $(this).find('form').submit() : ''">
+                                                    <form action="{{ route('caixa.desativar', $caixa->id) }}" method="POST" style="display: none">@method('PUT') @csrf</form>
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            @else
+                                                <button class="btn btn-secondary btn-sm p-1" title="Ativar caixa" onclick="confirm('Ativar esse caixa?') ? $(this).find('form').submit() : ''">
+                                                    <form action="{{ route('caixa.ativar', $caixa->id) }}" method="POST" style="display: none">@method('PUT') @csrf</form>
+                                                    <i class="fas fa-play"></i>
+                                                </button>
+                                            @endif
                                         @endif
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="5">Nenhum caixa cadastrado</td></tr>
+                                <tr><td colspan="6">Nenhum caixa cadastrado</td></tr>
                             @endforelse
                         </tbody>
                     </table>

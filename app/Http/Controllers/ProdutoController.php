@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Produto;
+use App\Validate\LoginValidate;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -11,10 +12,23 @@ class ProdutoController extends Controller
 
     public function index()
     {
-        return view('pages.produto.index', [
-            'produtos' => Produto::with('categoria')->where('ativo', true)->orderBy('id')->get(),
-            'categorias' => Categoria::all()->where('ativo', true)->sortBy('nome_categoria')
-        ]);
+        if (LoginValidate::hasSession()) {
+            return view('pages.produto.index', [
+                'produtos' => Produto::with('categoria')->where('ativo', true)->orderBy('id')->get(),
+                'categorias' => Categoria::all()->where('ativo', true)->sortBy('nome_categoria')
+            ]);
+        } else {
+            return redirect()->route('login.index');
+        }
+    }
+
+    public function getAll()
+    {
+        if (LoginValidate::hasSession()) {
+            return response()->json(Produto::all()->where('ativo', true)->sortBy('id'));
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
     public function create()
@@ -24,8 +38,12 @@ class ProdutoController extends Controller
 
     public function store(Request $request)
     {
-        Produto::create($request->all());
-        return redirect()->route('produto.index')->with('success', 'Produto cadastrado com sucesso!');
+        if (LoginValidate::hasSession()) {
+            Produto::create($request->all());
+            return redirect()->route('produto.index')->with('success', 'Produto cadastrado com sucesso!');
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
     public function show($id)
@@ -35,18 +53,30 @@ class ProdutoController extends Controller
 
     public function edit(Request $request)
     {
-        return response()->json(Produto::findOrFail($request->id_produto));
+        if (LoginValidate::hasSession()) {
+            return response()->json(Produto::findOrFail($request->id_produto));
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
     public function update(Request $request)
     {
-        Produto::findOrFail($request->id_produto)->update($request->all());
-        return redirect()->route('produto.index')->with('success', 'Produto atualizado com sucesso!');
+        if (LoginValidate::hasSession()) {
+            Produto::findOrFail($request->id_produto)->update($request->all());
+            return redirect()->route('produto.index')->with('success', 'Produto atualizado com sucesso!');
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
     public function destroy($id)
     {
-        Produto::findOrFail($id)->update(['ativo' => false]);
-        return redirect()->route('produto.index')->with('success', 'Produto removido com sucesso!');
+        if (LoginValidate::hasSession()) {
+            Produto::findOrFail($id)->update(['ativo' => false]);
+            return redirect()->route('produto.index')->with('success', 'Produto removido com sucesso!');
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 }

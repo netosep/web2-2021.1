@@ -14,7 +14,7 @@ class CreateItensVendaTable extends Migration
     public function up()
     {
         Schema::create('itens_venda', function (Blueprint $table) {
-            $table->id('item_venda_id');
+            $table->id();
             $table->unsignedBigInteger('venda_id');
             $table->unsignedBigInteger('produto_id');
             $table->double('valor_unitario')->default(0);

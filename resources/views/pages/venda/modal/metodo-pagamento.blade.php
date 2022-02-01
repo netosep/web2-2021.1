@@ -10,22 +10,23 @@
 
             <div class="modal-select d-flex">
                 <div class="input-met-pag">
-                    <label for="metodo-pagamento">Selecione o método de pagamento</label>
-                    <select name="metodo-pagamento" id="metodo-pagamento" onchange="metPagamento()" required>
+                    <label for="forma_pagamento_id">Selecione o método de pagamento</label>
+                    <select name="forma_pagamento_id" id="metodo-pagamento" onchange="metodoPagamento()">
                         @foreach ($formas_pagamento as $forma_pg)
-                            <option value="{{ $forma_pg->id }}">{{ $forma_pg->forma_pagamento }}</option>
+                            <option value="{{ $forma_pg->id }}" data-value="{{ $forma_pg->forma_pagamento }}">{{ $forma_pg->forma_pagamento }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="input-parcel">
-                    <label for="num-parcelas">Parcelas</label>
-                    <input type="text" id="input-parcela" name="num-parcelas" min="1" max="99" oninput="validaInputNumber(this)" maxlength="2" value="1" required>
+                    <label for="numero_parcelas">Parcelas</label>
+                    <input type="text" id="input-parcela" name="numero_parcelas" maxlength="2" value="1" oninput="validaInputNumber(this); setParcelas()" disabled>
+                    <input type="hidden" name="parcelas" id="parcelas" value="1">
                 </div>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="confirm" data-dismiss="modal">
-                    <img src="{{ asset('img/check-icon.svg') }}" alt="Confirmar">
+                    OK<i class="fas fa-check ms-2"></i>
                 </button>
             </div>
         </div>

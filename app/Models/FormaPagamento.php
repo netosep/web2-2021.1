@@ -10,9 +10,8 @@ class FormaPagamento extends Model
     use HasFactory;
 
     protected $table = 'formas_pagamento';
+    protected $fillable = [
+        'forma_pagamento'
+    ];
 
-    public function vendas()
-    {
-        return $this->hasMany(Venda::class);
-    }
 }

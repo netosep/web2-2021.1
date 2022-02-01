@@ -38,27 +38,32 @@
                                 <th>Parcelas</th>
                                 <th>Valor total</th>
                                 <th>Data</th>
+                                <th>Hora</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($vendas as $venda)
                                 <tr>
-                                    <td>{{ $venda->id }}</td>
-                                    <td>{{ 'add' }}</td>
-                                    <td>{{ 'add' }}</td>
-                                    <td>R$ {{ $venda->valor_total }}</td>
-                                    <td>{{ $venda->created_at }}</td>
+                                    <td>{{ $venda->id < 10 ? '0'.$venda->id : $venda->id }}</td>
+                                    <td>{{ $venda->cliente->nome_cliente }}</td>
+                                    <td style="text-transform: lowercase !important">
+                                        {{ $venda->pagamentovenda[0]->parcelas.'x' }}
+                                    </td>
+                                    <td>R$ {{ number_format($venda->valor_total, 2, ',', '') }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($venda->created_at)) }}</td>
+                                    <td>{{ date('H:i', strtotime($venda->created_at)) }}</td>
                                     <td>
-                                        <a title="Ver venda" href="#">
-                                            <img src="{{ asset('img/eye-icon.svg') }}" alt="">
-                                        </a>
-                                        <a title="Editar venda" href="#">
-                                            <img src="{{ asset('img/pencil-icon.svg') }}" alt="">
-                                        </a>
-                                        <a title="Exluir venda" href="#" onclick="deleteItem('')">
-                                            <img src="{{ asset('img/trash-icon.svg') }}" alt="">
-                                        </a>
+                                        <button class="btn btn-success btn-sm p-1" title="Ver venda" onclick="">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-sm p-1" title="Editar venda" onclick="editItem('{{ $venda->id }}')" data-toggle="modal" data-target="#editar-venda-modal">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm p-1" title="Exluir venda" onclick="confirm('Tem certeza que deseja excluir esse item?') ? $(this).find('form').submit() : ''">
+                                            {{-- <form action="{{ route('venda.delete', $venda->id) }}" method="POST" style="display: none">@method('DELETE') @csrf</form> --}}
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             @empty

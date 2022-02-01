@@ -48,7 +48,7 @@
                         <tbody>
                             @forelse ($categorias as $categoria)
                                 <tr>
-                                    <td>{{ $categoria->id }}</td>
+                                    <td>{{ $categoria->id < 10 ? '0'.$categoria->id : $categoria->id }}</td>
                                     <td>{{ $categoria->nome_categoria }}</td>
                                     <td>{{ count($categoria->produtos) }}</td>
                                     <td>

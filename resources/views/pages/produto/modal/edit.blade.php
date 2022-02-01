@@ -16,9 +16,9 @@
                 <div class="form">
                     <div class="input input-nome-produto">
                         <label for="nome-produto">Nome do produto</label>
-                        <input type="text" name="nome_produto" oninput="validaInput(this)" id="nome-produto" placeholder="Boneco Max Steel" required>
+                        <input type="text" name="nome_produto" oninput="validaInput(this)" id="nome-produto-edit" placeholder="Boneco Max Steel" required>
                     </div>
-                    <div class="input input-categoria">
+                    <div class="input input-categoria ms-3">
                         <label for="categoria_id">Categoria</label>
                         <select name="categoria_id" id="categoria-id" required>
                             <option value="" disabled selected>Selecione uma categoria</option>

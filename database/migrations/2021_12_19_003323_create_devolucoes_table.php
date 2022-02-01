@@ -14,7 +14,7 @@ class CreateDevolucoesTable extends Migration
     public function up()
     {
         Schema::create('devolucoes', function (Blueprint $table) {
-            $table->id('devolucao_id');
+            $table->id();
             $table->unsignedBigInteger('produto_id');
             $table->unsignedBigInteger('item_venda_id');
             $table->unsignedBigInteger('funcionario_id');
@@ -23,8 +23,8 @@ class CreateDevolucoesTable extends Migration
             $table->timestamps();
 
             $table->foreign('produto_id')->references('id')->on('produtos');
-            $table->foreign('item_venda_id')->references('item_venda_id')->on('itens_venda');
-            $table->foreign('funcionario_id')->references('funcionario_id')->on('funcionarios');
+            $table->foreign('item_venda_id')->references('id')->on('itens_venda');
+            $table->foreign('funcionario_id')->references('id')->on('funcionarios');
         });
     }
 

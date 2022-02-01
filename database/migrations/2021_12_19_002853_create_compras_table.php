@@ -22,7 +22,7 @@ class CreateComprasTable extends Migration
             $table->timestamps();
 
             $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
-            $table->foreign('funcionario_id')->references('funcionario_id')->on('funcionarios');
+            $table->foreign('funcionario_id')->references('id')->on('funcionarios');
         });
     }
 

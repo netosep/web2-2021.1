@@ -92,6 +92,32 @@
         </script>
     @endif
     <script>
+        function validarSubmit() {
+            var nome = $('#nome-produto').val();
+            var input = $('#categoria-input').val();
+            var option = document.querySelector(`#categorias option[value='${input}']`);
+            if (nome.length === 0) {
+                $('#nome-erro').show();
+            } else {
+                $('#nome-erro').hide();
+            }
+            if (!option) {
+                $('#categoria-erro').show();
+            } else {
+                $('#categoria-erro').hide();
+                $('#categoria').val(option.dataset.value);
+            }
+            $('#nome-produto').on('input propertychange', function() {
+                $('#nome-erro').hide();
+            });
+            $('#categoria-input').on('input propertychange', function() {
+                $('#categoria-erro').hide();
+            });
+            if (nome.length > 0 && option) {
+                $('#form-categoria').submit();
+            }
+        }
+    
         function editItem(id) {
             $.ajax({
                 url: '{{ route('produto.edit') }}',
@@ -102,7 +128,7 @@
                 },
                 success: function(data) {
                     $('#id-produto').val(data.id);
-                    $('#nome-produto').val(data.nome_produto);
+                    $('#nome-produto-edit').val(data.nome_produto);
                     $('#categoria-id').val(data.categoria_id);
                 }
             });

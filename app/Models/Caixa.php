@@ -11,9 +11,14 @@ class Caixa extends Model
 
     protected $table = 'caixas';
     protected $fillable = [
+        'funcionario_id',
         'identificador',
         'status',
         'ativo'
     ];
 
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class);
+    }
 }
