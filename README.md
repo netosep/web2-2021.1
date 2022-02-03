@@ -6,7 +6,7 @@
 <p align="center">
   Repositório para armazenas as atividades realizadas durante a disciplina de <b>Laboratório de Programação Web II</b> - Semestre 2021.1 
   do curso de <b>Análise e Desenvolvimento de Sistemas</b> ofertado pelo <a href="https://www.ifbaiano.edu.br/unidades/guanambi/">
-  <b>IFBaiano <i>Campus</i> Guanambi</a> durante os anos de 2021 e 2022.</b>
+  <b>IFBaiano <i>Campus</i> Guanambi</a> durante os anos de 2021 e 2022.</b> Professor: <b>Fabio dos Santos Lima</b>
 </p>
   
 #
