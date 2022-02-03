@@ -24,10 +24,10 @@
                     <a href="{{ route('categoria.index') }}" style="background-color: #A1A500;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Categorias">
                         <i class="fas fa-list-ul"></i>
                     </a>
-                    <a href="#" style="background-color: #890765;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Vendas">
+                    <a href="{{ route('venda.index') }}" style="background-color: #890765;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Vendas">
                         <i class="fas fa-shopping-cart"></i>
                     </a>
-                    <a href="#" style="background-color: #00FF66;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Compras">
+                    <a href="{{ route('compra.index') }}" style="background-color: #00FF66;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Compras">
                         <i class="fas fa-shopping-basket"></i>
                     </a>
                     <a href="{{ route('fornecedor.index') }}" style="background-color: #00A3FF;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Fornecedores">
@@ -36,7 +36,7 @@
                     <a href="{{ route('caixa.index') }}" style="background-color: #47948F;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Caixas">
                         <i class="fas fa-cash-register"></i>
                     </a>
-                    <a href="{{ route('funcionario.index') }}}" style="background-color: #FF0099;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Funcionários">
+                    <a href="{{ route('funcionario.index') }}" style="background-color: #FF0099;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Funcionários">
                         <i class="fas fa-user-tie"></i>
                     </a>
                 </div>
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="card-body">
                                         <strong>{{ $quantidade_clientes }}</strong>
-                                        <span>clientes</span>
+                                        <span>{{ $quantidade_clientes > 1 ? 'clientes' : 'cliente' }}</span>
                                     </div>
                                 </div>
                             </div>

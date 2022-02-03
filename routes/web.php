@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() { return redirect()->route('login.index'); });
+
 Route::prefix('/login')->group(function () {
     Route::get('/', [UsuarioController::class, 'index'])->name('login.index');
     Route::post('/', [UsuarioController::class, 'store'])->name('login.store');

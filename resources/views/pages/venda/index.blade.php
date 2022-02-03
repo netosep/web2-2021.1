@@ -48,7 +48,7 @@
                                     <td>{{ $venda->id < 10 ? '0'.$venda->id : $venda->id }}</td>
                                     <td>{{ $venda->cliente->nome_cliente }}</td>
                                     <td style="text-transform: lowercase !important">
-                                        {{ $venda->pagamentovenda[0]->parcelas.'x' }}
+                                        {{ $venda->pagamentovenda->parcelas }}x
                                     </td>
                                     <td>R$ {{ number_format($venda->valor_total, 2, ',', '') }}</td>
                                     <td>{{ date('d/m/Y', strtotime($venda->created_at)) }}</td>
@@ -67,7 +67,7 @@
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="6">Nenhuma venda cadastrada</td></tr>
+                                <tr><td colspan="7">Nenhuma venda cadastrada</td></tr>
                             @endforelse
                         </tbody>
                     </table>

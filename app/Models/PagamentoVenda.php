@@ -16,9 +16,9 @@ class PagamentoVenda extends Model
         'parcelas'
     ];
 
-    public function vendas()
+    public function venda()
     {
-        return $this->hasMany(Venda::class);
+        return $this->belongsTo(Venda::class);
     }
 
 }
