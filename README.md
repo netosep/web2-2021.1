@@ -13,22 +13,34 @@
 
 ### 🔃 →  Branchs das atividades:
 <ul>
-  <li><a href="">Atividade I</a></li>
-  <li><a href="">Atividade II</a></li>
-  <li><a href="">Atividade III</a></li>
-  <li><a href="">Atividade IV</a></li>
-  <li><a href="">Atividade V</a></li>
-  <li><a href="">Atividade VI</a></li>
+  <ul>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/AtividadeII">Atividade II</a></li>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/AtividadeIII">Atividade III</a></li>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/AtividadeIV">Atividade IV</a></li>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/AtividadeIV-Corre%C3%A7%C3%A3o">Atividade IV - Correção</a></li>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/AtividadeV">Atividade V</a></li>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/AtividadeVI">Atividade VI</a></li>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/AtividadeVII">Atividade VI</a></li>
+  </ul>
 </ul>
 
 #
 
 ### 🔃 →  Branchs dos projetos:
 <ul>
-  <li><a href="">Projeto I</a></li>
-  <li><a href="">Projeto II</a></li>
-  <li><a href="">Projeto II - Layout</a></li>
-  <li><a href="">Projeto II - Backend</a></li>
+  <ul>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/Projeto1-1Unidade">Projeto I</a></li>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/Projeto1-2unidade">Projeto II</a></li>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/ProjetoII-layout">Projeto II - Layout</a></li>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/projetoII-backend">Projeto II - Backend</a></li>
+  </ul>
 </ul>
 
 #
+
+### 📄 →  Licença:
+<ul>
+  <ul>
+    <li><a href="">Licença</a></li>
+  </ul>
+</ul>
