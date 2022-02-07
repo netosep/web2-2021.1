@@ -24,7 +24,7 @@
                     <a href="{{ route('categoria.index') }}" style="background-color: #A1A500;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Categorias">
                         <i class="fas fa-list-ul"></i>
                     </a>
-                    <a href="#" style="background-color: #890765;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Vendas">
+                    <a href="{{ route('venda.index') }}" style="background-color: #890765;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Vendas">
                         <i class="fas fa-shopping-cart"></i>
                     </a>
                     <a href="#" style="background-color: #00FF66;" class="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Compras">

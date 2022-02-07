@@ -23,7 +23,11 @@
                 </div>
             </div>
 
-            <form action="" class="buy" method="POST" onsubmit="setFormSubmitting()">
+            <form action="{{ route('compra.store') }}" class="buy" method="POST" onsubmit="setFormSubmitting()">
+                @method('POST')
+                @csrf
+                <!-- Funcionario -->
+                <input type="hidden" value="{{ session('user')->id }}" name="funcionario_id">
                 <div class="buy-area">
                     <div class="section section-buy-area p-0 m-0">
                         <div class="title-section">
@@ -40,6 +44,7 @@
                                         <th>Frete</th>
                                         <th>Valor Unitário</th>
                                         <th>Quantidade</th>
+                                        <th>Valor Total</th>
                                         <th>Valor Total <small>(+ impostos)</small></th>
                                         <th>Ações</th>
                                     </tr>
@@ -49,155 +54,38 @@
                         </div>
                         <div class="buy-info">
                             <div class="fornecedor">
-                            <button type="button" id="btn" data-toggle="modal" data-target="#fornecedor-modal">
-                                    <img src="{{ asset('img/fornecedor.svg') }}" alt="Fornecedor">
-                                    Fornecedor
+                                <button type="button" id="btn" data-toggle="modal" data-target="#fornecedor-modal" onclick="$('#fornecedor-erro').hide();">
+                                    <i class="fas fa-truck me-2"></i>Fornecedor
                                 </button>
-                                <div class="data-buy-info">
-                                    <input type="text" id="name-fornecedor" value="SELECIONE UM FORNECEDOR" disabled>
-                                </div>
-                            </div>
 
                                 <!-- modal para selecionar o fornecedor -->
-                                <div class="modal fade" id="fornecedor-modal" tabindex="-1" aria-labelledby="fornecedor-modalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header float-right">
-                                                <h5>Fornecedor</h5>
-                                                <div class="close-modal">
-                                                    <img data-dismiss="modal" src="{{ asset('img/block-icon-black.svg') }}" alt="Fechar">
-                                                </div>
-                                            </div>
+                                @include('pages.compra.modal.fornecedor')
 
-                                            <div class="modal-select">
-                                                <label for="fornecedor">Selecione um fornecedor</label>
-                                                <select name="fornecedor" id="nome-fornecedor">
-                                                    <option value="" selected disabled>SELECIONE UM FORNECEDOR</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="confirm" data-dismiss="modal">
-                                                    <img src="{{ asset('img/check-icon.svg') }}" alt="Confirmar">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- fim modal -->
-
-                            <div class="payment">
-                                <button type="button" id="btn" data-toggle="modal" onclick="metPagamento()" data-target="#payment-modal">
-                                    <img src="{{ asset('img/Meio-Pagamento.svg') }}" alt="Metodo de Pagamento">
-                                    Pagamento
-                                </button>
                                 <div class="data-buy-info">
-                                    <input type="text" id="met-pag" value="À VISTA" disabled required>
+                                    <input type="text" id="nome-fornecedor-show" value="SELECIONAR FORNECEDOR" style="width: 80%" disabled>
                                 </div>
                             </div>
 
+                            <div class="payment">
+                                <button type="button" id="btn" data-toggle="modal" onclick="metodoPagamento()" data-target="#payment-modal">
+                                    <i class="fas fa-credit-card me-2"></i>Pagamento
+                                </button>
+
                                 <!-- modal para o metodo de pagamento -->
-                                <div class="modal fade" id="payment-modal" tabindex="-1" aria-labelledby="logoff-modalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header float-right">
-                                                <h5>Método de Pagamento</h5>
-                                                <div class="close-modal">
-                                                    <img data-dismiss="modal" src="{{ asset('img/block-icon-black.svg') }}" alt="Fechar">
-                                                </div>
-                                            </div>
+                                @include('pages.compra.modal.metodo-pagamento')
 
-                                            <div class="modal-select d-flex">
-                                                <div class="input-met-pag">
-                                                    <label for="metodo-pagamento">Selecione o método de pagamento</label>
-                                                    <select name="metodo-pagamento" id="metodo-pagamento" onchange="metPagamento()" required>
-                                                        <option value="1" selected>À VISTA</option>
-                                                    </select>
-                                                </div>
-                                                <div class="input-parcel">
-                                                    <label for="num-parcelas">Número de parcelas</label>
-                                                    <input type="text" id="input-parcela" name="num-parcelas" min="1" max="99" oninput="validaInputNumber(this)" maxlength="2" value="1" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="confirm" data-dismiss="modal">
-                                                    <img src="{{ asset('img/check-icon.svg') }}" alt="Confirmar">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="data-buy-info">
+                                    <input type="text" id="metodo-pagamento-show" value="A VISTA" disabled>
                                 </div>
-                                <!-- fim modal -->
+                            </div>
 
                             <div class="add-product">
-                                <button type="button" id="btn-add-item" data-toggle="modal" data-target="#add-item-modal">
-                                    <img src="{{ asset('img/adicionar-item.svg') }}" alt="Adicionar Item">
-                                    Adicionar Item
+                                <button type="button" id="btn-add-item" data-toggle="modal" data-target="#add-item-modal" onclick="clearModalItens()">
+                                    <i class="fas fa-plus me-2"></i>Adicionar Item
                                 </button>
 
                                 <!-- modal add-items -->
-                                <div class="modal fade" id="add-item-modal" tabindex="-1" aria-labelledby="logoff-modalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-add-items-buy modal-dialog-centered">
-                                        <div class="modal-content modal-content-add-items">
-                                            <div class="modal-header float-right">
-                                                <h5>Adicionar um item a lista de compra</h5>
-                                                <div class="close-modal">
-                                                    <img data-dismiss="modal" src="{{ asset('img/block-icon-black.svg') }}" alt="Fechar">
-                                                </div>
-                                            </div>
-                                            <div class="modal-select">
-                                                <div class="input-modal-add-item">
-                                                    <div class="input-produt-quant">
-                                                        <div class="input input-product">
-                                                            <label>Nome do produto</label>
-                                                            <select id="nome-produto" class="select name-product">
-                                                                <option value="" disabled selected>Selecione um produto</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="input input-quant">
-                                                            <label>Quantidade <small>(somente números)</small></label>
-                                                            <input id="quantidade-item" oninput="validaInput(this)" class="quant-product" type="number" min="1" value="1">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="input-frete-unidad">
-                                                        <div class="input input-valor-unit">
-                                                            <label>Valor R$ <strong>UNID</strong> <small>(somente números)</small></label>
-                                                            <input id="valor-unit" oninput="validaInput(this)" class="valor-unit" type="number" step="0.1" min="0" value="0.00">
-                                                        </div>
-                                                        <div class="input input-frete">
-                                                            <label><strong>Valor em <small>%</small> de FRETE</strong> <small>(somente números)</small></label>
-                                                            <input id="frete" oninput="validaInput(this)" class="frete" type="number" step="0.1" min="0" value="0.00">
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-ipi-icms">
-                                                        <div class="input input-ipi">
-                                                            <label><strong>Valor em <small>%</small> de IPI</strong> <small>(somente números)</small></label>
-                                                            <input id="ipi" oninput="validaInput(this)" class="ipi" type="number" step="0.1" min="0" value="0.00">
-                                                        </div>
-                                                        <div class="input input-icms">
-                                                            <label><strong>Valor em <small>%</small> de ICMS</strong> <small>(somente números)</small></label>
-                                                            <input id="icms" oninput="validaInput(this)" class="icms" type="number" step="0.1" min="0" value="0.00">
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="exit-add" data-dismiss="modal" class="cancel btn-modal">
-                                                    Cancelar
-                                                    <img src="{{ asset('img/block-icon.svg') }}" alt="Cancelar">
-                                                </button>
-                                                <button type="button" class="confirm-add" id="btn-add-item-modal" data-dismiss="modal" class="confirm btn-modal">
-                                                    Adicionar
-                                                    <img src="{{ asset('img/check-icon.svg') }}" alt="Confirmar">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- fim modal  -->
+                                @include('pages.compra.modal.adicionar-item')
 
                             </div>
                         </div>
@@ -224,6 +112,160 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    @if (session('success'))
+        <script>
+            toastr.options = {
+                "positionClass": "toast-top-center",
+                "showMethod": "slideDown",
+                "hideMethod": "slideUp"
+            }
+            toastr.success('{{ session('success') }}')
+        </script>
+    @endif
+    <script type="text/javascript">
+
+        function selectFornecedor() {
+            var inputFornecedor = $('#nome-fornecedor').val()
+            var optionFornecedor = document.querySelector(`#fornecedores option[value='${inputFornecedor}']`);
+            var confirmFornecedor = document.querySelector('#confirm-fornecedor');
+
+            if(!optionFornecedor) {
+                $('#fornecedor-erro').html('<strong>Esse fornecedor não está cadastrado!</strong>').show();
+                $('#nome-fornecedor').val('');
+                $('#fornecedor').val('');
+                $('#nome-fornecedor-show').val('SELECIONAR FORNECEDOR');
+                confirmFornecedor.dataset.dismiss = 'none';
+            } else {
+                confirmFornecedor.dataset.dismiss = 'modal';
+                $('#fornecedor-erro').hide();
+                $('#fornecedor').val(optionFornecedor.dataset.value);
+                $('#nome-fornecedor-show').val(optionFornecedor.value);
+            }
+        }
+
+        function metodoPagamento() {
+            var selectPagamento = $('#metodo-pagamento').val();
+            var optionPagamento = document.querySelector(`#metodo-pagamento option[value="${selectPagamento}"]`);
+            $('#metodo-pagamento-show').val(optionPagamento.dataset.value);
+            if (selectPagamento == 1) {
+                $('#input-parcela').val(1);
+                $('#input-parcela').prop('disabled', true);
+            } else {
+                $('#input-parcela').prop('disabled', false);
+            }
+        }
+
+        function setParcelas() {
+            $('#parcelas').val($('#input-parcela').val());
+        }
+
+        function setProduto() {
+            var nomeProduto = $('#nome-produto').val();
+            var optionProduto = document.querySelector(`#produtos option[value='${nomeProduto}']`);
+            var confirmProduto = document.querySelector('#confirm-produto');
+            var tableBodyItems = document.getElementById('table-body-items-compra');
+
+            if(!optionProduto) {
+                $('#produto-erro').html('<strong>Esse produto não está cadastrado!</strong>').show();
+                $('#nome-produto').val('');
+                return confirmProduto.dataset.dismiss = 'none';
+            } else {
+                $('#produto-erro').hide();
+                confirmProduto.dataset.dismiss = 'modal';
+            }
+
+            var quantidade = $('#quantidade-item').val();
+            if (quantidade == '' || quantidade == 0) {
+
+            } else {
+
+            }
+
+            var idProduto = optionProduto.dataset.id;
+            var valor = parseFloat($('#valor-unitario').val());
+            var frete = parseFloat($('#frete').val());
+            var ipi = parseFloat($('#ipi').val());
+            var icms = parseFloat($('#icms').val());
+            var total = quantidade * valor;
+            var imposto = (frete + ipi + icms) / 100;
+            var totalImposto = total + (total * imposto);
+
+            tableBodyItems.innerHTML += `
+                <tr>
+                    <td class="indice-linha-tabela"> -- </td>
+                    <td>
+                        <input type="hidden" name="produto_id[]" value="${idProduto}">
+                        ${nomeProduto}
+                    </td>
+                    <td>
+                        <input type="hidden" name="ipi[]" value="${ipi}">
+                        ${ipi.toFixed(2)}%
+                    </td>
+                    <td>
+                        <input type="hidden" name="icms[]" value="${icms}">
+                        ${icms.toFixed(2)}%
+                    </td>
+                    <td>
+                        <input type="hidden" name="frete[]" value="${frete}">
+                        ${frete.toFixed(2)}%
+                    </td>
+                    <td>
+                        <input type="hidden" name="valor_compra[]" value="${valor}">
+                        R$ ${valor.toFixed(2)}
+                    </td>
+                    <td>
+                        <input type="hidden" name="quantidade[]" value="${quantidade}">
+                        ${quantidade} unid.
+                    </td>
+                    <td>
+                        <input type="hidden" value="">
+                        R$ ${(total).toFixed(2)}
+                    </td>
+                    <td>
+                        <input type="hidden" value="">
+                        R$ ${totalImposto.toFixed(2)}
+                    </td>
+                    <td>
+                        <button type="button" title="Remover item" onclick="resetProduto(this)">
+                            <img src="{{ asset('img/lixeira-btn.svg') }}">
+                        </button>
+                    </td>
+                </tr>
+            `;
+
+            indiceTabela();
+        }
+
+        function resetProduto(row) {
+            var question = confirm('Remover produto da lista?');
+            if(question) {
+                $(row).closest('tr').remove();
+                indiceTabela();
+                //setValorTotalVenda();
+            }
+        }
+
+        function indiceTabela() {
+            var indice = 0;
+            $('.indice-linha-tabela').each(function() {
+                indice++;
+                $(this).html(indice < 100 ? '00'+indice : indice);
+            });
+        }
+
+        function clearModalItens() {
+            $('#nome-produto').val('');
+            $('#quantidade-item').val('1');
+            $('#valor-unitario').val('0.0');
+            $('#frete').val('0.0');
+            $('#ipi').val('0.0');
+            $('#icms').val('0.0');
+        }
+
+    </script>
+@endpush
 
 {{-- <script src="{{ asset('') }}js/checkReload.js"></script>
 <script src="{{ asset('') }}js/metPagamento.js"></script>

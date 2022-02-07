@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Caixa;
-use App\Validate\LoginValidate;
 use Illuminate\Http\Request;
 
 class CaixaController extends Controller
@@ -11,11 +10,7 @@ class CaixaController extends Controller
 
     public function index()
     {
-        if (LoginValidate::hasSession()) {
-            return view('pages.caixa.index', ['caixas' => Caixa::all()->sortBy('id')]);
-        } else {
-            return redirect()->route('login.index');
-        }
+        return view('pages.caixa.index', ['caixas' => Caixa::all()->sortBy('id')]);
     }
 
     public function create()
@@ -25,12 +20,8 @@ class CaixaController extends Controller
 
     public function store(Request $request)
     {
-        if (LoginValidate::hasSession()) {
-            Caixa::create($request->all());
-            return redirect()->route('caixa.index')->with('success', 'Caixa criado com sucesso!');
-        } else {
-            return redirect()->route('login.index');
-        }
+        Caixa::create($request->all());
+        return redirect()->route('caixa.index')->with('success', 'Caixa criado com sucesso!');
     }
 
     public function show($id)
@@ -40,41 +31,25 @@ class CaixaController extends Controller
 
     public function edit(Request $request)
     {
-        if (LoginValidate::hasSession()) {
-            return response()->json(Caixa::findOrFail($request->id_caixa));
-        } else {
-            return redirect()->route('login.index');
-        }
+        return response()->json(Caixa::findOrFail($request->id_caixa));
     }
 
     public function update(Request $request)
     {
-        if (LoginValidate::hasSession()) {
-            Caixa::findOrFail($request->id_caixa)->update($request->all());
-            return redirect()->route('caixa.index')->with('success', 'Caixa atualizado com sucesso!');
-        } else {
-            return redirect()->route('login.index');
-        }
+        Caixa::findOrFail($request->id_caixa)->update($request->all());
+        return redirect()->route('caixa.index')->with('success', 'Caixa atualizado com sucesso!');
     }
 
     public function ativar($id)
     {
-        if (LoginValidate::hasSession()) {
-            Caixa::findOrFail($id)->update(['ativo' => true]);
-            return redirect()->route('caixa.index')->with('success', 'Caixa ativado com sucesso!');
-        } else {
-            return redirect()->route('login.index');
-        }
+        Caixa::findOrFail($id)->update(['ativo' => true]);
+        return redirect()->route('caixa.index')->with('success', 'Caixa ativado com sucesso!');
     }
 
     public function desativar($id)
     {
-        if (LoginValidate::hasSession()) {
-            Caixa::findOrFail($id)->update(['ativo' => false]);
-            return redirect()->route('caixa.index')->with('success', 'Caixa desativado com sucesso!');
-        } else {
-            return redirect()->route('login.index');
-        }
+        Caixa::findOrFail($id)->update(['ativo' => false]);
+        return redirect()->route('caixa.index')->with('success', 'Caixa desativado com sucesso!');
     }
 
     public function destroy($id)

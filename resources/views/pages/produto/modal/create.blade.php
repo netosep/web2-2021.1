@@ -33,7 +33,7 @@
                     <div class="input input-categoria ms-3">
                         <label for="categoria_id">Categoria</label>
                         <input type="hidden" name="categoria_id" id="categoria">
-                        <input list="categorias" id="categoria-input" placeholder="Pesquise ou selecione da lista" required>
+                        <input list="categorias" id="categoria-input" placeholder="{{ count($categorias) == 0 ? 'Sem categorias cadastradas...' : 'Pesquise ou selecione da lista'}}" required>
                         <datalist id="categorias">
                             @foreach ($categorias as $categoria)
                                 <option data-value="{{ $categoria->id }}" value="{{ $categoria->nome_categoria}}">

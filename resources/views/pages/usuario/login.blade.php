@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="{{ asset('style/main.css') }}">
     <link rel="stylesheet" href="{{ asset('style/login.css') }}">
 
+    <!-- toastr -->
     <link rel="stylesheet" href="{{ asset('vendor/toastr/css/toastr.min.css') }}"> 
+    
 </head>
 
 <body>
@@ -74,5 +76,15 @@
         </div>
     </div>
 </body>
+
+@if (session('error'))
+    <script>
+        toastr.options = { "positionClass": "toast-bottom-left" }
+        toastr.error('{{ session('error') }}')
+    </script>
+@endif
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
 </html>

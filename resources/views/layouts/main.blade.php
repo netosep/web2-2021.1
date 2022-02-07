@@ -33,6 +33,7 @@
     
     <!-- toastr -->
     <link rel="stylesheet" href="{{ asset('vendor/toastr/css/toastr.min.css') }}"> 
+    
 </head>
 
 <body>

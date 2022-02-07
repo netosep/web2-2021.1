@@ -34,4 +34,14 @@ class Funcionario extends Model
         return $this->belongsTo(Caixa::class);
     }
 
+    public function vendas()
+    {
+        return $this->hasMany(Venda::class);
+    }
+
+    public function compras()
+    {
+        return $this->hasMany(Compra::class);
+    }
+
 }

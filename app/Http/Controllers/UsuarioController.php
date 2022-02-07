@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
-use App\Validate\LoginValidate;
 use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
@@ -12,11 +11,7 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        if (LoginValidate::hasSession()) {
-            return redirect()->route('page.dashboard');
-        } else {
-            return view('pages.usuario.login');
-        }
+        return view('pages.usuario.login');
     }
 
     public function create()
@@ -38,7 +33,6 @@ class UsuarioController extends Controller
             session()->flash('error', 'Usuário ou senha inválidos!');
             return redirect()->route('login.index');
         }
-
     }
 
     public function show($id)
@@ -63,11 +57,7 @@ class UsuarioController extends Controller
 
     public function logout()
     {
-        if (LoginValidate::hasSession()) {
-            session()->forget('user');
-            return redirect()->route('login.index');
-        } else {
-            return redirect()->route('login.index');
-        }
+        session()->forget('user');
+        return redirect()->route('login.index');
     }
 }

@@ -14,4 +14,14 @@ class FormaPagamento extends Model
         'forma_pagamento'
     ];
 
+    public function pagamentoCompra()
+    {
+        return $this->hasMany(PagamentoCompra::class);
+    }
+
+    public function pagamentoVenda()
+    {
+        return $this->hasMany(PagamentoVenda::class);
+    }
+
 }

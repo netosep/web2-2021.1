@@ -14,7 +14,7 @@ class CreateItensCompraTable extends Migration
     public function up()
     {
         Schema::create('itens_compra', function (Blueprint $table) {
-            $table->id('item_compra_id');
+            $table->id();
             $table->unsignedBigInteger('compra_id');
             $table->unsignedBigInteger('produto_id');
             $table->double('ipi')->default(0);

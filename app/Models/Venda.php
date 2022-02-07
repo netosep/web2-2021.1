@@ -23,9 +23,14 @@ class Venda extends Model
         return $this->belongsTo(Cliente::class);
     }
 
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class);
+    }
+
     public function pagamentoVenda()
     {
-        return $this->hasMany(PagamentoVenda::class);
+        return $this->hasOne(PagamentoVenda::class);
     }
 
 }

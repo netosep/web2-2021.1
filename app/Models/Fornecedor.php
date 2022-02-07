@@ -17,5 +17,10 @@ class Fornecedor extends Model
         'estado',
         'ativo'
     ];
+
+    public function compras()
+    {
+        return $this->hasMany(Compra::class);
+    }
     
 }
