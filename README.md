@@ -37,13 +37,13 @@
 ```
 - Altere os valores de conexão com o banco de dados do arquivo `.env`
 ```env
-    # mysql, pgsql, etc
-    DB_CONNECTION=mysql
-    DB_HOST=localhost
-    DB_PORT=3306
-    DB_DATABASE=dbname
-    DB_USERNAME=dbuser
-    DB_PASSWORD=dbpass
+  # mysql, pgsql, etc
+  DB_CONNECTION=mysql
+  DB_HOST=localhost
+  DB_PORT=3306
+  DB_DATABASE=dbname
+  DB_USERNAME=dbuser
+  DB_PASSWORD=dbpass
 ```
 - Instale as dependencias
 ```bash
@@ -51,19 +51,19 @@
 ```
 - Após instalar todas as dependencias, execute os seguintes comandos no terminal:
 ```bash
-    # Adiciona todas as permissões na pasta storage
-    chmod -R 777 storage 
-    # Gera a chave da aplicação
-    php artisan key:generate 
-    # Cria um link simbólico entre as pastas /public/storage -> /storage/app/public
-    php artisan storage:link
+  # Adiciona todas as permissões na pasta storage
+  $ chmod -R 777 storage 
+  # Gera a chave da aplicação
+  $ php artisan key:generate 
+  # Cria um link simbólico entre as pastas /public/storage -> /storage/app/public
+  $ php artisan storage:link
 ```
 - E por ultimo, os seguintes comandos
 ```bash
-    # Cria todas as tabelas do banco de dados SQL
-    php artisan migrate
-    # Cria um servidor em sua localhost na porta 8000 a partir do próprio php
-    php -S localhost:8000
+  # Cria todas as tabelas do banco de dados SQL
+  $ php artisan migrate
+  # Cria um servidor em sua localhost na porta 8000 a partir do próprio php
+  $ php -S localhost:8000 public/index.php
 ```
 
 #
