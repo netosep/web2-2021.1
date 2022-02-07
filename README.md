@@ -11,7 +11,7 @@
   
 #
 
-### 🔃 →  Branchs das atividades:
+### 🔃 →  Branches das atividades:
 <ul>
   <ul>
     <li><a href="https://github.com/netosep/web2-2021.1/tree/AtividadeII">Atividade II</a></li>
@@ -26,7 +26,7 @@
 
 #
 
-### 🔃 →  Branchs dos projetos:
+### 🔃 →  Branches dos projetos:
 <ul>
   <ul>
     <li><a href="https://github.com/netosep/web2-2021.1/tree/Projeto1-1Unidade">Projeto I</a></li>
@@ -44,3 +44,9 @@
     <li><a href="">Licença</a></li>
   </ul>
 </ul>
+
+#
+
+<p align="center">
+  <i>Developed with 🖤 by <a href="https://github.com/netosep" >Neto Sepulveda</a></i>
+</p>
