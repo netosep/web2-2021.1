@@ -49,7 +49,7 @@
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody id="table-body-items-compra"></tbody>
+                                <tbody id="table-body-itens-compra"></tbody>
                             </table>
                         </div>
                         <div class="buy-info">
@@ -98,13 +98,11 @@
                         <span id="value-cart">0.00</span>
                     </div>
                     <div class="buttons">
-                        <button type="button" id="cancelar-compra" class="cancel">
-                            <span>Limpar Lista</span>
-                            <img src="{{ asset('img/block-icon.svg') }}" alt="Limpar Lista">
+                        <button type="button" id="cancelar-compra" class="cancel" onclick="limparTabela()">
+                            <span>Limpar Lista<i class="fas fa-times ms-3"></i></span>
                         </button>
                         <button type="submit" id="finalizar-compra" class="accept">
-                            <span>Registrar Compra</span>
-                            <img src="{{ asset('img/check-icon.svg') }}" alt="Finalizar compra">
+                            <span>Registrar Compra<i class="fas fa-check ms-3"></i></span>
                         </button>
                     </div>
                 </div>
@@ -125,6 +123,8 @@
         </script>
     @endif
     <script type="text/javascript">
+
+        $(document).ready(function() { tamanhoTabela() });
 
         function selectFornecedor() {
             var inputFornecedor = $('#nome-fornecedor').val()
@@ -165,7 +165,7 @@
             var nomeProduto = $('#nome-produto').val();
             var optionProduto = document.querySelector(`#produtos option[value='${nomeProduto}']`);
             var confirmProduto = document.querySelector('#confirm-produto');
-            var tableBodyItems = document.getElementById('table-body-items-compra');
+            var tableBodyItems = document.getElementById('table-body-itens-compra');
 
             if(!optionProduto) {
                 $('#produto-erro').html('<strong>Esse produto não está cadastrado!</strong>').show();
@@ -185,11 +185,11 @@
 
             var idProduto = optionProduto.dataset.id;
             var valor = parseFloat($('#valor-unitario').val());
-            var frete = parseFloat($('#frete').val());
-            var ipi = parseFloat($('#ipi').val());
-            var icms = parseFloat($('#icms').val());
+            var frete = parseFloat($('#frete').val()) / 100;
+            var ipi = parseFloat($('#ipi').val()) / 100;
+            var icms = parseFloat($('#icms').val()) / 100;
             var total = quantidade * valor;
-            var imposto = (frete + ipi + icms) / 100;
+            var imposto = frete + ipi + icms;
             var totalImposto = total + (total * imposto);
 
             tableBodyItems.innerHTML += `
@@ -200,16 +200,16 @@
                         ${nomeProduto}
                     </td>
                     <td>
-                        <input type="hidden" name="ipi[]" value="${ipi}">
-                        ${ipi.toFixed(2)}%
+                        <input type="hidden" name="ipi[]" value="${ipi.toFixed(2)}">
+                        ${ipi}%
                     </td>
                     <td>
-                        <input type="hidden" name="icms[]" value="${icms}">
-                        ${icms.toFixed(2)}%
+                        <input type="hidden" name="icms[]" value="${icms.toFixed(2)}">
+                        ${icms}%
                     </td>
                     <td>
-                        <input type="hidden" name="frete[]" value="${frete}">
-                        ${frete.toFixed(2)}%
+                        <input type="hidden" name="frete[]" value="${frete.toFixed(2)}">
+                        ${frete}%
                     </td>
                     <td>
                         <input type="hidden" name="valor_compra[]" value="${valor}">
@@ -220,11 +220,10 @@
                         ${quantidade} unid.
                     </td>
                     <td>
-                        <input type="hidden" value="">
-                        R$ ${(total).toFixed(2)}
+                        R$ ${total.toFixed(2)}
                     </td>
                     <td>
-                        <input type="hidden" value="">
+                        <input type="hidden" class="valor-total-produto" value="${totalImposto.toFixed(2)}">
                         R$ ${totalImposto.toFixed(2)}
                     </td>
                     <td>
@@ -234,7 +233,7 @@
                     </td>
                 </tr>
             `;
-
+            setValorTotalCompra();
             indiceTabela();
         }
 
@@ -243,7 +242,27 @@
             if(question) {
                 $(row).closest('tr').remove();
                 indiceTabela();
-                //setValorTotalVenda();
+                setValorTotalCompra();
+            }
+        }
+
+        function setValorTotalCompra() {
+            var valorTotal = 0;
+            $('.valor-total-produto').each(function() {
+                valorTotal += parseFloat($(this).val());
+            });
+            $('#value-cart').html(valorTotal.toFixed(2));
+            tamanhoTabela()
+        }
+
+        function tamanhoTabela() {
+            var tamanho = $('#table-body-itens-compra tr').length;
+            if (tamanho == 0) {
+                $('#finalizar-compra').prop('disabled', true).css({'opacity': '0.7', 'cursor': 'not-allowed'});
+                $('#cancelar-compra').prop('disabled', true).css({'opacity': '0.7', 'cursor': 'not-allowed'});
+            } else {
+                $('#finalizar-compra').prop('disabled', false).css({'opacity': '1', 'cursor': 'pointer'});
+                $('#cancelar-compra').prop('disabled', false).css({'opacity': '1', 'cursor': 'pointer'});
             }
         }
 
@@ -253,6 +272,15 @@
                 indice++;
                 $(this).html(indice < 100 ? '00'+indice : indice);
             });
+        }
+
+        function limparTabela() {
+            var resposta = confirm('Deseja realmente cancelar a compra?');
+            if (resposta) {
+                $('#table-body-itens-compra').html('');
+                setValorTotalCompra();
+                tamanhoTabela();
+            }
         }
 
         function clearModalItens() {
@@ -266,137 +294,3 @@
 
     </script>
 @endpush
-
-{{-- <script src="{{ asset('') }}js/checkReload.js"></script>
-<script src="{{ asset('') }}js/metPagamento.js"></script>
-<script>
-
-    var produtos = [];
-
-    var buttonAddItem = document.getElementById("btn-add-item");
-    var buttonAddItemModal = document.getElementById("btn-add-item-modal");
-    var tableBodyItems = document.getElementById("table-body-items-compra");
-    var valorTotalVenda = document.getElementById("value-cart");
-
-    var inputNomeProduto = document.getElementById("nome-produto");
-    var inputQuantProduto = document.getElementById("quantidade-item");
-    var inputIcms = document.getElementById("icms");
-    var inputIpi = document.getElementById("ipi");
-    var inputFrete = document.getElementById("frete");
-    var inputPrecoUni = document.getElementById("valor-unit");
-
-    buttonAddItem.addEventListener("click", () => {
-        inputNomeProduto.value = "";
-        inputQuantProduto.value = 1;
-        inputFrete.value = "0.00";
-        inputIcms.value = "0.00";
-        inputPrecoUni.value = "0.00";
-        inputIpi.value = "0.00";
-    });
-
-    buttonAddItemModal.addEventListener("click", () => {
-
-        if (inputNomeProduto.value != "" && inputQuantProduto.value != "") {
-
-            var idProduto = produtos[inputNomeProduto.value].id;
-            var nomeProduto = produtos[inputNomeProduto.value].nome;
-            var quantidadeProduto = parseInt(inputQuantProduto.value)
-            // valores em %
-            var ipi = parseFloat(inputIpi.value)/100;
-            var icms = parseFloat(inputIcms.value)/100;
-            var frete = parseFloat(inputFrete.value)/100;
-            // valor unitario e total da compra  do produto
-            var valorUni = parseFloat(inputPrecoUni.value);
-            var valorTotal = parseFloat((((ipi+icms+frete)*valorUni)+valorUni)*quantidadeProduto);
-            //var valorTotal = 
-
-            tableBodyItems.innerHTML += `
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <input type="text" name="id-produto[]" value="${idProduto}" required style="display: none">
-                        ${nomeProduto}
-                    </td>
-                    <td>
-                        <input type="text" name="ipi[]" value="${ipi}" required style="display: none">
-                        <strong>${ipi.toFixed(2)} <small>%</small></strong>
-                    </td>
-                    <td>
-                        <input type="text" name="icms[]" value="${icms}" required style="display: none">
-                        <strong>${icms.toFixed(2)} <small>%</small></strong>
-                    </td>
-                    <td>
-                        <input type="text" name="frete[]" value="${frete}" required style="display: none">
-                        <strong>${frete.toFixed(2)} <small>%</small></strong>
-                    </td>
-                    <td>
-                        <input type="text" name="valor-unitario[]" value="${valorUni}" required style="display: none">
-                        R$ ${valorUni.toFixed(2)}
-                    </td>
-                    <td>
-                        <input type="text" id="quantidade-produto" name="quantidade-produto[]" value="${quantidadeProduto}" required style="display: none">
-                        ${quantidadeProduto} unid
-                    </td>
-                    <td>
-                        <input type="text" id="valor-total" value="${valorTotal}" style="display: none">
-                        R$ ${valorTotal.toFixed(2)}
-                    </td>
-                    <td>
-                        <button title="Remover item" onclick="removeRow(this)">
-                            <img src="{{ asset('') }}img/lixeira-btn.svg" alt="Remover Produto">
-                        </button>
-                    </td>
-                </tr>
-            `;
-        }
-
-        setTotalValue();
-    });
-
-    function setTotalValue() {
-        var valores = document.querySelectorAll("#valor-total");
-        var valorTotal = 0;
-        valores.forEach((valor) => {
-            valorTotal += parseFloat(valor.value);
-        });
-
-        valorTotalVenda.innerHTML = valorTotal.toFixed(2);
-    }
-
-
-    function removeRow(btn) {
-        var row = btn.parentNode.parentNode;
-        row.remove(row);
-        //countTableRows();
-        setTotalValue();
-    }
-
-    //////////////////////////////////////////////////
-    //             modal para fornecedor
-
-    var fornecedor = [];
-
-    var spanTxtSC = document.getElementById("name-fornecedor");
-    var selectFornecedor = document.getElementById("nome-fornecedor");
-
-    selectFornecedor.addEventListener("change", () => {
-        spanTxtSC.value = fornecedor[parseInt(selectFornecedor.value)].nome.toUpperCase();
-    });
-    
-    //////////////////////////////////////////////////
-    //           modal metodo de pagamento
-
-    var metPag = [];
-    metPag[1] = {
-        id: 1,
-        tipo: "à vista"
-    }
-
-    var spanTxtMP = document.getElementById("met-pag");
-    var metodoPagamento = document.getElementById("metodo-pagamento");
-
-    metodoPagamento.addEventListener("change", () => {
-        spanTxtMP.value = metPag[parseInt(metodoPagamento.value)].tipo.toUpperCase();
-    });
-
-</script> --}}

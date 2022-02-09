@@ -14,6 +14,11 @@ class UsuarioController extends Controller
         return view('pages.usuario.login');
     }
 
+    public function minhaConta()
+    {
+        return view('pages.usuario.minha-conta');
+    }
+
     public function create()
     {
         //

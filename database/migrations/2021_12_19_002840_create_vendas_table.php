@@ -22,9 +22,9 @@ class CreateVendasTable extends Migration
             $table->double('desconto')->default(0);
             $table->timestamps();
 
-            $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('funcionario_id')->references('id')->on('funcionarios');
-            $table->foreign('caixa_id')->references('id')->on('caixas');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+            $table->foreign('funcionario_id')->references('id')->on('funcionarios')->onDelete('cascade');
+            $table->foreign('caixa_id')->references('id')->on('caixas')->onDelete('cascade');
         });
     }
 

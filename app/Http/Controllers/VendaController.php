@@ -72,6 +72,7 @@ class VendaController extends Controller
 
     public function destroy($id)
     {
-        //
+        Venda::findOrFail($id)->delete();
+        return redirect()->route('venda.index')->with('success', 'Venda removida com sucesso!');
     }
 }

@@ -11,7 +11,7 @@
         <div class="dropdown show">
             <img class="arrow-icon dropdown" id="dropdownMenuLink" data-bs-toggle="dropdown" src="{{ asset('img/arrow-icon.svg') }}" alt="Seta Configuração">
             <div class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="dropdownMenuLink">
-                <a href="#">
+                <a href="{{ route('usuario.minhaconta') }}">
                     <div class="item-menu">
                         <i class="fas fa-user mx-2"></i>
                         <p>Minha Conta</p>

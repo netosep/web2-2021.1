@@ -28,12 +28,13 @@ Route::get('/', function() { return redirect()->route('login.index'); });
 Route::prefix('/login')->group(function() {
     Route::get('/', [UsuarioController::class, 'index'])->name('login.index');
     Route::post('/', [UsuarioController::class, 'store'])->name('login.store');
-    Route::get('/logout', [UsuarioController::class, 'logout'])->name('login.logout');
 });
 
 Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('page.dashboard');
+    Route::get('/minha-conta', [UsuarioController::class, 'minhaConta'])->name('usuario.minhaconta');
+    Route::get('/logout', [UsuarioController::class, 'logout'])->name('login.logout');
 
     Route::prefix("/clientes")->group(function() {
         Route::get('/', [ClienteController::class, 'index'])->name('cliente.index');
@@ -64,13 +65,16 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/', [VendaController::class, 'index'])->name('venda.index');
         Route::get('/realizar-venda', [VendaController::class, 'create'])->name('venda.create');
         Route::post('/', [VendaController::class, 'store'])->name('venda.store');
+        Route::put('/update', [VendaController::class, 'update'])->name('venda.update');
+        Route::delete('/delete/{id}', [VendaController::class, 'destroy'])->name('venda.delete');
     });
     
     Route::prefix('/compras')->group(function () {
         Route::get('/', [CompraController::class, 'index'])->name('compra.index');
         Route::get('/registrar-compra', [CompraController::class, 'create'])->name('compra.create');
         Route::post('/', [CompraController::class, 'store'])->name('compra.store');
-        
+        Route::put('/update', [CompraController::class, 'update'])->name('compra.update');
+        Route::delete('/delete/{id}', [CompraController::class, 'destroy'])->name('compra.delete');
     });
     
     Route::prefix('/fornecedores')->group(function() {
@@ -101,4 +105,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::delete('/delete/{id}', [FuncionarioController::class, 'destroy'])->name('funcionario.delete');
     });
 
+    Route::get('/relatorios', function () { return view('pages.relatorio.index'); })->name('relatorio.index');
+    
 });

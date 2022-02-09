@@ -54,20 +54,20 @@
                                     <td>{{ date('d/m/Y', strtotime($venda->created_at)) }}</td>
                                     <td>{{ date('H:i', strtotime($venda->created_at)) }}</td>
                                     <td>
-                                        <button class="btn btn-success btn-sm p-1" title="Ver venda" onclick="">
+                                        <button class="btn btn-success btn-sm p-1" title="Ver venda" onclick="" disabled>
                                             <i class="fas fa-eye"></i>
                                         </button>
                                         <button class="btn btn-primary btn-sm p-1" title="Editar venda" onclick="editItem('{{ $venda->id }}')" data-toggle="modal" data-target="#editar-venda-modal">
                                             <i class="fas fa-pen"></i>
                                         </button>
                                         <button class="btn btn-danger btn-sm p-1" title="Exluir venda" onclick="confirm('Tem certeza que deseja excluir esse item?') ? $(this).find('form').submit() : ''">
-                                            {{-- <form action="{{ route('venda.delete', $venda->id) }}" method="POST" style="display: none">@method('DELETE') @csrf</form> --}}
+                                            <form action="{{ route('venda.delete', $venda->id) }}" method="POST" style="display: none">@method('DELETE') @csrf</form>
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="6">Nenhuma venda cadastrada</td></tr>
+                                <tr><td colspan="7">Nenhuma venda cadastrada</td></tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -76,3 +76,12 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    @if (session('success'))
+        <script>
+            toastr.options = { "positionClass": "toast-bottom-right"}
+            toastr.success('{{ session('success') }}')
+        </script>
+    @endif
+@endpush

@@ -23,7 +23,7 @@ class CreateParcelasCompraTable extends Migration
             $table->char('status', 2);
             $table->timestamps();
 
-            $table->foreign('pagamento_compra_id')->references('id')->on('pagamento_compra');
+            $table->foreign('pagamento_compra_id')->references('id')->on('pagamento_compra')->onDelete('cascade');
         });
     }
 

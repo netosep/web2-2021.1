@@ -18,7 +18,7 @@
                     </select>
                 </div>
                 <div class="input-parcel">
-                    <label for="parcelas">Parcelas</label>
+                    <label>Parcelas</label>
                     <input type="text" id="input-parcela" maxlength="2" value="1" oninput="validaInputNumber(this); setParcelas()" disabled>
                     <input type="hidden" name="parcelas" id="parcelas" value="1">
                 </div>

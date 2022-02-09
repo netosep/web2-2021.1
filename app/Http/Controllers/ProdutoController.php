@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Produto;
-use App\Validate\LoginValidate;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -20,7 +19,7 @@ class ProdutoController extends Controller
 
     public function getAll()
     {
-        return response()->json(Produto::all()->where('ativo', true)->sortBy('id'));
+        return json_encode(Produto::with('categoria')->where('ativo', true)->orderBy('id')->get());
     }
 
     public function create()

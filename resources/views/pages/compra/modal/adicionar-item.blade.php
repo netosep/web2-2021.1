@@ -22,28 +22,28 @@
                         </div>
                         <div class="input input-quant">
                             <label>Quantidade</label>
-                            <input id="quantidade-item" oninput="validaInput(this)" class="quant-product" type="number" min="1" value="1">
+                            <input id="quantidade-item" class="quant-product" type="number" min="1" value="1">
                         </div>
                     </div>
 
                     <div class="input-frete-unidad">
                         <div class="input input-valor-unit">
                             <label>Valor em <strong>R$</strong> por <strong>UNIDADE</strong></label>
-                            <input id="valor-unitario" oninput="validaInput(this)" class="valor-unit" type="number" step="0.1" min="0" value="0.0">
+                            <input id="valor-unitario" class="valor-unit" type="number" step="0.01" min="0" value="0.00">
                         </div>
                         <div class="input input-frete">
                             <label>Valor em <strong>%</strong> de <strong>FRETE</strong></label>
-                            <input id="frete" oninput="validaInput(this)" class="frete" type="number" step="0.1" min="0" value="0.0">
+                            <input id="frete" class="frete" type="number" step="0.01" min="0" value="0.00">
                         </div>
                     </div>
                     <div class="input-ipi-icms">
                         <div class="input input-ipi">
                             <label>Valor em <strong>%</strong> de <strong>IPI</strong></label>
-                            <input id="ipi" oninput="validaInput(this)" class="ipi" type="number" step="0.1" min="0" value="0.0">
+                            <input id="ipi" class="ipi" type="number" step="0.01" min="0" value="0.00">
                         </div>
                         <div class="input input-icms">
                             <label>Valor em <strong>%</strong> de <strong>ICMS</strong></label>
-                            <input id="icms" oninput="validaInput(this)" class="icms" type="number" step="0.1" min="0" value="0.0">
+                            <input id="icms" class="icms" type="number" step="0.01" min="0" value="0.00">
                         </div>
                     </div>
                     

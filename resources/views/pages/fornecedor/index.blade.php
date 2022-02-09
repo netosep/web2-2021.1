@@ -51,13 +51,13 @@
                         <tbody>
                             @forelse ($fornecedores as $fornecedor)
                                 <tr>
-                                    <td>{{ $fornecedor->id }}</td>
+                                    <td>{{ $fornecedor->id < 10 ? '0'.$fornecedor->id : $fornecedor->id }}</td>
                                     <td>{{ $fornecedor->nome_fornecedor }}</td>
                                     <td>{{ $fornecedor->telefone }}</td>
                                     <td>{{ $fornecedor->cidade }}</td>
                                     <td>{{ $fornecedor->estado }}</td>
                                     <td>
-                                        <button class="btn btn-success btn-sm p-1" title="Ver fornecedor" onclick="">
+                                        <button class="btn btn-success btn-sm p-1" title="Ver fornecedor" onclick="" disabled>
                                             <i class="fas fa-eye"></i>
                                         </button>
                                         <button class="btn btn-primary btn-sm p-1" title="Editar fornecedor" data-toggle="modal" data-target="#editar-fornecedor-modal" onclick="editItem('{{ $fornecedor->id }}')">

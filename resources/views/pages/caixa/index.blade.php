@@ -60,7 +60,7 @@
                                     <td>{{ $caixa->status == 'A' ? 'Aberto' : 'Fechado' }}</td>
                                     <td>{{ $caixa->ativo ? 'Ativo' : 'Desativado' }}</td>
                                     <td>
-                                        <button class="btn btn-success btn-sm p-1" title="Ver caixa">
+                                        <button class="btn btn-success btn-sm p-1" title="Ver caixa" disabled>
                                             <i class="fas fa-eye"></i>
                                         </button>
                                         @if ($caixa->id == 1)

@@ -122,7 +122,7 @@
             $.ajax({
                 url: '{{ route('produto.getAll') }}',
                 type: 'GET',
-                success: function(data) { produtos = data; }
+                success: function(data) { produtos = JSON.parse(data); }
             });
             tamanhoTabela();
         });
@@ -211,7 +211,7 @@
                                 ${quantidadeSetProduto} unid.
                             </td>
                             <td>
-                                <input type="hidden" class="valor-total-produto" value="${parseFloat(produto.valor_venda * quantidadeSetProduto)}">
+                                <input type="hidden" class="valor-total-produto" value="${parseFloat(produto.valor_venda * quantidadeSetProduto).toFixed(2)}">
                                 R$ ${parseFloat(produto.valor_venda * quantidadeSetProduto).toFixed(2)}
                             </td>
                             <td>

@@ -57,7 +57,7 @@
                                     <td>R$ {{ number_format($produto->valor_venda, 2, ',', '') }}</td>
                                     <td>{{ $produto->quantidade }} unid.</td>
                                     <td>
-                                        <button class="btn btn-success btn-sm p-1" title="Ver produto" onclick="">
+                                        <button class="btn btn-success btn-sm p-1" title="Ver produto" onclick="" disabled>
                                             <i class="fas fa-eye"></i>
                                         </button>
                                         <button class="btn btn-primary btn-sm p-1" title="Editar produto" onclick="editItem('{{ $produto->id }}')" data-toggle="modal" data-target="#editar-produto-modal">

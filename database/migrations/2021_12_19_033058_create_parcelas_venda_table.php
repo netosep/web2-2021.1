@@ -18,12 +18,12 @@ class CreateParcelasVendaTable extends Migration
             $table->unsignedBigInteger('pagamento_venda_id');
             $table->integer('numero_parcela');
             $table->date('data_vencimento');
-            $table->double('valor_parcela');
-            $table->double('valor_pago');
+            $table->double('valor_parcela')->default(0);
+            $table->double('valor_pago')->default(0);
             $table->char('status', 2);
             $table->timestamps();
 
-            $table->foreign('pagamento_venda_id')->references('id')->on('pagamento_venda');
+            $table->foreign('pagamento_venda_id')->references('id')->on('pagamento_venda')->onDelete('cascade');
         });
     }
 

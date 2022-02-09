@@ -21,8 +21,8 @@ class CreateComprasTable extends Migration
             $table->double('desconto')->default(0);
             $table->timestamps();
 
-            $table->foreign('fornecedor_id')->references('id')->on('fornecedores');
-            $table->foreign('funcionario_id')->references('id')->on('funcionarios');
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedores')->onDelete('cascade');
+            $table->foreign('funcionario_id')->references('id')->on('funcionarios')->onDelete('cascade');
         });
     }
 

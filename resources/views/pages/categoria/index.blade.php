@@ -52,7 +52,7 @@
                                     <td>{{ $categoria->nome_categoria }}</td>
                                     <td>{{ count($categoria->produtos) }}</td>
                                     <td>
-                                        <button class="btn btn-success btn-sm p-1" title="Ver categoria" onclick="">
+                                        <button class="btn btn-success btn-sm p-1" title="Ver categoria" onclick="" disabled>
                                             <i class="fas fa-eye"></i>
                                         </button>
                                         <button class="btn btn-primary btn-sm p-1" title="Editar categoria" data-toggle="modal" data-target="#editar-categoria-modal" onclick="editItem('{{ $categoria->id }}')">

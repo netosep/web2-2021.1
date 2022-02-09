@@ -58,7 +58,7 @@
                                     <td>R$ {{ number_format($cliente->credito, 2, ',', '') }}</td>
                                     <td>R$ {{ number_format($cliente->debito, 2, ',', '') }}</td>
                                     <td>
-                                        <button class="btn btn-success btn-sm p-1" title="Ver cliente" onclick="">
+                                        <button class="btn btn-success btn-sm p-1" title="Ver cliente" onclick="" disabled>
                                             <i class="fas fa-eye"></i>
                                         </button>
                                         @if ($cliente->id == 1)

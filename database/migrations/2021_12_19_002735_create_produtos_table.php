@@ -19,6 +19,7 @@ class CreateProdutosTable extends Migration
             $table->string('nome_produto');
             $table->string('descricao_produto')->nullable();
             $table->double('icms')->default(0);
+            $table->double('ipi')->default(0);
             $table->double('frete')->default(0);
             $table->double('acrescimo_despesas')->default(0);
             $table->double('valor_fabrica')->default(0);

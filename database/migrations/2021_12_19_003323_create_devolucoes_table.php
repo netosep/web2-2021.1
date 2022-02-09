@@ -22,9 +22,9 @@ class CreateDevolucoesTable extends Migration
             $table->double('quantidade');
             $table->timestamps();
 
-            $table->foreign('produto_id')->references('id')->on('produtos');
-            $table->foreign('item_venda_id')->references('id')->on('itens_venda');
-            $table->foreign('funcionario_id')->references('id')->on('funcionarios');
+            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+            $table->foreign('item_venda_id')->references('id')->on('itens_venda')->onDelete('cascade');
+            $table->foreign('funcionario_id')->references('id')->on('funcionarios')->onDelete('cascade');
         });
     }
 

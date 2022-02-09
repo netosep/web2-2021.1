@@ -16,7 +16,7 @@ class CompraController extends Controller
     public function index()
     {
         return view('pages.compra.index', [
-
+            'compras' => Compra::with('fornecedor', 'funcionario')->orderBy('id')->get()
         ]);
     }
 
@@ -74,6 +74,7 @@ class CompraController extends Controller
 
     public function destroy($id)
     {
-        //
+        Compra::findOrFail($id)->delete();
+        return redirect()->route('compra.index')->with('success', 'Compra excluída com sucesso!');
     }
 }

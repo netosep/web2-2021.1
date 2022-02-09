@@ -21,8 +21,8 @@
             <div class="img-sistema">
                 <img src="{{ asset('img/inv.png') }}" alt="">
                 <div class="mini-footer">
-                    <p><strong>© SISCONVE</strong> - Todos os direitos reservados</p>
-                    <a href="https://github.com/sisconve/sisconve" target="_blank" title="Acessar repositório no github">
+                    <p><strong>© SISCONVE 2021-{{ date('Y') }}</strong> - Todos os direitos reservados</p>
+                    <a href="https://github.com/netosep/web2-2021.1" target="_blank" title="Acessar repositório no github">
                         <img src="{{ asset('img/github-logo.svg') }}" alt="Repositório github">
                     </a>
                 </div>
@@ -40,7 +40,7 @@
                                 <label class="label-login" for="login">Usuário</label>
                                 <div class="input">
                                     <img src="{{ asset('img/icon-user.svg') }}" alt="Usuário">
-                                    <input type="text" name="usuario" autocomplete="off" maxlength="50" required>
+                                    <input type="text" name="usuario" autocomplete="off" maxlength="50" placeholder="Usuário" required>
                                 </div>
                                 <div class="alert">
                                     <!-- <small>Necessário inserir um <b>usuário</b>!</small> -->
@@ -50,7 +50,7 @@
                                 <label class="label-pw" for="password">Senha</label>
                                 <div class="input">
                                     <img src="{{ asset('img/icon-pw.svg') }}" alt="Cadeado">
-                                    <input type="password" name="senha" maxlength="50" required>
+                                    <input type="password" name="senha" maxlength="50" placeholder="•••••••••••••" required>
                                 </div>
                                 <div class="alert">
                                     <strong>

@@ -24,8 +24,8 @@ class CreatePagamentoVendaTable extends Migration
             $table->char('status', 2)->default('NP'); // NP = Não Pago, EP = Em Pagamento, PG = Pago, VL = Vencido, CA = Cancelado
             $table->timestamps();
 
-            $table->foreign('venda_id')->references('id')->on('vendas');
-            $table->foreign('forma_pagamento_id')->references('id')->on('formas_pagamento');
+            $table->foreign('venda_id')->references('id')->on('vendas')->onDelete('cascade');
+            $table->foreign('forma_pagamento_id')->references('id')->on('formas_pagamento')->onDelete('cascade');
         });
     }
 
