@@ -55,17 +55,17 @@
                                         <span>Total de Venda / dia</span>
                                     </div>
                                     <div class="card-body">
-                                        <strong>5</strong>
+                                        <strong>{{ $totalVendasDia }}</strong>
                                         <span>vendas</span>
                                     </div>
                                 </div>
                                 <div class="card" style="background-color: #00A507 !important;">
                                     <div class="title-card" style="background-color: #1C9821 !important;">
-                                        <span>Média de Lucro / dia</span>
+                                        <span>Total em vendas do dia</span>
                                     </div>
                                     <div class="card-body">
                                         <span>R$</span>
-                                        <strong>5</strong>
+                                        <strong>{{ number_format($totalVendaDia, 2, ',', '') }}</strong>
                                     </div>
                                 </div>
                                 <div class="card" style="background-color: #11858C !important;">
@@ -82,7 +82,7 @@
                         
                         <div class="section">
                             <div class="section-title">
-                                <span><i class="fas fa-exclamation-circle me-2"></i>Produtos com baixa no Estoque</span>
+                                <span><i class="fas fa-exclamation-circle me-2"></i>Produtos com baixa no Estoque <small>(menos de 10 unidades)</small></span>
                             </div>
                             <table>
                                 <thead>
@@ -94,12 +94,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td>R$ </td>
-                                        <td></td>
-                                    </tr>
+                                    @forelse ($produtosAbaixoEstoque as $produto)
+                                        <tr>
+                                            <td>{{ $produto->produto_id < 10 ? '0'.$produto->produto_id : $produto->produto_id }}</td>
+                                            <td>{{ $produto->nome }}</td>
+                                            <td>R$ {{ number_format($produto->preco_venda, 2, ',', '') }}</td>
+                                            <td>{{ $produto->estoque }} unid.</td>
+                                        </tr>
+                                    @empty
+                                        <tr><td colspan="4">Nenhum produto com baixa no estoque...</td></tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -115,17 +119,24 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Nome do Cliente</th>
-                                        <th scope="col">Valor da Parcela</th>
                                         <th scope="col">Vencimento</th>
+                                        <th scope="col">Parcela</th>
+                                        <th scope="col">Valor</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    @forelse ($clientesParcelaVencendo  as $cliente)
+                                        <tr>
+                                            <td>{{ $cliente->cliente_id < 10 ? '0'.$cliente->cliente_id : $cliente->cliente_id }}</td>
+                                            <td>{{ $cliente->nome }}</td>
+                                            <td>{{ $cliente->vencimento }}</td>
+                                            <td>{{ $cliente->parcela }}</td>
+                                            <td>{{ $cliente->valor }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr><td colspan="5">Não há clientes com parcelas vencendo...</td></tr>
+                                    @endforelse
+                                    
                                 </tbody>
                             </table>
                         </div>
