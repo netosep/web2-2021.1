@@ -65,7 +65,9 @@
                                     </div>
                                     <div class="card-body">
                                         <span>R$</span>
-                                        <strong>{{ number_format($totalVendaDia, 2, ',', '') }}</strong>
+                                        <strong>
+                                            {{ count($totalVendaDia) > 0 ? number_format($totalVendaDia[0]->total_venda_dia, 2, ',', '') : '0,00' }}
+                                        </strong>
                                     </div>
                                 </div>
                                 <div class="card" style="background-color: #11858C !important;">

@@ -17,10 +17,10 @@ class DashboardController extends Controller
         $clientesParcelaVencendo = DB::select('SELECT * FROM clienteParcelaVencendo(?)', [date('Y-m-d')]);
 
         return view('pages.dashboard.index', [
-            'totalVendaDia' => $totalVendaDia[0]->total_venda_dia,
+            'totalVendaDia' => $totalVendaDia,
             'produtosAbaixoEstoque' => $produtosAbaixoEstoque,
             'clientesParcelaVencendo' => $clientesParcelaVencendo,
-            'quantidade_clientes' => Cliente::all()->count(),
+            'quantidade_clientes' => Cliente::where('id', '>', '1')->get()->count(),
             'totalVendasDia' => Venda::whereDate('created_at', date('Y-m-d'))->count()
         ]);
     }
