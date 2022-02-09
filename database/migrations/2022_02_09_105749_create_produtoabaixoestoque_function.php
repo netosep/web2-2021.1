@@ -31,7 +31,7 @@ class CreateProdutoabaixoestoqueFunction extends Migration
     public function down()
     {
         DB::unprepared('
-            DROP FUNCTION produtoAbaixoEstoque;
+            DROP FUNCTION produtosAbaixoEstoque;
         ');
     }
 }
