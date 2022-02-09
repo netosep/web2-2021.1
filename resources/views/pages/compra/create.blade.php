@@ -195,15 +195,15 @@
                     </td>
                     <td>
                         <input type="hidden" name="ipi[]" value="${ipi.toFixed(2)}">
-                        ${ipi.toFixed(2) * 100}%
+                        ${ipi.toFixed(2)}%
                     </td>
                     <td>
                         <input type="hidden" name="icms[]" value="${icms.toFixed(2)}">
-                        ${icms.toFixed(2) * 100}%
+                        ${icms.toFixed(2)}%
                     </td>
                     <td>
                         <input type="hidden" name="frete[]" value="${frete.toFixed(2)}">
-                        ${frete.toFixed(2) * 100}%
+                        ${frete.toFixed(2)}%
                     </td>
                     <td>
                         <input type="hidden" name="valor_compra[]" value="${valor}">
