@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <form action="{{ route('compra.store') }}" class="buy" method="POST" onsubmit="setFormSubmitting()">
+            <form action="{{ route('compra.store') }}" class="buy" method="POST" id="form-compra" onsubmit="setFormSubmitting()">
                 @method('POST')
                 @csrf
                 <!-- Funcionario -->
@@ -101,7 +101,7 @@
                         <button type="button" id="cancelar-compra" class="cancel" onclick="limparTabela()">
                             <span>Limpar Lista<i class="fas fa-times ms-3"></i></span>
                         </button>
-                        <button type="submit" id="finalizar-compra" class="accept">
+                        <button type="button" id="finalizar-compra" class="accept" onclick="validarSubmit()">
                             <span>Registrar Compra<i class="fas fa-check ms-3"></i></span>
                         </button>
                     </div>
@@ -177,12 +177,6 @@
             }
 
             var quantidade = $('#quantidade-item').val();
-            if (quantidade == '' || quantidade == 0) {
-
-            } else {
-
-            }
-
             var idProduto = optionProduto.dataset.id;
             var valor = parseFloat($('#valor-unitario').val());
             var frete = parseFloat($('#frete').val()) / 100;
@@ -201,15 +195,15 @@
                     </td>
                     <td>
                         <input type="hidden" name="ipi[]" value="${ipi.toFixed(2)}">
-                        ${ipi}%
+                        ${ipi.toFixed(2) * 100}%
                     </td>
                     <td>
                         <input type="hidden" name="icms[]" value="${icms.toFixed(2)}">
-                        ${icms}%
+                        ${icms.toFixed(2) * 100}%
                     </td>
                     <td>
                         <input type="hidden" name="frete[]" value="${frete.toFixed(2)}">
-                        ${frete}%
+                        ${frete.toFixed(2) * 100}%
                     </td>
                     <td>
                         <input type="hidden" name="valor_compra[]" value="${valor}">
@@ -292,5 +286,15 @@
             $('#icms').val('0.0');
         }
 
+        function validarSubmit() {
+            var fornecedor = $('#fornecedor').val();
+            if (fornecedor == '') {
+                return alert('Necessário selecionar um fornecedor!');
+            } else {
+                return $('#form-compra').submit();
+            }
+        }
+
     </script>
+    <script src="{{ asset('js/checkReload.js') }}"></script>
 @endpush
