@@ -30,9 +30,7 @@
 <ul>
   <ul>
     <li><a href="https://github.com/netosep/web2-2021.1/tree/Projeto1-1Unidade">Projeto I</a></li>
-    <li><a href="https://github.com/netosep/web2-2021.1/tree/Projeto1-2unidade">Projeto II</a></li>
-    <li><a href="https://github.com/netosep/web2-2021.1/tree/ProjetoII-layout">Projeto II - Layout</a></li>
-    <li><a href="https://github.com/netosep/web2-2021.1/tree/projetoII-backend">Projeto II - Backend</a></li>
+    <li><a href="https://github.com/netosep/web2-2021.1/tree/ProjetoII">Projeto II</a></li>
   </ul>
 </ul>
 
