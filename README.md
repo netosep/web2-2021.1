@@ -4,7 +4,8 @@
 </h1>
 
 <p align="center">
-  Repositório para armazenas as atividades realizadas durante a disciplina de <b>Laboratório de Programação Web II</b> - Semestre 2021.1 
+  Repositório para armazenas as atividades realizadas utilizando o framework <a href="https://laravel.com/">Laravel</a> da linguagem 
+  <a href="https://www.php.net/">PHP</a> durante a disciplina de <b>Laboratório de Programação Web II</b> - Semestre 2021.1 
   do curso de <b>Análise e Desenvolvimento de Sistemas</b> ofertado pelo <a href="https://www.ifbaiano.edu.br/unidades/guanambi/">
   <b>IFBaiano <i>Campus</i> Guanambi</a> durante os anos de 2021 e 2022.</b> Professor: <b>Fabio dos Santos Lima</b>
 </p>
@@ -12,6 +13,7 @@
 #
 
 ### 🔃 →  Branches das atividades:
+<img align="right" width="350" src="https://monophy.com/media/kHlrPbN9zaoOo7KXDo/monophy.gif"/>
 <ul>
   <ul>
     <li><a href="https://github.com/netosep/web2-2021.1/tree/AtividadeII">Atividade II</a></li>
@@ -23,6 +25,8 @@
     <li><a href="https://github.com/netosep/web2-2021.1/tree/AtividadeVII">Atividade VI</a></li>
   </ul>
 </ul>
+
+
 
 #
 
