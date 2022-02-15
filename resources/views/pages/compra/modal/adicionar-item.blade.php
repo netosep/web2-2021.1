@@ -23,6 +23,7 @@
                         <div class="input input-quant">
                             <label>Quantidade</label>
                             <input id="quantidade-item" class="quant-product" type="number" min="1" value="1">
+                            <small style="display: none" id="quantidade-erro" class="text-danger"></small>
                         </div>
                     </div>
 
@@ -30,20 +31,24 @@
                         <div class="input input-valor-unit">
                             <label>Valor em <strong>R$</strong> por <strong>UNIDADE</strong></label>
                             <input id="valor-unitario" class="valor-unit" type="number" step="0.01" min="0" value="0.00">
+                            <small style="display: none" id="valor-unitario-erro" class="text-danger"></small>
                         </div>
                         <div class="input input-frete">
                             <label>Valor em <strong>%</strong> de <strong>FRETE</strong></label>
                             <input id="frete" class="frete" type="number" step="0.01" min="0" value="0.00">
+                            <small style="display: none" id="frete-erro" class="text-danger"></small>
                         </div>
                     </div>
                     <div class="input-ipi-icms">
                         <div class="input input-ipi">
                             <label>Valor em <strong>%</strong> de <strong>IPI</strong></label>
                             <input id="ipi" class="ipi" type="number" step="0.01" min="0" value="0.00">
+                            <small style="display: none" id="ipi-erro" class="text-danger"></small>
                         </div>
                         <div class="input input-icms">
                             <label>Valor em <strong>%</strong> de <strong>ICMS</strong></label>
                             <input id="icms" class="icms" type="number" step="0.01" min="0" value="0.00">
+                            <small style="display: none" id="icms-erro" class="text-danger"></small>
                         </div>
                     </div>
                     

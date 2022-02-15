@@ -177,14 +177,54 @@
             }
 
             var quantidade = $('#quantidade-item').val();
-            var idProduto = optionProduto.dataset.id;
+            if(quantidade == '' || quantidade <= 0) {
+                $('#quantidade-erro').html('<strong>Campo inválido!</strong>').show();
+                return confirmProduto.dataset.dismiss = 'none';
+            } else {
+                $('#quantidade-erro').hide();
+                confirmProduto.dataset.dismiss = 'modal';
+            }
+
             var valor = parseFloat($('#valor-unitario').val());
+            if(valor < 0 || isNaN(valor)) {
+                $('#valor-unitario-erro').html('<strong>Campo inválido!</strong>').show();
+                return confirmProduto.dataset.dismiss = 'none';
+            } else {
+                $('#valor-unitario-erro').hide();
+                confirmProduto.dataset.dismiss = 'modal';
+            }
+
             var frete = parseFloat($('#frete').val()) / 100;
+            if(frete < 0 || isNaN(frete)) {
+                $('#frete-erro').html('<strong>Campo inválido!</strong>').show();
+                return confirmProduto.dataset.dismiss = 'none';
+            } else {
+                $('#frete-erro').hide();
+                confirmProduto.dataset.dismiss = 'modal';
+            }
+
             var ipi = parseFloat($('#ipi').val()) / 100;
+            if(ipi < 0 || isNaN(ipi)) {
+                $('#ipi-erro').html('<strong>Campo inválido!</strong>').show();
+                return confirmProduto.dataset.dismiss = 'none';
+            } else {
+                $('#ipi-erro').hide();
+                confirmProduto.dataset.dismiss = 'modal';
+            }
+
             var icms = parseFloat($('#icms').val()) / 100;
+            if(icms < 0 || isNaN(icms)) {
+                $('#icms-erro').html('<strong>Campo inválido!</strong>').show();
+                return confirmProduto.dataset.dismiss = 'none';
+            } else {
+                $('#icms-erro').hide();
+                confirmProduto.dataset.dismiss = 'modal';
+            }
+
             var total = quantidade * valor;
             var imposto = frete + ipi + icms;
             var totalImposto = total + (total * imposto);
+            var idProduto = optionProduto.dataset.id;
 
             tableBodyItems.innerHTML += `
                 <tr>
@@ -279,11 +319,17 @@
 
         function clearModalItens() {
             $('#nome-produto').val('');
+            $('#produto-erro').hide();
             $('#quantidade-item').val('1');
+            $('#quantidade-erro').hide();
             $('#valor-unitario').val('0.0');
+            $('#valor-unitario-erro').hide();
             $('#frete').val('0.0');
+            $('#frete-erro').hide();
             $('#ipi').val('0.0');
+            $('#ipi-erro').hide();
             $('#icms').val('0.0');
+            $('#icms-erro').hide();
         }
 
         function validarSubmit() {
