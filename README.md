@@ -40,7 +40,7 @@
   # necessário ser pgsql
   DB_CONNECTION=pgsql 
   DB_HOST=localhost
-  DB_PORT=3306
+  DB_PORT=5432
   DB_DATABASE=dbname
   DB_USERNAME=dbuser
   DB_PASSWORD=dbpass
