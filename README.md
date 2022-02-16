@@ -29,7 +29,7 @@
 ```
 - Selecione a branch `ProjetoII`
 ```bash
-  git checkout ProjetoII 
+  git checkout projetoII 
 ```
 - Renomeie o arquivo `.env.example` para `.env`
 ```bash
