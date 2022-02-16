@@ -9,9 +9,10 @@
 
 #
 
-<p align="center">
+<div align="center">
   🔗 <a href="http://sisconve-laravel.herokuapp.com/">Clique aqui</a> para acessar a aplicação online.
-</p>
+  <p>Dados de acesso: usuário <b>admin</b> e senha <b>admin</b></p>
+</div>
 
 #
 
